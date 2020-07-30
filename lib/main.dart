@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './constant.dart';
+import './frontPage.dart';
 
 void main() {
   runApp(MainApp());
@@ -170,9 +171,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
             });
           },
           children: <Widget>[
-            Center(
-              child: Text('Page $_page'),
-            ),
+            FrontPage(),
             Center(
               child: Text('Page $_page'),
             ),
