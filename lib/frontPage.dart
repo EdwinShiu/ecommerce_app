@@ -15,17 +15,18 @@ class FrontPage extends StatelessWidget {
         ),
         Container(
           alignment: Alignment.bottomLeft,
+          padding: EdgeInsets.only(left: 8.0),
           child: Text(
             'New',
             style: GoogleFonts.roboto(
               fontSize: 32.0,
+              fontWeight: FontWeight.w600,
               color: Color(0xFF0090F8),
             ),
           ),
         ),
         Expanded(
           child: ListView(
-            shrinkWrap: true,
           ),
         ),
       ],
