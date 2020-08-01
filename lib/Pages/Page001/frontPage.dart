@@ -88,11 +88,11 @@ class FrontPageState extends State<FrontPage> {
           child: ListView(
             shrinkWrap: true,
             children: <Widget>[
-              newItem(0),
-              newItem(1),
-              newItem(2),
-              newItem(3),
-              newItem(4),
+              newItem(context, 0),
+              newItem(context, 1),
+              newItem(context, 2),
+              newItem(context, 3),
+              newItem(context, 4),
             ],
           ),
         ),

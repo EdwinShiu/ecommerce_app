@@ -1,8 +1,9 @@
+import 'package:ecommerce_app/Pages/Page002/ItemPage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../data/items.dart';
+import '../../data/items.dart';
 
-Widget newItem(int index) {
+Widget newItem(BuildContext context, int index) {
   const double borderRadius = 10.0;
 
   return Container(
@@ -56,7 +57,11 @@ Widget newItem(int index) {
             borderRadius: BorderRadius.circular(borderRadius),
             highlightColor: Color.fromRGBO(170, 170, 235, 0.3),
             onTap: () {
-                
+              print(ItemPage.routeName);
+              Navigator.of(context).pushNamed(
+                ItemPage.routeName,
+                arguments: 'test',
+              );
             },  
           ),
         ),

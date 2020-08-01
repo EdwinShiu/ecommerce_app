@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import '../constant.dart';
 
 Widget mainBottomNavigationBar(
-    PageController _mainNavigationPageController, int _page) {
+  PageController _mainNavigationPageController, int _page) {
+  
   return Container(
     decoration: BoxDecoration(
       boxShadow: [
@@ -21,7 +22,6 @@ Widget mainBottomNavigationBar(
             duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
       },
       type: BottomNavigationBarType.shifting,
-      //backgroundColor: Color(0xFFA8E3FF),
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           backgroundColor: Color.fromRGBO(138, 197, 255, 1),
