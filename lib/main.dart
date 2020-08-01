@@ -2,7 +2,7 @@ import 'package:ecommerce_app/parts/bottomNavigationBar.dart';
 import 'package:ecommerce_app/parts/drawer.dart';
 import 'package:flutter/material.dart';
 import './constant.dart';
-import './frontPage.dart';
+import './frontPage/frontPage.dart';
 import './parts/appBar.dart';
 
 void main() {
