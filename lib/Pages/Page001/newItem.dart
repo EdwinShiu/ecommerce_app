@@ -1,14 +1,13 @@
-import 'package:ecommerce_app/Pages/Page002/ItemPage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../data/items.dart';
+import '../OtherPages/itemPage.dart';
+import '../../constant.dart';
 
 Widget newItem(BuildContext context, int index) {
-  const double borderRadius = 10.0;
-
   return Container(
     decoration: BoxDecoration(
-      color: Color.fromRGBO(240, 240, 240, 1),
+      color: itemBackgroundColor,
       borderRadius: BorderRadius.circular(borderRadius),
       boxShadow: [
         BoxShadow(
@@ -42,8 +41,8 @@ Widget newItem(BuildContext context, int index) {
                   child: Text(newItemImages[index]['itemName'],
                     style: GoogleFonts.ptSans(
                       fontSize: 30.0,
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xFF3D66B9),
+                      fontWeight: FontWeight.w500,
+                      color: sonyBlack,
                   ),
                   ),
                 ),

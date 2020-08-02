@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/data/items.dart';
 import 'package:ecommerce_app/data/routing.dart';
 import 'package:ecommerce_app/parts/bottomNavigationBar.dart';
 import 'package:ecommerce_app/parts/drawer.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import './constant.dart';
 import 'Pages/Page001/frontPage.dart';
 import './parts/appBar.dart';
+import 'Pages/Page002/SecondPage.dart';
 
 void main() {
   runApp(MainApp());
@@ -47,7 +49,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: mainAppbar(context),
+        appBar: drawerAppbar(context),
         endDrawer: mainDrawer(),
         bottomNavigationBar: mainBottomNavigationBar(_mainNavigationPageController, _page),
         body: PageView(
@@ -59,9 +61,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
           },
           children: <Widget>[
             FrontPage(),
-            Center(
-              child: Text('Page $_page'),
-            ),
+            SecondPage(),
             Center(
               child: Text('Page $_page'),
             ),

@@ -1,10 +1,31 @@
 import 'package:flutter/material.dart';
 import '../constant.dart';
 
-Widget mainAppbar(BuildContext context) {
+Widget drawerAppbar(BuildContext context) {
   return AppBar(
     leading: Container(),
-    backgroundColor: Color.fromRGBO(138, 197, 255, 1),
+    backgroundColor: sonyBlack,
+    actions: <Widget>[
+      Builder(
+        builder: (context) => IconButton(
+          iconSize: accountIconSize,
+          alignment: Alignment.center,
+          icon: Icon(
+            Icons.account_circle,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Scaffold.of(context).openEndDrawer();
+          },
+        ),
+      ),
+    ],
+  );
+}
+
+Widget mainAppbar(BuildContext context) {
+  return AppBar(
+    backgroundColor: sonyBlack,
     actions: <Widget>[
       Builder(
         builder: (context) => IconButton(

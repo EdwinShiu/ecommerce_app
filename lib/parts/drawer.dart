@@ -8,7 +8,7 @@ Widget mainDrawer() {
       children: <Widget>[
         DrawerHeader(
           decoration: BoxDecoration(
-            color: Color.fromRGBO(138, 197, 255, 1),
+            color: sonyBlack,
           ),
           child: Align(
             alignment: Alignment.bottomLeft,

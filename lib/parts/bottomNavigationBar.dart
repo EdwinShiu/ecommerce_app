@@ -24,19 +24,22 @@ Widget mainBottomNavigationBar(
       type: BottomNavigationBarType.shifting,
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
-          backgroundColor: Color.fromRGBO(138, 197, 255, 1),
+          backgroundColor: sonyBlack,
           icon: Icon(Icons.home),
           title: Text('Home'),
         ),
         BottomNavigationBarItem(
+          backgroundColor: sonyBlack,
           icon: Icon(Icons.apps),
           title: Text('Category'),
         ),
         BottomNavigationBarItem(
+          backgroundColor: sonyBlack,
           icon: Icon(Icons.favorite),
           title: Text('Favourite'),
         ),
         BottomNavigationBarItem(
+          backgroundColor: sonyBlack,
           icon: Icon(Icons.shopping_cart),
           title: Text('Cart'),
         ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import './newItem.dart';
+import '../../constant.dart';
 
 const List<String> bannerList = [
   'assets/images/WM1Z_banner.jpg',
@@ -52,8 +53,6 @@ class FrontPageState extends State<FrontPage> {
           ),
         ),
         Container(
-          height: 25,
-          //color: Colors.yellow,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: bannerList.map((url) {
@@ -61,7 +60,7 @@ class FrontPageState extends State<FrontPage> {
               return Container(
                 width: 8.0,
                 height: 8.0,
-                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                margin: EdgeInsets.only(top: 6.0, left: 2.0, right: 2.0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: _current == index
@@ -79,14 +78,13 @@ class FrontPageState extends State<FrontPage> {
             'New',
             style: GoogleFonts.ptSans(
               fontSize: 32.0,
-              fontWeight: FontWeight.w600,
-              color: Color(0xFF3D66B9),
+              fontWeight: FontWeight.w500,
+              color: sonyBlack,
             ),
           ),
         ),
         Expanded(
           child: ListView(
-            shrinkWrap: true,
             children: <Widget>[
               newItem(context, 0),
               newItem(context, 1),

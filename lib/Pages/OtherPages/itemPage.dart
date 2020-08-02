@@ -29,7 +29,6 @@ class ItemPageState extends State<ItemPage> {
 
   @override
   Widget build(BuildContext context) {
-    print('hihi');
     return SafeArea(
       child: Scaffold(
         appBar: mainAppbar(context),
@@ -37,7 +36,6 @@ class ItemPageState extends State<ItemPage> {
         body: Container(
           color: Colors.yellow,
         ),
-        bottomNavigationBar: mainBottomNavigationBar(_mainNavigationPageController, _page),
       ),
     );
   }

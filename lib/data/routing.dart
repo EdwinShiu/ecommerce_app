@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../Pages/Page002/itemPage.dart';
+import '../Pages/OtherPages/itemPage.dart';
 import '../main.dart';
 
 class RouteGenerator {
