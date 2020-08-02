@@ -59,7 +59,7 @@ class SecondPageState extends State<SecondPage> {
                   content: GridView.builder(
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
-                    itemCount: categories[listIndex].length,
+                    itemCount: categories[listIndex].length - 1,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
                     itemBuilder: (context, gridIndex) {
                       return Container(
@@ -68,7 +68,20 @@ class SecondPageState extends State<SecondPage> {
                           color: itemBackgroundColor,
                         ),
                         margin: EdgeInsets.all(5.0),
-                        
+                        padding: EdgeInsets.all(5.0),
+                        child: Stack(
+                          children: <Widget>[
+                            Center(
+                              child: Padding(
+                                padding: EdgeInsets.all(5.0),
+                                child: Image.asset(
+                                  categoryImage[listIndex][gridIndex]['imagePath'],
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       );
                     },
                   ),
