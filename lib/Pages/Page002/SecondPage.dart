@@ -80,6 +80,21 @@ class SecondPageState extends State<SecondPage> {
                                 ),
                               ),
                             ),
+                            Column(
+                              verticalDirection: VerticalDirection.up,
+                              children: <Widget> [
+                                Flexible(
+                                  child: Text(
+                                    categoryImage[listIndex][gridIndex]['itemName'],
+                                    style: GoogleFonts.ptSans(
+                                      fontSize: 24.0,
+                                      fontWeight: FontWeight.w500,
+                                      color: sonyBlack,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       );
