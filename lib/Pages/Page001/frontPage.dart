@@ -4,14 +4,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import './newItem.dart';
 import '../../constant.dart';
 
-const List<String> bannerList = [
-  'assets/images/WM1Z_banner.jpg',
-  'assets/images/WM1A_banner.jpg',
-  'assets/images/ZX500_banner.jpg',
-  'assets/images/A100_banner.jpg',
-  'assets/images/A50_banner.jpg'
-];
-
 class FrontPage extends StatefulWidget {
   @override
   FrontPageState createState() => FrontPageState();
@@ -19,11 +11,18 @@ class FrontPage extends StatefulWidget {
 
 class FrontPageState extends State<FrontPage> {
   int _current = 0;
+  List<int> list = [0, 1, 2, 3, 4];
+  final List<String> bannerList = [
+    'assets/images/WM1Z_banner.jpg',
+    'assets/images/WM1A_banner.jpg',
+    'assets/images/ZX500_banner.jpg',
+    'assets/images/A100_banner.jpg',
+    'assets/images/A50_banner.jpg'
+  ];
 
   @override
   Widget build(BuildContext context) {
-    List<int> list = [0, 1, 2, 3, 4];
-    return Column(
+    return  Column(
       children: <Widget>[
         Container(
           margin: EdgeInsets.only(top: 25.0),
@@ -63,9 +62,7 @@ class FrontPageState extends State<FrontPage> {
                 margin: EdgeInsets.only(top: 6.0, left: 2.0, right: 2.0),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: _current == index
-                    ? Color.fromRGBO(0, 0, 0, 0.9)
-                    : Color.fromRGBO(0, 0, 0, 0.4),
+                  color: _current == index ? Color.fromRGBO(0, 0, 0, 0.9) : Color.fromRGBO(0, 0, 0, 0.4),
                 ),
               );
             }).toList(),
@@ -86,11 +83,11 @@ class FrontPageState extends State<FrontPage> {
         Expanded(
           child: ListView(
             children: <Widget>[
-              newItem(context, 0),
-              newItem(context, 1),
-              newItem(context, 2),
-              newItem(context, 3),
-              newItem(context, 4),
+              newItem(context, pageNavigatorKey, 0),
+              newItem(context, pageNavigatorKey, 1),
+              newItem(context, pageNavigatorKey, 2),
+              newItem(context, pageNavigatorKey, 3),
+              newItem(context, pageNavigatorKey, 4),
             ],
           ),
         ),

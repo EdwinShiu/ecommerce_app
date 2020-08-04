@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../parts/appBar.dart';
-import '../../parts/bottomNavigationBar.dart';
-import '../../parts/drawer.dart';
-
 class ItemPage extends StatefulWidget {
   static const routeName = '/itemPage';
   
@@ -11,7 +7,6 @@ class ItemPage extends StatefulWidget {
 }
 
 class ItemPageState extends State<ItemPage> {
-  int _page = 0;
 
   PageController _mainNavigationPageController;
   
@@ -29,13 +24,12 @@ class ItemPageState extends State<ItemPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: mainAppbar(context),
-        endDrawer: mainDrawer(),
-        body: Container(
-          color: Colors.yellow,
-        ),
+    return Container(
+      color: Colors.yellow,
+      child: Center(
+        child: RaisedButton(onPressed: () {
+          Navigator.of(context).pop();
+        }),
       ),
     );
   }

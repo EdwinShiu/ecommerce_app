@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../data/items.dart';
-import '../OtherPages/itemPage.dart';
 import '../../constant.dart';
 
-Widget newItem(BuildContext context, int index) {
+Widget newItem(BuildContext context, GlobalKey<NavigatorState> _pageNavigatorKey, int index) {
   return Container(
     decoration: BoxDecoration(
       color: itemBackgroundColor,
@@ -55,13 +54,7 @@ Widget newItem(BuildContext context, int index) {
           child: InkWell(
             borderRadius: BorderRadius.circular(borderRadius),
             highlightColor: Color.fromRGBO(170, 170, 235, 0.3),
-            onTap: () {
-              print(ItemPage.routeName);
-              Navigator.of(context).pushNamed(
-                ItemPage.routeName,
-                arguments: 'test',
-              );
-            },  
+            onTap: () => _pageNavigatorKey.currentState.pushNamed('/newItem'),
           ),
         ),
       ],

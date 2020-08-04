@@ -1,13 +1,17 @@
-import 'package:ecommerce_app/data/items.dart';
-import 'package:ecommerce_app/data/routing.dart';
+import 'package:ecommerce_app/Pages/Page001/frontPage.dart';
 import 'package:ecommerce_app/parts/bottomNavigationBar.dart';
 import 'package:ecommerce_app/parts/drawer.dart';
 import 'package:flutter/material.dart';
 import './constant.dart';
-import 'Pages/Page001/frontPage.dart';
 import './parts/appBar.dart';
 import 'Pages/Page002/SecondPage.dart';
+import 'Pages/OtherPages/itemPage.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import './Pages/Page001/newItem.dart';
 
+
+// testing
 void main() {
   runApp(MainApp());
 }
@@ -15,11 +19,9 @@ void main() {
 class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: appTitle,
-      initialRoute: '/',
-      onGenerateRoute: RouteGenerator.generateRoute,
-    );
+    return MaterialApp(title: appTitle, routes: {
+      '/': (context) => MainNavigationPage(),
+    });
   }
 }
 
@@ -32,7 +34,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
   int _page = 0;
 
   PageController _mainNavigationPageController;
-  
+
   @override
   void initState() {
     super.initState();
@@ -51,24 +53,36 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
       child: Scaffold(
         appBar: drawerAppbar(context),
         endDrawer: mainDrawer(),
-        bottomNavigationBar: mainBottomNavigationBar(_mainNavigationPageController, _page),
-        body: PageView(
-          controller: _mainNavigationPageController,
-          onPageChanged: (newPage) {
-            setState(() {
-              _page = newPage;
-            });
-          },
-          children: <Widget>[
-            FrontPage(),
-            SecondPage(),
-            Center(
-              child: Text('Page $_page'),
-            ),
-            Center(
-              child: Text('Page $_page'),
-            ),
-          ],
+        bottomNavigationBar: mainBottomNavigationBar(context, pageNavigatorKey, _mainNavigationPageController, _page),
+        body: Navigator(
+          key: pageNavigatorKey,
+          onGenerateRoute: (settings) {
+            if (settings.name == '/newItem') {
+              return MaterialPageRoute(
+                builder: (context) => ItemPage(),
+              );
+            }
+            return MaterialPageRoute(
+              builder: (context) => PageView(
+                controller: _mainNavigationPageController,
+                onPageChanged: (newPage) {
+                  setState(() {
+                    _page = newPage;
+                  });
+                },
+                children: <Widget>[
+                  FrontPage(),
+                  SecondPage(),
+                  Center(
+                    child: Text('Page $_page'),
+                  ),
+                  Center(
+                    child: Text('Page $_page'),
+                  ),
+                ],
+              )
+            );
+          }
         ),
       ),
     );
