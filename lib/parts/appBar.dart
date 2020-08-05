@@ -11,7 +11,7 @@ Widget drawerAppbar(BuildContext context) {
           iconSize: accountIconSize,
           alignment: Alignment.center,
           icon: Icon(
-            Icons.account_circle,
+            Icons.shopping_cart,
             color: Colors.white,
           ),
           onPressed: () {
@@ -32,7 +32,7 @@ Widget mainAppbar(BuildContext context) {
           iconSize: accountIconSize,
           alignment: Alignment.center,
           icon: Icon(
-            Icons.account_circle,
+            Icons.shopping_cart,
             color: Colors.white,
           ),
           onPressed: () {

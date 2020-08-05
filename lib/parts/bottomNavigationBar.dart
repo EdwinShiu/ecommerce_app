@@ -18,7 +18,6 @@ Widget mainBottomNavigationBar(BuildContext context, GlobalKey<NavigatorState> _
     child: BottomNavigationBar(
       currentIndex: _page,
       onTap: (index) {
-        print(_pageNavigatorKey.currentWidget);
         if (_pageNavigatorKey.currentState.canPop()) {
           _pageNavigatorKey.currentState.pop();
         }
@@ -40,12 +39,12 @@ Widget mainBottomNavigationBar(BuildContext context, GlobalKey<NavigatorState> _
         BottomNavigationBarItem(
           backgroundColor: sonyBlack,
           icon: Icon(Icons.favorite),
-          title: Text('Favourite'),
+          title: Text('Favorite'),
         ),
         BottomNavigationBarItem(
           backgroundColor: sonyBlack,
-          icon: Icon(Icons.shopping_cart),
-          title: Text('Cart'),
+          icon: Icon(Icons.account_circle),
+          title: Text('Account'),
         ),
       ],
     ),

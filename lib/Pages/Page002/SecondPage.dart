@@ -28,16 +28,9 @@ class SecondPageState extends State<SecondPage> {
             ),
           ),
         ),
-        Divider(
-          color: Color(0xFF2D4678),
-          height: 0.0,
-          thickness: 2,
-          indent: 10.0,
-          endIndent: 10.0,
-        ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.only(top: 30, left: 10, right: 10),
+            padding: EdgeInsets.only(top: 10, left: 10, right: 10),
             child: ListView.builder(
               itemCount: categories.length, 
               itemBuilder: (context, listIndex) {
@@ -68,32 +61,42 @@ class SecondPageState extends State<SecondPage> {
                           color: itemBackgroundColor,
                         ),
                         margin: EdgeInsets.all(5.0),
-                        padding: EdgeInsets.all(5.0),
                         child: Stack(
                           children: <Widget>[
                             Center(
                               child: Padding(
-                                padding: EdgeInsets.all(5.0),
+                                padding: EdgeInsets.all(10.0),
                                 child: Image.asset(
                                   categoryImage[listIndex][gridIndex]['imagePath'],
                                   fit: BoxFit.contain,
                                 ),
                               ),
                             ),
-                            Column(
-                              verticalDirection: VerticalDirection.up,
-                              children: <Widget> [
-                                Flexible(
-                                  child: Text(
-                                    categoryImage[listIndex][gridIndex]['itemName'],
-                                    style: GoogleFonts.ptSans(
-                                      fontSize: 24.0,
-                                      fontWeight: FontWeight.w500,
-                                      color: sonyBlack,
+                            Padding(
+                              padding: EdgeInsets.all(5.0),
+                              child: Column(
+                                verticalDirection: VerticalDirection.up,
+                                children: <Widget> [
+                                  Flexible(
+                                    child: Text(
+                                      categoryImage[listIndex][gridIndex]['itemName'],
+                                      style: GoogleFonts.ptSans(
+                                        fontSize: 24.0,
+                                        fontWeight: FontWeight.w500,
+                                        color: sonyBlack,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
+                            ),
+                            Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(borderRadius),
+                                highlightColor: Color.fromRGBO(170, 170, 195, 0.3),
+                                onTap: () => pageNavigatorKey.currentState.pushNamed('/newItem'),
+                              ),
                             ),
                           ],
                         ),

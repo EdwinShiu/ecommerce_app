@@ -53,7 +53,7 @@ Widget newItem(BuildContext context, GlobalKey<NavigatorState> _pageNavigatorKey
           color: Colors.transparent,
           child: InkWell(
             borderRadius: BorderRadius.circular(borderRadius),
-            highlightColor: Color.fromRGBO(170, 170, 235, 0.3),
+            highlightColor: Color.fromRGBO(170, 170, 195, 0.3),
             onTap: () => _pageNavigatorKey.currentState.pushNamed('/newItem'),
           ),
         ),

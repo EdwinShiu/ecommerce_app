@@ -18,7 +18,7 @@ Widget mainDrawer() {
                   child: Container(
                     margin: EdgeInsets.only(right: 8.0),
                     child: Icon(
-                      Icons.account_circle,
+                      Icons.shopping_cart,
                       color: Colors.white,
                       size: accountIconSize,
                     ),
@@ -26,9 +26,9 @@ Widget mainDrawer() {
                 ),
                 Flexible(
                   child: Text(
-                    'Account',
+                    'Cart',
                     style: TextStyle(
-                      fontSize: 32.0,
+                      fontSize: 28.0,
                       color: Colors.white,
                     ),
                   ),

@@ -6,12 +6,8 @@ import './constant.dart';
 import './parts/appBar.dart';
 import 'Pages/Page002/SecondPage.dart';
 import 'Pages/OtherPages/itemPage.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import './Pages/Page001/newItem.dart';
+import './Pages/Page003/ThirdPage.dart';
 
-
-// testing
 void main() {
   runApp(MainApp());
 }
@@ -32,7 +28,6 @@ class MainNavigationPage extends StatefulWidget {
 
 class _MainNavigationPageState extends State<MainNavigationPage> {
   int _page = 0;
-
   PageController _mainNavigationPageController;
 
   @override
@@ -73,9 +68,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
                 children: <Widget>[
                   FrontPage(),
                   SecondPage(),
-                  Center(
-                    child: Text('Page $_page'),
-                  ),
+                  ThirdPage(),
                   Center(
                     child: Text('Page $_page'),
                   ),
