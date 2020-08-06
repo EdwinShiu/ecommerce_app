@@ -1,6 +1,6 @@
 // Temporary Storage of App Data
 
-int favorite_item_number = 0;
+int favorite_item_number = 10;
 
 const List<Map> newItemImages = [{'imagePath': 'assets/images/WM1Z_walkman.jpg', 'itemName': 'WM1Z Walkman'},
                       {'imagePath': 'assets/images/WM1A_walkman.jpg', 'itemName': 'WM1A Walkman'},

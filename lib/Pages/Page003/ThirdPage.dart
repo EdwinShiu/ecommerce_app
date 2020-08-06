@@ -81,19 +81,130 @@ class ThirdPageState extends State<ThirdPage> {
         ),
         Expanded(
           child: GridView.builder(
-            
+            itemCount: favorite_item_number,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 0.6,
-              ),
+            ),
             itemBuilder: (context, index) {
               return Container(
-                margin: EdgeInsets.all(10),
-                height: 200,
-                color: Colors.yellow,
+                margin: EdgeInsets.all(10),                                  
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Stack(
+                        children: [
+                          Container(
+                            color: itemBackgroundColor,
+                          ),
+                          Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              highlightColor: Color.fromRGBO(170, 170, 195, 0.3),
+                              onTap: () {
+                                // TODO: Hero to itemPage
+                              },
+                            )
+                          ),     
+                          Positioned(
+                            bottom: 3,
+                            left: 3,
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(16),
+                                highlightColor: Color.fromRGBO(170, 170, 195, 0.3),                               
+                                child: Icon(
+                                  Icons.favorite,
+                                  size: 32,
+                                  color: Colors.red,
+                                ),
+                                onTap: () {
+                                  setState(() {
+                                    // TODO: Data management
+                                    if (favorite_item_number > 0) {
+                                      favorite_item_number--;
+                                    }
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Stack(
+                        children: [
+                          Container(
+                            alignment: Alignment.topLeft,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              border: Border.all(
+                                width: 1.0,
+                                color: Color.fromRGBO(230, 230, 230, 1),
+                              ),
+                            ),
+                            child: Material(
+                              color: Colors.transparent,
+                              child: InkWell(
+                                highlightColor: Color.fromRGBO(170, 170, 195, 0.3),                               
+                                onTap: () {
+                                  // TODO: Hero to ItemPage
+                                },
+                                child: Column(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.fromLTRB(7, 3, 7, 10),
+                                      child: Text(
+                                        'Testing Testing Testing Testing Testing',
+                                        style: GoogleFonts.ptSans(
+                                          fontSize: 26.0,
+                                          fontWeight: FontWeight.w500,
+                                          color: sonyBlack,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.fromLTRB(7, 3, 7, 10),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Icon(Icons.star),
+                                          Icon(Icons.star),
+                                          Icon(Icons.star),
+                                          Icon(Icons.star),
+                                          Icon(Icons.star),
+                                        ],
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Align(
+                                        alignment: Alignment.bottomRight,
+                                        child: Padding(
+                                          padding: EdgeInsets.fromLTRB(7, 3, 7, 3),
+                                          child: Text(
+                                            'HK\$ XX,XXX',
+                                            style: GoogleFonts.ptSans(
+                                              fontSize: 24.0,
+                                              fontWeight: FontWeight.w500,
+                                              color: sonyBlack,
+                                            ),
+                                          ),
+                                        ),
+                                      ),                                   
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               );
             },
-            itemCount: 10,
           ),
         ),
       ],
