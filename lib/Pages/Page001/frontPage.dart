@@ -1,8 +1,10 @@
+import 'package:ecommerce_app/data/service/fetchProduct.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import './newItem.dart';
 import '../../constant.dart';
+import '../../data/product.dart';
+import './newItem.dart';
 
 class FrontPage extends StatefulWidget {
   @override
@@ -81,14 +83,11 @@ class FrontPageState extends State<FrontPage> {
           ),
         ),
         Expanded(
-          child: ListView(
-            children: <Widget>[
-              newItem(context, pageNavigatorKey, 0),
-              newItem(context, pageNavigatorKey, 1),
-              newItem(context, pageNavigatorKey, 2),
-              newItem(context, pageNavigatorKey, 3),
-              newItem(context, pageNavigatorKey, 4),
-            ],
+          child: FutureBuilder(
+            future: fetchProduct(),
+            builder: (context, snapshot) {
+              return snapshot.hasData ? NewItem(pageNavigatorKey, snapshot.data) : CircularProgressIndicator();
+            }
           ),
         ),
       ],
