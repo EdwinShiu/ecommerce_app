@@ -56,10 +56,7 @@ class SecondPageState extends State<SecondPage> {
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
                     itemBuilder: (context, gridIndex) {
                       return Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(borderRadius),
-                          color: itemBackgroundColor,
-                        ),
+                        color: itemBackgroundColor,
                         margin: EdgeInsets.all(5.0),
                         child: Stack(
                           children: <Widget>[
@@ -93,7 +90,6 @@ class SecondPageState extends State<SecondPage> {
                             Material(
                               color: Colors.transparent,
                               child: InkWell(
-                                borderRadius: BorderRadius.circular(borderRadius),
                                 highlightColor: Color.fromRGBO(170, 170, 195, 0.3),
                                 onTap: () => pageNavigatorKey.currentState.pushNamed('/newItem'),
                               ),

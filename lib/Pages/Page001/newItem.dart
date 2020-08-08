@@ -28,6 +28,7 @@ class NewItem extends StatelessWidget {
           child: Stack(
             children: <Widget>[
               Row(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Expanded(
                     flex: 1,
@@ -51,15 +52,6 @@ class NewItem extends StatelessWidget {
                             children: descriptionList(product.description),
                           ),
                         ),
-                        Positioned(
-                          bottom: 5,
-                          left: 5,
-                          child: Icon(
-                            Icons.favorite,
-                            color: Colors.red,
-                            size: 28,
-                          ),
-                        ),
                       ],
                     ),
                   ),
@@ -81,7 +73,16 @@ class NewItem extends StatelessWidget {
                 color: Colors.transparent,
                 child: InkWell(
                   highlightColor: Color.fromRGBO(170, 170, 195, 0.3),
-                  onTap: () => _pageNavigatorKey.currentState.pushNamed('/newItem'),
+                  onTap: () => _pageNavigatorKey.currentState.pushNamed('/newItem'),                
+                ),
+              ),
+              Positioned(
+                bottom: 5,
+                left: 3,
+                child: Icon(
+                Icons.favorite,
+                  color: Colors.red,
+                  size: 28,
                 ),
               ),
             ],
