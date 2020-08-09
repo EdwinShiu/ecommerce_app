@@ -7,6 +7,8 @@ import './parts/appBar.dart';
 import 'Pages/Page002/SecondPage.dart';
 import 'Pages/OtherPages/itemPage.dart';
 import './Pages/Page003/ThirdPage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import './Pages/Page004/LoginPage.dart';
 
 void main() {
   runApp(MainApp());
@@ -46,36 +48,48 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: drawerAppbar(context),
         endDrawer: mainDrawer(),
         bottomNavigationBar: mainBottomNavigationBar(context, pageNavigatorKey, _mainNavigationPageController, _page),
-        body: Navigator(
-          key: pageNavigatorKey,
-          onGenerateRoute: (settings) {
-            if (settings.name == '/newItem') {
-              return MaterialPageRoute(
-                builder: (context) => ItemPage(),
+        body: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child:  StreamBuilder(
+            stream: Firestore.instance.collection('E-commerce User').snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) return const Text('Loading...');
+              return Navigator(
+                key: pageNavigatorKey,
+                onGenerateRoute: (settings) {
+                  if (settings.name == '/newItem') {
+                    return MaterialPageRoute(
+                      builder: (context) => ItemPage(),
+                    );
+                  }
+                  return MaterialPageRoute(
+                    builder: (context) => PageView(
+                      controller: _mainNavigationPageController,
+                      onPageChanged: (newPage) {
+                        FocusScope.of(context).unfocus();
+                        setState(() {
+                          _page = newPage;
+                        });
+                      },
+                      children: <Widget>[
+                        FrontPage(),
+                        SecondPage(),
+                        ThirdPage(),
+                        LoginPage(),
+                      ],
+                    )
+                  );
+                }
               );
-            }
-            return MaterialPageRoute(
-              builder: (context) => PageView(
-                controller: _mainNavigationPageController,
-                onPageChanged: (newPage) {
-                  setState(() {
-                    _page = newPage;
-                  });
-                },
-                children: <Widget>[
-                  FrontPage(),
-                  SecondPage(),
-                  ThirdPage(),
-                  Center(
-                    child: Text('Page $_page'),
-                  ),
-                ],
-              )
-            );
-          }
+            },
+          ),
         ),
       ),
     );
