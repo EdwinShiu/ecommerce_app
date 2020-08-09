@@ -1,4 +1,6 @@
 import 'package:ecommerce_app/Pages/Page001/frontPage.dart';
+import 'package:ecommerce_app/Pages/Page004/FourthPage.dart';
+import 'package:ecommerce_app/authentication/auth.dart';
 import 'package:ecommerce_app/parts/bottomNavigationBar.dart';
 import 'package:ecommerce_app/parts/drawer.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +10,9 @@ import 'Pages/Page002/SecondPage.dart';
 import 'Pages/OtherPages/itemPage.dart';
 import './Pages/Page003/ThirdPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import './Pages/Page004/LoginPage.dart';
+import 'package:provider/provider.dart';
+import './authentication/auth.dart';
+import './data/user.dart';
 
 void main() {
   runApp(MainApp());
@@ -17,9 +21,12 @@ void main() {
 class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: appTitle, routes: {
-      '/': (context) => MainNavigationPage(),
-    });
+    return StreamProvider<User>.value(
+      value: AuthService().user,
+      child: MaterialApp(title: appTitle, routes: {
+        '/': (context) => MainNavigationPage(),
+      }),
+    );
   }
 }
 
@@ -82,7 +89,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
                         FrontPage(),
                         SecondPage(),
                         ThirdPage(),
-                        LoginPage(),
+                        FourthPage(),
                       ],
                     )
                   );

@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../authentication/auth.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -8,6 +9,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
+
+  final AuthService _auth = AuthService();
 
   String username = '';
   String password = '';
@@ -24,7 +27,17 @@ class LoginPageState extends State<LoginPage> {
           },
           child: Column(
             children: <Widget>[
-              SizedBox(height: 100),
+              Container(
+                height: 100,
+                child: Text(
+                  'Login',
+                    style: GoogleFonts.ptSans(
+                    fontSize: 50.0,
+                    fontWeight: FontWeight.w500,
+                    color: sonyBlack,
+                  ),
+                ), 
+              ),
               TextFormField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -72,6 +85,44 @@ class LoginPageState extends State<LoginPage> {
                   print(username);
                   print(password);
                   FocusScope.of(context).unfocus();
+                },
+              ),
+              SizedBox(height: 20),
+              RaisedButton(
+                color: sonyBlack,
+                child: Text(
+                  'Register a new account',
+                  style: GoogleFonts.ptSans(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
+                ),
+                onPressed: () {
+                  FocusScope.of(context).unfocus();
+                },
+              ),
+              SizedBox(height: 20),
+              RaisedButton(
+                color: sonyBlack,
+                child: Text(
+                  'Sign in anonymously',
+                  style: GoogleFonts.ptSans(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
+                  ),
+                ),
+                onPressed: () async {
+                  FocusScope.of(context).unfocus();
+                  dynamic result = await _auth.signInAnon();
+                  if (result == null) {
+                    print("Error Signing In");
+                  }
+                  else {
+                    print('Signed In');
+                    print(result.uid);
+                  }
                 },
               ),
             ],

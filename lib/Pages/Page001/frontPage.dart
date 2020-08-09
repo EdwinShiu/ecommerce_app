@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../../constant.dart';
-import '../../data/product.dart';
 import './newItem.dart';
 
 class FrontPage extends StatefulWidget {
