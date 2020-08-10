@@ -1,23 +1,20 @@
-import 'package:ecommerce_app/constant.dart';
 import 'package:flutter/material.dart';
+import '../../constant.dart';
 import 'package:google_fonts/google_fonts.dart';
-import '../../authentication/auth.dart';
 
-class LoginPage extends StatefulWidget {
-
+class RegisterPage extends StatefulWidget {
+  
   final Function toggleLoginPage;
-  LoginPage({this.toggleLoginPage});
+  RegisterPage({this.toggleLoginPage});
 
   @override
-  LoginPageState createState() => LoginPageState();
+  RegisterPageState createState() => RegisterPageState();
 }
 
-class LoginPageState extends State<LoginPage> {
+class RegisterPageState extends State<RegisterPage> {
 
-  final AuthService _auth = AuthService();
-
-  String username = '';
-  String password = '';
+  String username;
+  String password;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +31,7 @@ class LoginPageState extends State<LoginPage> {
               Container(
                 height: 100,
                 child: Text(
-                  'Login',
+                  'Register',
                     style: GoogleFonts.ptSans(
                     fontSize: 50.0,
                     fontWeight: FontWeight.w500,
@@ -78,7 +75,7 @@ class LoginPageState extends State<LoginPage> {
               RaisedButton(
                 color: sonyBlack,
                 child: Text(
-                  'Login',
+                  'Register',
                   style: GoogleFonts.ptSans(
                     fontSize: 20.0,
                     fontWeight: FontWeight.w500,
@@ -95,7 +92,7 @@ class LoginPageState extends State<LoginPage> {
               RaisedButton(
                 color: sonyBlack,
                 child: Text(
-                  'Register a new account',
+                  'Already have an account',
                   style: GoogleFonts.ptSans(
                     fontSize: 20.0,
                     fontWeight: FontWeight.w500,
@@ -105,29 +102,6 @@ class LoginPageState extends State<LoginPage> {
                 onPressed: () {
                   widget.toggleLoginPage();
                   FocusScope.of(context).unfocus();
-                },
-              ),
-              SizedBox(height: 20),
-              RaisedButton(
-                color: sonyBlack,
-                child: Text(
-                  'Sign in anonymously',
-                  style: GoogleFonts.ptSans(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.white,
-                  ),
-                ),
-                onPressed: () async {
-                  FocusScope.of(context).unfocus();
-                  dynamic result = await _auth.signInAnon();
-                  if (result == null) {
-                    print("Error Signing In");
-                  }
-                  else {
-                    print('Signed In');
-                    print(result.uid);
-                  }
                 },
               ),
             ],
