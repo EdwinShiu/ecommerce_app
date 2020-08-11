@@ -19,7 +19,7 @@ class AnonPageState extends State<AnonPage> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "Signed In Anonymously",
+            "Signed In",
             style: GoogleFonts.ptSans(
               fontSize: 20.0,
               fontWeight: FontWeight.w500,

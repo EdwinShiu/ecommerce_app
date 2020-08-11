@@ -15,15 +15,18 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> {
 
   final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
 
   String username = '';
   String password = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(50),
       child: Form(
+        key: _formKey,
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () {
@@ -43,6 +46,7 @@ class LoginPageState extends State<LoginPage> {
                 ), 
               ),
               TextFormField(
+                validator: (value) => value.isEmpty ? 'Enter a username' : null,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Username',
@@ -50,6 +54,10 @@ class LoginPageState extends State<LoginPage> {
                     fontSize: 20.0,
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF7F797D),
+                  ),
+                  errorStyle: GoogleFonts.ptSans(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500,
                   ),
                   contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 ),
@@ -59,6 +67,7 @@ class LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 40),
               TextFormField(
+                validator: (value) => value.isEmpty ? 'Enter a password' : null,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Password',
@@ -66,6 +75,10 @@ class LoginPageState extends State<LoginPage> {
                     fontSize: 20.0,
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF7F797D),
+                  ),
+                  errorStyle: GoogleFonts.ptSans(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500,
                   ),
                   contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 ),
@@ -85,9 +98,14 @@ class LoginPageState extends State<LoginPage> {
                     color: Colors.white,
                   ),
                 ),
-                onPressed: () {
-                  print(username);
-                  print(password);
+                onPressed: () async {
+                  if (_formKey.currentState.validate()) {
+                    dynamic result = await _auth.signInAccount(username, password);
+                    if (result == null) {
+                      setState(() => error = 'Could not sign in.');
+                    }
+                  }
+                  setState(() => error = 'Could not sign in.');
                   FocusScope.of(context).unfocus();
                 },
               ),
@@ -107,6 +125,7 @@ class LoginPageState extends State<LoginPage> {
                   FocusScope.of(context).unfocus();
                 },
               ),
+              /*
               SizedBox(height: 20),
               RaisedButton(
                 color: sonyBlack,
@@ -129,6 +148,15 @@ class LoginPageState extends State<LoginPage> {
                     print(result.uid);
                   }
                 },
+              ),
+              */
+              SizedBox(height: 20),
+              Text(
+                error,
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 18,
+                ),
               ),
             ],
           ),
