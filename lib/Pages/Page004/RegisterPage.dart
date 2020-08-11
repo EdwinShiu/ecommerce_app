@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/authentication/auth.dart';
 import 'package:flutter/material.dart';
 import '../../constant.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,14 +14,19 @@ class RegisterPage extends StatefulWidget {
 
 class RegisterPageState extends State<RegisterPage> {
 
-  String username;
-  String password;
+  final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
+
+  String username = '';
+  String password = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(50),
       child: Form(
+        key: _formKey,
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
           onTap: () {
@@ -40,6 +46,7 @@ class RegisterPageState extends State<RegisterPage> {
                 ), 
               ),
               TextFormField(
+                validator: (value) => value.isEmpty ? 'Enter a username' : null,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Username',
@@ -47,6 +54,10 @@ class RegisterPageState extends State<RegisterPage> {
                     fontSize: 20.0,
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF7F797D),
+                  ),
+                  errorStyle: GoogleFonts.ptSans(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500,
                   ),
                   contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 ),
@@ -56,6 +67,7 @@ class RegisterPageState extends State<RegisterPage> {
               ),
               SizedBox(height: 40),
               TextFormField(
+                validator: (value) => value.length < 8 ? 'The password must not be less than 8 character' : null, 
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   hintText: 'Password',
@@ -63,6 +75,10 @@ class RegisterPageState extends State<RegisterPage> {
                     fontSize: 20.0,
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF7F797D),
+                  ),
+                  errorStyle: GoogleFonts.ptSans(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500,
                   ),
                   contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 ),
@@ -82,10 +98,19 @@ class RegisterPageState extends State<RegisterPage> {
                     color: Colors.white,
                   ),
                 ),
-                onPressed: () {
-                  print(username);
-                  print(password);
+                onPressed: () async {
                   FocusScope.of(context).unfocus();
+                  if (_formKey.currentState.validate()) {
+                    dynamic result = await _auth.registerAccount(username, password);
+                    if (result == null) {
+                      setState(() {
+                        error = 'Please give a valid username or password.';
+                      });
+                    }
+                    else {
+                      widget.toggleLoginPage();
+                    }
+                  }
                 },
               ),
               SizedBox(height: 20),
@@ -103,6 +128,14 @@ class RegisterPageState extends State<RegisterPage> {
                   widget.toggleLoginPage();
                   FocusScope.of(context).unfocus();
                 },
+              ),
+              SizedBox(height: 30),
+              Text(
+                error,
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 18,
+                ),
               ),
             ],
           ),
