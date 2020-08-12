@@ -2,6 +2,7 @@ import 'package:ecommerce_app/authentication/auth.dart';
 import 'package:flutter/material.dart';
 import '../../constant.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../Parts/textFormField.dart';
 
 class RegisterPage extends StatefulWidget {
   
@@ -47,20 +48,7 @@ class RegisterPageState extends State<RegisterPage> {
               ),
               TextFormField(
                 validator: (value) => value.isEmpty ? 'Enter a username' : null,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Username',
-                  hintStyle: GoogleFonts.ptSans(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF7F797D),
-                  ),
-                  errorStyle: GoogleFonts.ptSans(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                ),
+                decoration: textFormFieldDecoration.copyWith(hintText: 'Username'),
                 onChanged: (value) {
                   setState(() => username = value);
                 },
@@ -68,20 +56,7 @@ class RegisterPageState extends State<RegisterPage> {
               SizedBox(height: 40),
               TextFormField(
                 validator: (value) => value.length < 8 ? 'The password must not be less than 8 character' : null, 
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Password',
-                  hintStyle: GoogleFonts.ptSans(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF7F797D),
-                  ),
-                  errorStyle: GoogleFonts.ptSans(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                ),
+                decoration: textFormFieldDecoration.copyWith(hintText: 'Password'),
                 obscureText: true,
                 onChanged: (value) {
                   setState(() => password = value);

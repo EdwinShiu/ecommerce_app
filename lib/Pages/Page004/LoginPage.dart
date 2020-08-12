@@ -2,6 +2,7 @@ import 'package:ecommerce_app/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../authentication/auth.dart';
+import '../../Parts/textFormField.dart';
 
 class LoginPage extends StatefulWidget {
 
@@ -16,6 +17,8 @@ class LoginPageState extends State<LoginPage> {
 
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
+
 
   String username = '';
   String password = '';
@@ -47,20 +50,7 @@ class LoginPageState extends State<LoginPage> {
               ),
               TextFormField(
                 validator: (value) => value.isEmpty ? 'Enter a username' : null,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Username',
-                  hintStyle: GoogleFonts.ptSans(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF7F797D),
-                  ),
-                  errorStyle: GoogleFonts.ptSans(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                ),
+                decoration: textFormFieldDecoration.copyWith(hintText: 'Username'),
                 onChanged: (value) {
                   setState(() => username = value);
                 },
@@ -68,20 +58,7 @@ class LoginPageState extends State<LoginPage> {
               SizedBox(height: 40),
               TextFormField(
                 validator: (value) => value.isEmpty ? 'Enter a password' : null,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  hintText: 'Password',
-                  hintStyle: GoogleFonts.ptSans(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w500,
-                    color: Color(0xFF7F797D),
-                  ),
-                  errorStyle: GoogleFonts.ptSans(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                ),
+                decoration: textFormFieldDecoration.copyWith(hintText: 'Password'),
                 obscureText: true,
                 onChanged: (value) {
                   setState(() => password = value);
