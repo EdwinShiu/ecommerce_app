@@ -26,6 +26,13 @@ class LoginPageState extends State<LoginPage> {
   String error = '';
 
   @override
+  void didUpdateWidget (LoginPage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print("did Update Widget");
+    print(loading);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return (loading) ? LoadingScreen() : Container(
       padding: EdgeInsets.all(50),
@@ -78,20 +85,20 @@ class LoginPageState extends State<LoginPage> {
                 ),
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
+                    print('before setState');
                     setState(() {
                       loading = true;
                     });
                     print("before await");
                     dynamic result = await _auth.signInAccount(username, password);
-                    if (result == null) {
+                    print("after await");
+                    if (result == null) {   
                       if (this.mounted) {
                         setState(() {
                           loading = false;
+                          error = 'Could not sign in.';
                         });
                       }
-                      setState(() {
-                        error = 'Could not sign in.';
-                      });
                     }
                   }
                 },
