@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/authentication/auth.dart';
+import 'package:ecommerce_app/parts/loadingScreen.dart';
 import 'package:flutter/material.dart';
 import '../../constant.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,6 +18,7 @@ class RegisterPageState extends State<RegisterPage> {
 
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   String username = '';
   String password = '';
@@ -24,7 +26,7 @@ class RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return (loading) ? LoadingScreen() : Container(
       padding: EdgeInsets.all(50),
       child: Form(
         key: _formKey,
@@ -76,9 +78,17 @@ class RegisterPageState extends State<RegisterPage> {
                 onPressed: () async {
                   FocusScope.of(context).unfocus();
                   if (_formKey.currentState.validate()) {
+                    setState(() {
+                      loading = true;
+                    });
                     dynamic result = await _auth.registerAccount(username, password);
                     if (result == null) {
-                      setState(() {
+                      if (this.mounted) {
+                        setState(() {
+                          loading = false;
+                        });
+                      }
+                      setState(() {  
                         error = 'Please give a valid username or password.';
                       });
                     }

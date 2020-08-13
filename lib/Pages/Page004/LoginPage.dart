@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/constant.dart';
+import 'package:ecommerce_app/parts/loadingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../authentication/auth.dart';
@@ -26,7 +27,7 @@ class LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return (loading) ? LoadingScreen() : Container(
       padding: EdgeInsets.all(50),
       child: Form(
         key: _formKey,
@@ -77,13 +78,22 @@ class LoginPageState extends State<LoginPage> {
                 ),
                 onPressed: () async {
                   if (_formKey.currentState.validate()) {
+                    setState(() {
+                      loading = true;
+                    });
+                    print("before await");
                     dynamic result = await _auth.signInAccount(username, password);
                     if (result == null) {
-                      setState(() => error = 'Could not sign in.');
+                      if (this.mounted) {
+                        setState(() {
+                          loading = false;
+                        });
+                      }
+                      setState(() {
+                        error = 'Could not sign in.';
+                      });
                     }
                   }
-                  setState(() => error = 'Could not sign in.');
-                  FocusScope.of(context).unfocus();
                 },
               ),
               SizedBox(height: 20),

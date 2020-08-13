@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/authentication/auth.dart';
 import 'package:ecommerce_app/constant.dart';
+import 'package:ecommerce_app/parts/loadingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
