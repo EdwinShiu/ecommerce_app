@@ -15,34 +15,103 @@ class AnonPageState extends State<AnonPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
+        mainAxisSize: MainAxisSize.max,
         children: [
-          Text(
-            "Signed In",
-            style: GoogleFonts.ptSans(
-              fontSize: 20.0,
-              fontWeight: FontWeight.w500,
-              color: sonyBlack,
-            ),
-          ),
-          RaisedButton(
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
+            alignment: Alignment.bottomLeft,
             child: Text(
-              "Log Out",
+              'My Sony',
               style: GoogleFonts.ptSans(
-                fontSize: 20.0,
+                fontSize: 50.0,
                 fontWeight: FontWeight.w500,
-                color: Colors.white,
+                color: sonyBlack,
               ),
             ),
-            color: sonyBlack,
-            onPressed: () async {
-              await _auth.signOut();
-            }
-          )
+          ),
+          Expanded(
+          child: Center(
+            child: Column(
+              children: [
+                Container(
+                  color: Colors.yellow,
+                  child: Stack(
+                    alignment: Alignment.bottomCenter,
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: Icon(
+                          Icons.account_circle,
+                          size: 250,
+                        ),
+                      ),
+                      Container(
+                        color: Colors.red,
+                        child: Text(
+                          "Sonnion",
+                          style: GoogleFonts.ptSans(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w500,
+                            color: sonyBlack,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),   
+                ),
+                Material(
+                  color: sonyBlack,
+                  child: InkWell(
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                      "Account Information",
+                      style: GoogleFonts.ptSans(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.white,
+                      ),
+                    ),
+                    ),
+                    onTap: () {
+                      print("Account Information");
+                    },
+                  ),
+                ),
+                RaisedButton(
+                  child: Text(
+                    "Warranty",
+                    style: GoogleFonts.ptSans(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
+                  ),
+                  color: sonyBlack,
+                  onPressed: () {
+                    print("Warranty");
+                  }, 
+                ),
+                RaisedButton(
+                  child: Text(
+                    "Log Out",
+                    style: GoogleFonts.ptSans(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.white,
+                    ),
+                  ),
+                  color: sonyBlack,
+                  onPressed: () async {
+                    await _auth.signOut();
+                  }
+                )
+              ],
+            )
+          ),
+          ),
         ],
-      )
     );
   }
 }
