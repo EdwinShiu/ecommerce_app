@@ -18,9 +18,20 @@ class DataBaseService {
     });
   }
 
+  // user information
+  UserInformation _userInformationFromSnapshot(DocumentSnapshot snapshot) {
+    return UserInformation(
+      firstName: snapshot.data["userInformation"]["firstName"].toString(),
+      lastName: snapshot.data["userInformation"]["lastName"].toString(),
+      emailAddress: snapshot.data["userInformation"]["emailAddress"].toString(),
+      sonnion: snapshot.data["userInformation"]["sonnion"].toString(),
+    );
+  }
+
   // get user stream
-  Stream<QuerySnapshot> get userSnapshot {
-    return userCollection.snapshots();
+  Stream<UserInformation> get userSnapshot {
+    //print(uid);
+    return userCollection.document(uid).snapshots().map(_userInformationFromSnapshot);
   }
 
 }

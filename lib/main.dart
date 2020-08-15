@@ -9,7 +9,6 @@ import './parts/appBar.dart';
 import 'Pages/Page002/SecondPage.dart';
 import 'Pages/OtherPages/itemPage.dart';
 import './Pages/Page003/ThirdPage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import './authentication/auth.dart';
 import './data/user.dart';
@@ -54,6 +53,8 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
+
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
@@ -65,8 +66,8 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
           onTap: () {
             FocusScope.of(context).unfocus();
           },
-          child: StreamProvider<QuerySnapshot>.value(
-            value: DataBaseService().userSnapshot,
+          child: StreamProvider<UserInformation>.value(
+            value: DataBaseService(uid: user.uid).userSnapshot,
             child: Navigator(
               key: pageNavigatorKey,
               onGenerateRoute: (settings) {

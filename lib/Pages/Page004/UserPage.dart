@@ -1,7 +1,9 @@
 import 'package:ecommerce_app/authentication/auth.dart';
 import 'package:ecommerce_app/constant.dart';
+import 'package:ecommerce_app/data/user.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class UserPage extends StatefulWidget {
   @override
@@ -14,6 +16,9 @@ class UserPageState extends State<UserPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    final userInfo = Provider.of<UserInformation>(context);
+
     return Column(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -49,7 +54,7 @@ class UserPageState extends State<UserPage> {
                         color: Colors.white,
                       ),
                       child: Text(
-                        "Sonnion: 3000",
+                        "Sonnion: " + userInfo.sonnion.toString(),
                         style: GoogleFonts.ptSans(
                           fontSize: 30.0,
                           fontWeight: FontWeight.w500,
