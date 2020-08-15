@@ -9,11 +9,9 @@ class User {
 
 class UserInformation {
 
-  final String firstName;
-  final String lastName;
-  final String emailAddress;
+  final String firstName, lastName, emailAddress, sonnion;
 
-  UserInformation({this.firstName, this.lastName, this.emailAddress});
+  UserInformation({this.firstName, this.lastName, this.emailAddress, this.sonnion});
 
   // return as json
   Map<String, String> toJson() {
@@ -21,6 +19,7 @@ class UserInformation {
       "firstName": firstName,
       "lastName": lastName,
       "emailAddress": emailAddress,
+      "sonnion": sonnion
     };
   }
 }

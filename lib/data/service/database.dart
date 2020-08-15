@@ -18,4 +18,9 @@ class DataBaseService {
     });
   }
 
+  // get user stream
+  Stream<QuerySnapshot> get userSnapshot {
+    return userCollection.snapshots();
+  }
+
 }

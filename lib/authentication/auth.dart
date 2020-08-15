@@ -52,17 +52,19 @@ class AuthService {
         UserInformation(                                    // dummy value
           firstName: "Edwin",
           lastName: "Shiu",
-          emailAddress: username),
-          [],
-          [
-            //Warranty(
-              //itemName: "ZX300",
-              //serialNumber: "aabbccddeeff",
-              //purchaseDate: "20200815",
-              //duration: "366"
-            //),
-          ],
-        );
+          emailAddress: username,
+          sonnion: "0",
+        ),
+        [],
+        [
+          //Warranty(
+            //itemName: "ZX300",
+            //serialNumber: "aabbccddeeff",
+            //purchaseDate: "20200815",
+            //duration: "366"
+          //),
+        ],
+      );
       return _userFromFirebaseUser(user);
     }
     catch(e) {

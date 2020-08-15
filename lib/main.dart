@@ -13,6 +13,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 import './authentication/auth.dart';
 import './data/user.dart';
+import './data/service/database.dart';
 
 void main() {
   runApp(MainApp());
@@ -64,39 +65,36 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
           onTap: () {
             FocusScope.of(context).unfocus();
           },
-          child: StreamBuilder(
-            stream: Firestore.instance.collection('E-commerce User').snapshots(),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) return const Text('Loading...');
-              return Navigator(
-                key: pageNavigatorKey,
-                onGenerateRoute: (settings) {
-                  if (settings.name == '/newItem') {
-                    return MaterialPageRoute(
-                      builder: (context) => ItemPage(),
-                    );
-                  }
+          child: StreamProvider<QuerySnapshot>.value(
+            value: DataBaseService().userSnapshot,
+            child: Navigator(
+              key: pageNavigatorKey,
+              onGenerateRoute: (settings) {
+                if (settings.name == '/newItem') {
                   return MaterialPageRoute(
-                    builder: (context) => PageView(
-                      controller: _mainNavigationPageController,
-                      onPageChanged: (newPage) {
-                        FocusScope.of(context).unfocus();
-                        setState(() {
-                          _page = newPage;
-                        });
-                      },
-                      children: <Widget>[
-                        FrontPage(),
-                        SecondPage(),
-                        ThirdPage(),
-                        FourthPage(),
-                      ],
-                    )
+                    builder: (context) => ItemPage(),
                   );
                 }
-              );
-            },
-          ),
+                return MaterialPageRoute(
+                  builder: (context) => PageView(
+                    controller: _mainNavigationPageController,
+                    onPageChanged: (newPage) {
+                      FocusScope.of(context).unfocus();
+                      setState(() {
+                        _page = newPage;
+                      });
+                    },
+                    children: <Widget>[
+                      FrontPage(),
+                      SecondPage(),
+                      ThirdPage(),
+                      FourthPage(),
+                    ],
+                  )
+                );
+              }
+            ),
+          )
         ),
       ),
     );

@@ -1,15 +1,14 @@
 import 'package:ecommerce_app/authentication/auth.dart';
 import 'package:ecommerce_app/constant.dart';
-import 'package:ecommerce_app/parts/loadingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class AnonPage extends StatefulWidget {
+class UserPage extends StatefulWidget {
   @override
-  AnonPageState createState() => AnonPageState();
+  UserPageState createState() => UserPageState();
 }
 
-class AnonPageState extends State<AnonPage> {
+class UserPageState extends State<UserPage> {
 
   final AuthService _auth = AuthService();
 
