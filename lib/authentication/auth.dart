@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/data/service/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../data/user.dart';
 
@@ -46,6 +47,22 @@ class AuthService {
     try {
       AuthResult result = await _auth.createUserWithEmailAndPassword(email: username, password: password);
       FirebaseUser user = result.user;
+      // create a new document for the user with the uid
+      await DataBaseService(uid: user.uid).updateUserData(
+        UserInformation(                                    // dummy value
+          firstName: "Edwin",
+          lastName: "Shiu",
+          emailAddress: username),
+          [],
+          [
+            //Warranty(
+              //itemName: "ZX300",
+              //serialNumber: "aabbccddeeff",
+              //purchaseDate: "20200815",
+              //duration: "366"
+            //),
+          ],
+        );
       return _userFromFirebaseUser(user);
     }
     catch(e) {

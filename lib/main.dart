@@ -64,7 +64,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
           onTap: () {
             FocusScope.of(context).unfocus();
           },
-          child:  StreamBuilder(
+          child: StreamBuilder(
             stream: Firestore.instance.collection('E-commerce User').snapshots(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) return const Text('Loading...');
