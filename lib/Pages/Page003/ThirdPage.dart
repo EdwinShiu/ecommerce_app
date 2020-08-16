@@ -1,5 +1,7 @@
+import 'package:ecommerce_app/data/user.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import '../../constant.dart';
 import '../../data/items.dart';
 
@@ -13,6 +15,9 @@ class ThirdPageState extends State<ThirdPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    //final userInfo = Provider.of<UserInformation>(context);
+
     return Column(
       children: <Widget>[
         Container(

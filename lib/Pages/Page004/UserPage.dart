@@ -17,7 +17,8 @@ class UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
 
-    final userInfo = Provider.of<UserInformation>(context);
+    final userData = Provider.of<UserData>(context);
+    //print("UserInfo" + userInfo.toString());
 
     return Column(
         mainAxisSize: MainAxisSize.max,
@@ -54,7 +55,7 @@ class UserPageState extends State<UserPage> {
                         color: Colors.white,
                       ),
                       child: Text(
-                        "Sonnion: " + userInfo.sonnion.toString(),
+                        "Sonnion: " + ((userData != null) ? userData.userInformation.sonnion.toString() : "--"),
                         style: GoogleFonts.ptSans(
                           fontSize: 30.0,
                           fontWeight: FontWeight.w500,

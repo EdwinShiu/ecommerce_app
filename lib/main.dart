@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import './authentication/auth.dart';
 import './data/user.dart';
 import './data/service/database.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() {
   runApp(MainApp());
@@ -54,20 +55,25 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
-
-    return SafeArea(
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: drawerAppbar(context),
-        endDrawer: mainDrawer(),
-        bottomNavigationBar: mainBottomNavigationBar(context, pageNavigatorKey, _mainNavigationPageController, _page),
-        body: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: () {
-            FocusScope.of(context).unfocus();
-          },
-          child: StreamProvider<UserInformation>.value(
-            value: DataBaseService(uid: user.uid).userSnapshot,
+    var uid;
+    if (user != null) {
+      uid = user.uid;
+    }
+    //print(uid);
+    //print("database " + DataBaseService(uid: uid).userSnapshot.toString());
+    return StreamProvider<UserData>(
+      create: (_) => DataBaseService(uid: uid).userSnapshot,
+      child: SafeArea(
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          appBar: drawerAppbar(context),
+          endDrawer: mainDrawer(),
+          bottomNavigationBar: mainBottomNavigationBar(context, pageNavigatorKey, _mainNavigationPageController, _page),
+          body: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: () {
+              FocusScope.of(context).unfocus();
+            },
             child: Navigator(
               key: pageNavigatorKey,
               onGenerateRoute: (settings) {

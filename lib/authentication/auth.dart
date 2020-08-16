@@ -4,7 +4,7 @@ import '../data/user.dart';
 
 class AuthService {
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth auth = FirebaseAuth.instance;
  
   // create user object based on FirebaseUser
   User _userFromFirebaseUser(FirebaseUser user) {     // base on the user
@@ -12,13 +12,13 @@ class AuthService {
   }
 
   Stream<User> get user {
-    return _auth.onAuthStateChanged.map(_userFromFirebaseUser);
+    return auth.onAuthStateChanged.map(_userFromFirebaseUser);
   }
  
   // sign in anon
   Future signInAnon() async {
     try {
-      AuthResult result = await _auth.signInAnonymously();    // signing in to firebase and return 
+      AuthResult result = await auth.signInAnonymously();    // signing in to firebase and return 
       FirebaseUser user = result.user;              // return the user data
       return _userFromFirebaseUser(user);
     }
@@ -31,7 +31,7 @@ class AuthService {
   // sign in with email & password
   Future signInAccount(String username, String password) async {
     try {
-      AuthResult result = await _auth.signInWithEmailAndPassword(email: username, password: password);
+      AuthResult result = await auth.signInWithEmailAndPassword(email: username, password: password);
       FirebaseUser user = result.user;
       return _userFromFirebaseUser(user);
     }
@@ -45,7 +45,7 @@ class AuthService {
   // register with email & password
   Future registerAccount(String username, String password) async {
     try {
-      AuthResult result = await _auth.createUserWithEmailAndPassword(email: username, password: password);
+      AuthResult result = await auth.createUserWithEmailAndPassword(email: username, password: password);
       FirebaseUser user = result.user;
       // create a new document for the user with the uid
       await DataBaseService(uid: user.uid).updateUserData(
@@ -57,12 +57,12 @@ class AuthService {
         ),
         [],
         [
-          //Warranty(
-            //itemName: "ZX300",
-            //serialNumber: "aabbccddeeff",
-            //purchaseDate: "20200815",
-            //duration: "366"
-          //),
+          Warranty(
+            itemName: "ZX300",
+            serialNumber: "aabbccddeeff",
+            purchaseDate: "20200815",
+            duration: "366"
+          ),
         ],
       );
       return _userFromFirebaseUser(user);
@@ -77,7 +77,7 @@ class AuthService {
   // sign out
   Future signOut() async {
     try {
-      return await _auth.signOut();
+      return await auth.signOut();
     }
     catch(e) {
       print(e.toString());

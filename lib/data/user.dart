@@ -1,10 +1,27 @@
-import 'package:firebase_auth/firebase_auth.dart';
+
 
 class User {
 
   final String uid;
 
   User({this.uid});
+}
+
+class UserData {
+
+  final UserInformation userInformation;
+  final List<String> favorite;
+  final List<Warranty> warranty;
+
+  UserData({this.userInformation, this.favorite, this.warranty});
+
+  Map<String, dynamic> toJson() {
+    return {
+      "favorite": favorite,
+      "userInformation": userInformation.toJson(),
+      "warranty": warranty,
+    };
+  }
 }
 
 class UserInformation {
@@ -41,6 +58,15 @@ class Warranty {
       "purchaseDate": purchaseDate,
       "duration": duration,
     };
+  }
+
+  factory Warranty.fromJson(Map<String, String> json) {
+    return Warranty(
+      itemName: json["itemName"],
+      serialNumber: json["itemName"],
+      purchaseDate: json["purchaseDate"],
+      duration: json["duration"],
+    );
   }
   
 }

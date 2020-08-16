@@ -18,8 +18,43 @@ class DataBaseService {
     });
   }
 
-  // user information
+  // Full User Data Set
+  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
+    //print("hi");
+    //print(snapshot.data["favorite"]);
+    //print(_userInformationFromSnapshot(snapshot));
+    //print(_userWarrantyFromSnapshot(snapshot));
+    //if (snapshot.data["favorite"].length == 0) {
+    //  List<String> temp = [];
+    //  return UserData(
+    //    favorite: temp,
+    //    userInformation: _userInformationFromSnapshot(snapshot),
+    //    warranty: _userWarrantyFromSnapshot(snapshot)
+    //  );
+    // }
+    //else {
+      return UserData(
+        favorite: snapshot.data["favorite"].cast<String>(),
+        userInformation: _userInformationFromSnapshot(snapshot),
+        warranty: _userWarrantyFromSnapshot(snapshot)
+      );
+    //}
+  }
+
+  // User Warranty
+  List<Warranty> _userWarrantyFromSnapshot(DocumentSnapshot snapshot) {
+    //print(snapshot.data["warranty"]);
+    if (snapshot.data["warranty"].length == 0) {
+      List<Warranty> temp = [];
+      return temp;
+    }
+    return snapshot.data["warranty"].map((data) => Warranty.fromJson(data)).toList();
+  }
+
+
+  // User Information
   UserInformation _userInformationFromSnapshot(DocumentSnapshot snapshot) {
+    //print(snapshot.data["userInformation"]);
     return UserInformation(
       firstName: snapshot.data["userInformation"]["firstName"].toString(),
       lastName: snapshot.data["userInformation"]["lastName"].toString(),
@@ -28,10 +63,10 @@ class DataBaseService {
     );
   }
 
-  // get user stream
-  Stream<UserInformation> get userSnapshot {
-    //print(uid);
-    return userCollection.document(uid).snapshots().map(_userInformationFromSnapshot);
+  // Get user stream
+  Stream<UserData> get userSnapshot {
+    //print("user Collection" + userCollection.document(uid).toString());
+    return userCollection.document(uid).snapshots().map(_userDataFromSnapshot);
   }
 
 }
