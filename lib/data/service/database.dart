@@ -21,6 +21,9 @@ class DataBaseService {
   // Full User Data Set
   UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
     //print("hi");
+    if (snapshot.data == null) {
+      return null;
+    }
     //print(snapshot.data["favorite"]);
     //print(_userInformationFromSnapshot(snapshot));
     //print(_userWarrantyFromSnapshot(snapshot));

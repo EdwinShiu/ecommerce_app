@@ -61,8 +61,8 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
     }
     //print(uid);
     //print("database " + DataBaseService(uid: uid).userSnapshot.toString());
-    return StreamProvider<UserData>(
-      create: (_) => DataBaseService(uid: uid).userSnapshot,
+    return StreamProvider<UserData>.value(
+      value: DataBaseService(uid: uid).userSnapshot,
       child: SafeArea(
         child: Scaffold(
           resizeToAvoidBottomInset: false,

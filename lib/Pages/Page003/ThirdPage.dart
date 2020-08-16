@@ -15,8 +15,12 @@ class ThirdPageState extends State<ThirdPage> {
 
   @override
   Widget build(BuildContext context) {
-
-    //final userInfo = Provider.of<UserInformation>(context);
+    final userData = Provider.of<UserData>(context);
+    int favoriteItemNumber = favorite_item_number;
+    if (userData != null) {
+      print("userData not null");
+      favoriteItemNumber = userData.favorite.length;
+    }
 
     return Column(
       children: <Widget>[
@@ -34,7 +38,7 @@ class ThirdPageState extends State<ThirdPage> {
         ),
         Expanded(
           child: GridView.builder(
-            itemCount: favorite_item_number,
+            itemCount: favoriteItemNumber,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               childAspectRatio: 0.6,
