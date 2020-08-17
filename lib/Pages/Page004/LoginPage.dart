@@ -79,14 +79,15 @@ class LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     onPressed: () async {
+                      FocusScope.of(context).unfocus();
                       if (_formKey.currentState.validate()) {
-                        print('before setState');
+                        //print('before setState');
                         setState(() {
                           loading = true;
                         });
-                        print("before await");
+                        //print("before await");
                         dynamic result = await _auth.signInAccount(username, password);
-                        print("after await");
+                        //print("after await");
                         if (result == null) {   
                           if (this.mounted) {
                             setState(() {

@@ -15,13 +15,12 @@ class ThirdPageState extends State<ThirdPage> {
 
   @override
   Widget build(BuildContext context) {
-    final userData = Provider.of<UserData>(context);
+    final userData = Provider.of<UserData>(context, listen: true);
+    print("userData " + userData.toString());
     int favoriteItemNumber = favorite_item_number;
     if (userData != null) {
-      print("userData not null");
       favoriteItemNumber = userData.favorite.length;
     }
-
     return Column(
       children: <Widget>[
         Container(

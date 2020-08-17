@@ -54,12 +54,13 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
 
   @override
   Widget build(BuildContext context) {
+    print("main got rebuild");
     final user = Provider.of<User>(context);
     var uid;
     if (user != null) {
       uid = user.uid;
     }
-    //print(uid);
+    print("Main Uid is " + uid.toString());
     //print("database " + DataBaseService(uid: uid).userSnapshot.toString());
     return StreamProvider<UserData>.value(
       value: DataBaseService(uid: uid).userSnapshot,
