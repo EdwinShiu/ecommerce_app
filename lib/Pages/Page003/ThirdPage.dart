@@ -15,7 +15,8 @@ class ThirdPageState extends State<ThirdPage> {
 
   @override
   Widget build(BuildContext context) {
-    final userData = Provider.of<UserData>(context, listen: true);
+    print('ThirdPage rebuild');
+    var userData = Provider.of<UserData>(context, listen: false);
     print("userData " + userData.toString());
     int favoriteItemNumber = favorite_item_number;
     if (userData != null) {
