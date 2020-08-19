@@ -42,12 +42,17 @@ class HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     print("HomePage rebuild");
+    //var uidd = Provider.of<User>(context)?.uid;
+    //print(uidd.toString());
     return Container(
       child: StreamBuilder<UserData>(
-        stream: DataBaseService(uid: Provider.of<User>(context, listen: false)?.uid).userSnapshot,
+        stream: DataBaseService(uid: Provider.of<User>(context)?.uid).userSnapshot,
         builder: (context, snapshot) {
+          //print("uidd " + uidd.toString());
+          //print("stream " + DataBaseService(uid: uidd).userSnapshot.toString());
+          //print("snapshot "+ snapshot.error.toString());
           print("Inner streamBuilder rebuild");
-          print("userData in streamBuilder " + snapshot.data.toString());
+          //print("userData in streamBuilder " + snapshot.data.toString());
           return Provider<UserData>.value (
             value: snapshot.data,
             child: SafeArea(

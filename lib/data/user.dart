@@ -60,12 +60,12 @@ class Warranty {
     };
   }
 
-  factory Warranty.fromJson(Map<String, String> json) {
+  factory Warranty.fromJson(Map<String, dynamic> json) {
     return Warranty(
-      itemName: json["itemName"],
-      serialNumber: json["itemName"],
-      purchaseDate: json["purchaseDate"],
-      duration: json["duration"],
+      itemName: json["itemName"].toString(),
+      serialNumber: json["itemName"].toString(),
+      purchaseDate: json["purchaseDate"].toString(),
+      duration: json["duration"].toString(),
     );
   }
   

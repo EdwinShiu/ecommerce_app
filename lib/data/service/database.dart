@@ -51,7 +51,8 @@ class DataBaseService {
       List<Warranty> temp = [];
       return temp;
     }
-    return snapshot.data["warranty"].map((data) => Warranty.fromJson(data)).toList();
+    //print(List<Warranty>.from(snapshot.data["warranty"].map((data) => Warranty.fromJson(data))).runtimeType);
+    return List<Warranty>.from(snapshot.data["warranty"].map((data) => Warranty.fromJson(data)));
   }
 
 
@@ -68,6 +69,7 @@ class DataBaseService {
 
   // Get user stream
   Stream<UserData> get userSnapshot {
+    //print(uid);
     //print("user Collection" + userCollection.document(uid).toString());
     return userCollection.document(uid).snapshots().map(_userDataFromSnapshot);
   }

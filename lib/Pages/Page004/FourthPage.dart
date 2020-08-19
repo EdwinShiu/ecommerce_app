@@ -20,7 +20,7 @@ class FourthPageState extends State<FourthPage> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context, listen: false);
+    final user = Provider.of<User>(context);
   
     // print(userSnapshot);
 
