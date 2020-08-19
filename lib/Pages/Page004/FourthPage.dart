@@ -1,6 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce_app/Pages/Page004/RegisterPage.dart';
-import 'package:ecommerce_app/data/service/database.dart';
 import 'package:flutter/material.dart';
 import '../../data/user.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +20,7 @@ class FourthPageState extends State<FourthPage> {
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
+    final user = Provider.of<User>(context, listen: false);
   
     // print(userSnapshot);
 

@@ -19,7 +19,7 @@ class UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
 
-    final userData = Provider.of<UserData>(context);
+    final userData = Provider.of<UserData>(context, listen: false);
     //print("UserInfo" + userInfo.toString());
 
     return Stack(
