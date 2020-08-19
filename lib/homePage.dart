@@ -29,6 +29,7 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
+    print("hihi");
     _mainNavigationPageController = PageController();
   }
 
@@ -42,49 +43,56 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     print("HomePage rebuild");
     return Container(
-      child: StreamProvider<UserData>.value(
-        value: DataBaseService(uid: Provider.of<User>(context, listen: false)?.uid).userSnapshot,
-        child: SafeArea(
-          child: Scaffold(
-            resizeToAvoidBottomInset: false,
-            appBar: drawerAppbar(context),
-            endDrawer: mainDrawer(),
-            bottomNavigationBar: mainBottomNavigationBar(context, pageNavigatorKey, _mainNavigationPageController, _page),
-            body: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: () {
-                FocusScope.of(context).unfocus();
-              },
-              child: Navigator(
-                key: pageNavigatorKey,
-                onGenerateRoute: (settings) {
-                  if (settings.name == '/newItem') {
-                    return MaterialPageRoute(
-                      builder: (context) => ItemPage(),
-                    );
-                  }
-                  return MaterialPageRoute(
-                    builder: (context) => PageView(
-                      controller: _mainNavigationPageController,
-                      onPageChanged: (newPage) {
-                        FocusScope.of(context).unfocus();
-                        setState(() {
-                          _page = newPage;
-                        });
-                      },
-                      children: <Widget>[
-                        FrontPage(),
-                        SecondPage(),
-                        ThirdPage(),
-                        FourthPage(),
-                      ],
-                    )
-                  );
-                }
+      child: StreamBuilder<UserData>(
+        stream: DataBaseService(uid: Provider.of<User>(context, listen: false)?.uid).userSnapshot,
+        builder: (context, snapshot) {
+          print("Inner streamBuilder rebuild");
+          print("userData in streamBuilder " + snapshot.data.toString());
+          return Provider<UserData>.value (
+            value: snapshot.data,
+            child: SafeArea(
+              child: Scaffold(
+                resizeToAvoidBottomInset: false,
+                appBar: drawerAppbar(context),
+                endDrawer: mainDrawer(),
+                bottomNavigationBar: mainBottomNavigationBar(context, pageNavigatorKey, _mainNavigationPageController, _page),
+                body: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () {
+                    FocusScope.of(context).unfocus();
+                  },
+                  child: Navigator(
+                    key: pageNavigatorKey,
+                    onGenerateRoute: (settings) {
+                      if (settings.name == '/newItem') {
+                        return MaterialPageRoute(
+                          builder: (context) => ItemPage(),
+                        );
+                      }
+                      return MaterialPageRoute(
+                        builder: (context) => PageView(
+                          controller: _mainNavigationPageController,
+                          onPageChanged: (newPage) {
+                            FocusScope.of(context).unfocus();
+                            setState(() {
+                              _page = newPage;
+                            });
+                          },
+                          children: <Widget>[
+                            FrontPage(),
+                            SecondPage(),
+                            ThirdPage(),
+                            FourthPage(),
+                          ],
+                        )
+                      );
+                    }
+                  ),
+                )
               ),
-            )
-          ),
-        ),
+            ),
+          );
+        }
       ),
     );
   }
