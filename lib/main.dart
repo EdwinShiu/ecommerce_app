@@ -24,15 +24,15 @@ class MainNavigationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print("main got rebuild");
-    return StreamBuilder<User>(
-      stream: AuthService().user,
-      builder: (context, snapshot) {
-        print("streamBuilder got rebuild");
-        return Provider<User>.value (
-          value: snapshot.data,
+    //return StreamBuilder<User>(
+      //stream: AuthService().user,
+      //builder: (context, snapshot) {
+        //print("streamBuilder got rebuild");
+        return StreamProvider<User>.value (
+          value: AuthService().user,
           child: HomePage(),
         );
-      },
-    );
+      //},
+    //);
   }
 }

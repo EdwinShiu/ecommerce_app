@@ -29,7 +29,6 @@ class HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    print("hihi");
     _mainNavigationPageController = PageController();
   }
 
@@ -48,9 +47,11 @@ class HomePageState extends State<HomePage> {
       child: StreamBuilder<UserData>(
         stream: DataBaseService(uid: Provider.of<User>(context)?.uid).userSnapshot,
         builder: (context, snapshot) {
-          //print("uidd " + uidd.toString());
+          //print(Provider.of<User>(context)?.uid.toString());
           //print("stream " + DataBaseService(uid: uidd).userSnapshot.toString());
           //print("snapshot "+ snapshot.error.toString());
+          // try to use provider to put ssnapshot data to the pages
+          print("Inner streamBuilder ${snapshot.connectionState}");
           print("Inner streamBuilder rebuild");
           //print("userData in streamBuilder " + snapshot.data.toString());
           return Provider<UserData>.value (
