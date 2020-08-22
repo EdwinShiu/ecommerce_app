@@ -6,7 +6,7 @@ import 'package:ecommerce_app/Pages/Page001/frontPage.dart';
 import 'package:ecommerce_app/Pages/Page004/FourthPage.dart';
 import './parts/appBar.dart';
 import 'Pages/Page002/SecondPage.dart';
-import 'Pages/OtherPages/itemPage.dart';
+import 'Pages/Page002/itemPage.dart';
 import './Pages/Page003/ThirdPage.dart';
 import './data/service/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -67,6 +67,7 @@ class HomePageState extends State<HomePage> {
                   onTap: () {
                     FocusScope.of(context).unfocus();
                   },
+                  // use provider to replace navigator
                   child: Navigator(
                     key: pageNavigatorKey,
                     onGenerateRoute: (settings) {

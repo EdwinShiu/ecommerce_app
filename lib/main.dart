@@ -13,7 +13,10 @@ void main() {
 class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: appTitle, routes: {
+    return MaterialApp(
+      title: appTitle, 
+      debugShowCheckedModeBanner: false,
+      routes: {
         '/': (context) => MainNavigationPage(),
       }
     );

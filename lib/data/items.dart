@@ -1,13 +1,13 @@
 // Temporary Storage of App Data
 
-int favorite_item_number = 3;
+int favoriteNumber = 3;
 
-const List<Map> newItemImages = [{'imagePath': 'assets/images/WM1Z_walkman.jpg', 'itemName': 'WM1Z Walkman'},
-                      {'imagePath': 'assets/images/WM1A_walkman.jpg', 'itemName': 'WM1A Walkman'},
-                      {'imagePath': 'assets/images/ZX500_walkman.jpg', 'itemName': 'ZX500 Walkman'},
-                      {'imagePath': 'assets/images/ZX300_walkman.jpg', 'itemName': 'ZX300 Walkman'},
-                      {'imagePath': 'assets/images/A100_walkman.jpg', 'itemName': 'A100 Walkman'}, 
-                      ];
+const List<Map> newItemImages =  [{'imagePath': 'assets/images/WM1Z_walkman.jpg', 'itemName': 'WM1Z Walkman'},
+                                  {'imagePath': 'assets/images/WM1A_walkman.jpg', 'itemName': 'WM1A Walkman'},
+                                  {'imagePath': 'assets/images/ZX500_walkman.jpg', 'itemName': 'ZX500 Walkman'},
+                                  {'imagePath': 'assets/images/ZX300_walkman.jpg', 'itemName': 'ZX300 Walkman'},
+                                  {'imagePath': 'assets/images/A100_walkman.jpg', 'itemName': 'A100 Walkman'}, 
+                                  ];
 
 const List<List<Map>> categoryImage = [[{'imagePath': 'assets/images/Television_01.png', 'itemName': 'Televisions'},
                                         {'imagePath': 'assets/images/SoundBar_01.png', 'itemName': 'Home Theater & Sound Bars'},

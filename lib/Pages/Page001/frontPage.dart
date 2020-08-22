@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/data/service/fetchProduct.dart';
+import 'package:ecommerce_app/parts/loadingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -85,7 +86,7 @@ class FrontPageState extends State<FrontPage> {
           child: FutureBuilder(
             future: fetchProduct(),
             builder: (context, snapshot) {
-              return snapshot.hasData ? NewItem(pageNavigatorKey, snapshot.data) : CircularProgressIndicator();
+              return snapshot.hasData ? NewItem(pageNavigatorKey, snapshot.data) : LoadingScreen();
             }
           ),
         ),
