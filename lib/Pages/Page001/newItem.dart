@@ -4,10 +4,9 @@ import '../../constant.dart';
 import '../../data/product.dart';
 
 class NewItem extends StatelessWidget {
-  final GlobalKey<NavigatorState> _pageNavigatorKey;
   final List<Product> products;
 
-  NewItem(this._pageNavigatorKey, this.products);
+  NewItem(this.products);
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +71,7 @@ class NewItem extends StatelessWidget {
                 color: Colors.transparent,
                 child: InkWell(
                   highlightColor: Color.fromRGBO(170, 170, 195, 0.3),
-                  onTap: () => _pageNavigatorKey.currentState.pushNamed('/newItem'),                
+                  onTap: () => print("Work In Progress"),              
                 ),
               ),
               Positioned(

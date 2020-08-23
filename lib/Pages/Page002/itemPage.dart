@@ -1,6 +1,8 @@
 import 'package:ecommerce_app/data/items.dart';
+import 'package:ecommerce_app/data/routing.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import '../../constant.dart';
 
 
@@ -92,6 +94,19 @@ class ItemPageState extends State<ItemPage> {
                   ),
                 );
               },
+            ),
+          ),
+          Container(
+            //color: Colors.yellow,
+            padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+            alignment: Alignment.bottomLeft,
+            child: Text(
+              'Television',
+              style: GoogleFonts.ptSans(
+                fontSize: 30.0,
+                fontWeight: FontWeight.w500,
+                color: sonyBlack,
+              ),
             ),
           ),
           Expanded(

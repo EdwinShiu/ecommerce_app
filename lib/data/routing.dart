@@ -1,33 +1,35 @@
 import 'package:flutter/material.dart';
-import '../Pages/Page002/itemPage.dart';
-import '../main.dart';
 
-class RouteGenerator {
-  static Route<dynamic> generateRoute(RouteSettings settings) {
-    //final args = settings.arguments;
-    switch(settings.name) {
-      case '/':
-        return MaterialPageRoute(builder: (_) => MainNavigationPage());
-      case ItemPage.routeName:
-        return MaterialPageRoute(builder: (_) => ItemPage());
-      default:
-        return _errorRoute();
-    }
+class RouteGenerator extends ChangeNotifier {
+  // change it to Stack
+  List<String> _previousList = ["/root", "/root", "/root", "/root"];
+  int _bottomNavBarIndex = 0;
+  String _routeName = "/root";
+
+  String get routeName => _routeName;
+
+  
+
+  set routeName(String val) {
+    _routeName = val;
+    notifyListeners();
   }
 
+  void toPrevious() {
+  }
 
-  static Route<dynamic> _errorRoute() {
-    return MaterialPageRoute(
-      builder: (_) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text('Error'),
-          ),
-          body: Center(
-            child: Text('ERROR'),
-          ),
-        );
-      }
-    );
+  void toRoot() {
+    _previousList[_bottomNavBarIndex] = "/root";
+    routeName = "/root";
+  }
+
+  void toSubCategoryPage() {
+    _previousList[_bottomNavBarIndex] = "/root";
+    routeName = "/subCategory";
+  }
+
+  void toItemPage() {
+
+    routeName = "/itemPage";
   }
 }

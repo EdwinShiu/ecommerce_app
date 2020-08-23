@@ -1,9 +1,12 @@
 import 'package:ecommerce_app/constant.dart';
 import 'package:ecommerce_app/data/items.dart';
+import 'package:ecommerce_app/data/routing.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../constant.dart';
+import 'itemPage.dart';
 
 class SecondPage extends StatefulWidget {
   @override
@@ -14,6 +17,8 @@ class SecondPageState extends State<SecondPage> {
 
   @override
   Widget build(BuildContext context) {
+    final RouteGenerator route = Provider.of<RouteGenerator>(context);
+    if (route.routeName == "/home") {
     return Column(
       children: <Widget>[
         Container(
@@ -91,7 +96,10 @@ class SecondPageState extends State<SecondPage> {
                               color: Colors.transparent,
                               child: InkWell(
                                 highlightColor: Color.fromRGBO(170, 170, 195, 0.3),
-                                onTap: () => pageNavigatorKey.currentState.pushNamed('/newItem'),
+                                onTap: () {
+                                  route.toItemPage();
+                                  //pageNavigatorKey.currentState.pushNamed('/newItem');
+                                }
                               ),
                             ),
                           ],
@@ -106,5 +114,9 @@ class SecondPageState extends State<SecondPage> {
         ),
       ],
     );
+    }
+    else {
+      return ItemPage();
+    }
   }
 }

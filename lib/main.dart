@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/authentication/auth.dart';
+import 'package:ecommerce_app/data/routing.dart';
 import 'package:flutter/material.dart';
 import './constant.dart';
 import 'package:provider/provider.dart';
@@ -13,12 +14,13 @@ void main() {
 class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: appTitle, 
-      debugShowCheckedModeBanner: false,
-      routes: {
-        '/': (context) => MainNavigationPage(),
-      }
+    return ChangeNotifierProvider<RouteGenerator>.value(
+      value: RouteGenerator(),
+      child: MaterialApp(
+        title: appTitle, 
+        debugShowCheckedModeBanner: false,
+        home: MainNavigationPage(),
+      ),
     );
   }
 }

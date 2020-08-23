@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import '../constant.dart';
 
-Widget mainBottomNavigationBar(BuildContext context, GlobalKey<NavigatorState> _pageNavigatorKey, 
-  PageController _mainNavigationPageController, int _page) {
+Widget mainBottomNavigationBar(BuildContext context, PageController _mainNavigationPageController, int _page) {
   
   return Container(
     decoration: BoxDecoration(
@@ -18,9 +17,6 @@ Widget mainBottomNavigationBar(BuildContext context, GlobalKey<NavigatorState> _
     child: BottomNavigationBar(
       currentIndex: _page,
       onTap: (index) {
-        if (_pageNavigatorKey.currentState.canPop()) {
-          _pageNavigatorKey.currentState.pop();
-        }
         _mainNavigationPageController.animateToPage(index,
             duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
       },

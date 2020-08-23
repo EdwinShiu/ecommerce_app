@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/parts/bottomNavigationBar.dart';
 import 'package:ecommerce_app/parts/drawer.dart';
-import 'package:ecommerce_app/parts/loadingScreen.dart';
 import 'package:ecommerce_app/Pages/Page001/frontPage.dart';
 import 'package:ecommerce_app/Pages/Page004/FourthPage.dart';
 import './parts/appBar.dart';
 import 'Pages/Page002/SecondPage.dart';
-import 'Pages/Page002/itemPage.dart';
 import './Pages/Page003/ThirdPage.dart';
 import './data/service/database.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:provider/provider.dart';
 import 'data/user.dart';
-import './constant.dart';
-
 
 
 class HomePage extends StatefulWidget {
@@ -61,41 +56,29 @@ class HomePageState extends State<HomePage> {
                 resizeToAvoidBottomInset: false,
                 appBar: drawerAppbar(context),
                 endDrawer: mainDrawer(),
-                bottomNavigationBar: mainBottomNavigationBar(context, pageNavigatorKey, _mainNavigationPageController, _page),
+                bottomNavigationBar: mainBottomNavigationBar(context, _mainNavigationPageController, _page),
                 body: GestureDetector(
                   behavior: HitTestBehavior.opaque,
                   onTap: () {
                     FocusScope.of(context).unfocus();
                   },
                   // use provider to replace navigator
-                  child: Navigator(
-                    key: pageNavigatorKey,
-                    onGenerateRoute: (settings) {
-                      if (settings.name == '/newItem') {
-                        return MaterialPageRoute(
-                          builder: (context) => ItemPage(),
-                        );
-                      }
-                      return MaterialPageRoute(
-                        builder: (context) => PageView(
-                          controller: _mainNavigationPageController,
-                          onPageChanged: (newPage) {
-                            FocusScope.of(context).unfocus();
-                            setState(() {
-                              _page = newPage;
-                            });
-                          },
-                          children: <Widget>[
-                            FrontPage(),
-                            SecondPage(),
-                            ThirdPage(),
-                            FourthPage(),
-                          ],
-                        )
-                      );
-                    }
-                  ),
-                )
+                  child: PageView(
+                    controller: _mainNavigationPageController,
+                    onPageChanged: (newPage) {
+                      FocusScope.of(context).unfocus();
+                      setState(() {
+                        _page = newPage;
+                      });
+                    },
+                    children: <Widget>[
+                      FrontPage(),
+                      SecondPage(),
+                      ThirdPage(),
+                      FourthPage(),
+                    ],
+                  )
+                ),
               ),
             ),
           );

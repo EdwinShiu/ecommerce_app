@@ -86,7 +86,7 @@ class FrontPageState extends State<FrontPage> {
           child: FutureBuilder(
             future: fetchProduct(),
             builder: (context, snapshot) {
-              return snapshot.hasData ? NewItem(pageNavigatorKey, snapshot.data) : LoadingScreen();
+              return snapshot.hasData ? NewItem(snapshot.data) : LoadingScreen();
             }
           ),
         ),
