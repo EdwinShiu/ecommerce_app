@@ -4,50 +4,58 @@ import 'package:provider/provider.dart';
 import '../constant.dart';
 
 Widget drawerAppbar(BuildContext context) {
-  final String routeName = Provider.of<RouteGenerator>(context).routeName;
-  if (routeName == "/home") {
-    return backAppBar;
-  }
+  final RouteGenerator route = Provider.of<RouteGenerator>(context);
+  if (route.routeName == "/root") {
+    return AppBar(
+      backgroundColor: sonyBlack,
+      actions: <Widget>[
+        Builder(
+          builder: (context) => IconButton(
+            iconSize: accountIconSize,
+            alignment: Alignment.center,
+            icon: Icon(
+              Icons.shopping_cart,
+              color: Colors.white,
+              size: 35,
+            ),
+            onPressed: () {
+              Scaffold.of(context).openEndDrawer();
+            },
+          ),
+        ),
+      ],
+    );
+  } 
   else {
-    return mainAppBar;
+    return AppBar(
+      leading: FlatButton(
+        onPressed: () {
+          //print("pressed");
+          route.toPrevious();
+        },
+        child: Icon(
+          Icons.arrow_back,
+          color: Colors.white,
+          size: 35,
+        ),
+      ),
+      backgroundColor: sonyBlack,
+      actions: <Widget>[
+        Builder(
+          builder: (context) => IconButton(
+            iconSize: accountIconSize,
+            alignment: Alignment.center,
+            icon: Icon(
+              Icons.shopping_cart,
+              color: Colors.white,
+              size: 35,
+            ),
+            onPressed: () {
+              Scaffold.of(context).openEndDrawer();
+            },
+          ),
+        ),
+      ],
+    );
   }
 }
-
-final mainAppBar = AppBar(
-                    backgroundColor: sonyBlack,
-                    actions: <Widget>[
-                      Builder(
-                        builder: (context) => IconButton(
-                          iconSize: accountIconSize,
-                          alignment: Alignment.center,
-                          icon: Icon(
-                            Icons.shopping_cart,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {
-                            Scaffold.of(context).openEndDrawer();
-                          },
-                        ),
-                      ),
-                    ],
-                  );
-
-final backAppBar = AppBar(
-                    leading: Container(color: Colors.yellow),
-                    backgroundColor: sonyBlack,
-                    actions: <Widget>[
-                      Builder(
-                        builder: (context) => IconButton(
-                          iconSize: accountIconSize,
-                          alignment: Alignment.center,
-                          icon: Icon(
-                            Icons.shopping_cart,
-                            color: Colors.white,
-                          ),
-                          onPressed: () {
-                            Scaffold.of(context).openEndDrawer();
-                          },
-                        ),
-                      ),
-                    ],
-                  );

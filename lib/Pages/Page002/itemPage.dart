@@ -6,14 +6,14 @@ import 'package:provider/provider.dart';
 import '../../constant.dart';
 
 
-class ItemPage extends StatefulWidget {
+class SubCatPage extends StatefulWidget {
   static const routeName = '/itemPage';
   
   @override
-  ItemPageState createState() => ItemPageState();
+  SubCatPageState createState() => SubCatPageState();
 }
 
-class ItemPageState extends State<ItemPage> {
+class SubCatPageState extends State<SubCatPage> {
   
   @override
   void initState() {

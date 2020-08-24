@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../constant.dart';
 
 Widget mainBottomNavigationBar(BuildContext context, PageController _mainNavigationPageController, int _page) {
-  
+  print("happy " + _page.toString());
   return Container(
     decoration: BoxDecoration(
       boxShadow: [

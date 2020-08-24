@@ -8,6 +8,7 @@ import 'Pages/Page002/SecondPage.dart';
 import './Pages/Page003/ThirdPage.dart';
 import './data/service/database.dart';
 import 'package:provider/provider.dart';
+import 'data/routing.dart';
 import 'data/user.dart';
 
 
@@ -17,8 +18,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-
-  int _page = 0;
+  
   PageController _mainNavigationPageController;
 
   @override
@@ -35,6 +35,7 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final RouteGenerator route = Provider.of<RouteGenerator>(context);
     print("HomePage rebuild");
     //var uidd = Provider.of<User>(context)?.uid;
     //print(uidd.toString());
@@ -56,7 +57,7 @@ class HomePageState extends State<HomePage> {
                 resizeToAvoidBottomInset: false,
                 appBar: drawerAppbar(context),
                 endDrawer: mainDrawer(),
-                bottomNavigationBar: mainBottomNavigationBar(context, _mainNavigationPageController, _page),
+                bottomNavigationBar: mainBottomNavigationBar(context, _mainNavigationPageController, route.bottomNavBarIndex),
                 body: GestureDetector(
                   behavior: HitTestBehavior.opaque,
                   onTap: () {
@@ -67,9 +68,7 @@ class HomePageState extends State<HomePage> {
                     controller: _mainNavigationPageController,
                     onPageChanged: (newPage) {
                       FocusScope.of(context).unfocus();
-                      setState(() {
-                        _page = newPage;
-                      });
+                      route.bottomNavBarIndex = newPage;
                     },
                     children: <Widget>[
                       FrontPage(),

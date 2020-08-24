@@ -18,7 +18,7 @@ class SecondPageState extends State<SecondPage> {
   @override
   Widget build(BuildContext context) {
     final RouteGenerator route = Provider.of<RouteGenerator>(context);
-    if (route.routeName == "/home") {
+    if (route.routeName == "/root") {
     return Column(
       children: <Widget>[
         Container(
@@ -116,7 +116,7 @@ class SecondPageState extends State<SecondPage> {
     );
     }
     else {
-      return ItemPage();
+      return SubCatPage();
     }
   }
 }
