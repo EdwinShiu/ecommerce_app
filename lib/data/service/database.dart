@@ -36,11 +36,11 @@ class DataBaseService {
     //  );
     // }
     //else {
-      return UserData(
-        favorite: snapshot.data["favorite"].cast<String>(),
-        userInformation: _userInformationFromSnapshot(snapshot),
-        warranty: _userWarrantyFromSnapshot(snapshot)
-      );
+    return UserData(
+      favorite: snapshot.data["favorite"].cast<String>(),
+      userInformation: _userInformationFromSnapshot(snapshot),
+      warranty: _userWarrantyFromSnapshot(snapshot)
+    );
     //}
   }
 
@@ -71,6 +71,9 @@ class DataBaseService {
   Stream<UserData> get userSnapshot {
     //print(uid);
     //print("user Collection" + userCollection.document(uid).toString());
+    if (uid == null) {
+      return null;
+    }
     return userCollection.document(uid).snapshots().map(_userDataFromSnapshot);
   }
 
