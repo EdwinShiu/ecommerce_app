@@ -7,9 +7,15 @@ class BigCategoryList {
   factory BigCategoryList.fromJsonList(List categoriesListInJson) {
     //print("categoriesListInJson " + categoriesListInJson.toString() + " " + categoriesListInJson.runtimeType.toString());
     List<BigCategory> temp = List<BigCategory>.from(categoriesListInJson.map((bigCategory) {
+      if (bigCategory["categoryList"] == null) {
+        return BigCategory(name: null, categories: [Category(name: null, subCategories: [SubCategory(name: null, numberOfProduct: null)])]);
+      }
       return BigCategory(
         name: bigCategory["name"].toString(),
         categories: List<Category>.from(bigCategory["categoryList"].map((category) {
+          if (category["categoryList"] == null) {
+            return Category(name: null, subCategories: [SubCategory(name: null, numberOfProduct: null)]);
+          }
           return Category(
             name: category["name"].toString(),
             subCategories: List<SubCategory>.from(category["categoryList"].map((subCategory) {

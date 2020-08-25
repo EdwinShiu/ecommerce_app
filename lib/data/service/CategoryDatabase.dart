@@ -6,6 +6,10 @@ class CategoryDatabase {
   final DocumentReference categoryCollection = Firestore.instance.collection("Categories").document("Category");
 
   BigCategoryList _categorySnapshot(DocumentSnapshot snapshot) {
+    if (snapshot.data["category"] == null) {
+      print("error");
+      return null;
+    }
     return BigCategoryList.fromJsonList(snapshot.data["category"]);
   }  
 
