@@ -1,6 +1,8 @@
 import 'package:ecommerce_app/constant.dart';
+import 'package:ecommerce_app/data/category.dart';
 import 'package:ecommerce_app/data/items.dart';
 import 'package:ecommerce_app/data/routing.dart';
+import 'package:ecommerce_app/data/service/CategoryDatabase.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sticky_headers/sticky_headers.dart';
@@ -19,7 +21,9 @@ class SecondPageState extends State<SecondPage> {
   Widget build(BuildContext context) {
     final RouteGenerator route = Provider.of<RouteGenerator>(context);
     if (route.routeName == "/root") {
-    return Column(
+    return StreamProvider<BigCategoryList>.value(
+      value: CategoryDatabase().categorySnapshot,
+      child: Column(
       children: <Widget>[
         Container(
           padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
@@ -39,6 +43,8 @@ class SecondPageState extends State<SecondPage> {
             child: ListView.builder(
               itemCount: categories.length, 
               itemBuilder: (context, listIndex) {
+                final BigCategoryList data = Provider.of<BigCategoryList>(context);
+                print(data.toString());
                 return StickyHeader(
                   header: Container(
                     padding: EdgeInsets.only(left: 10),
@@ -113,6 +119,7 @@ class SecondPageState extends State<SecondPage> {
           ),
         ),
       ],
+      ),
     );
     }
     else {

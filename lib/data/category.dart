@@ -1,20 +1,82 @@
-class Category {
-  final String id, title, image;
+class BigCategoryList {
 
-  Category({this.id, this.title, this.image});
+  List<BigCategory> _categories;
 
-  factory Category.fromJson(Map<String, dynamic> json) {
-    return Category(
-      id: json["id"],
-      title: json["title"],
-      image: json["image"],
-    );
+  BigCategoryList(this._categories);
+
+  factory BigCategoryList.fromJsonList(List categoriesListInJson) {
+    //print("categoriesListInJson " + categoriesListInJson.toString() + " " + categoriesListInJson.runtimeType.toString());
+    List<BigCategory> temp = List<BigCategory>.from(categoriesListInJson.map((bigCategory) {
+      return BigCategory(
+        name: bigCategory["name"].toString(),
+        categories: List<Category>.from(bigCategory["categoryList"].map((category) {
+          return Category(
+            name: category["name"].toString(),
+            subCategories: List<SubCategory>.from(category["categoryList"].map((subCategory) {
+              return SubCategory(
+                name: subCategory["name"].toString(),
+                numberOfProduct: subCategory["numberOfProducts"].toString(),
+              );
+            })),
+          );
+        })),
+      );
+    }));
+    return BigCategoryList(temp);
+  }
+
+  String toString() {
+    String temp = "List:\n";
+    for(final element in _categories) {
+      temp += element.toString();
+    }
+    return temp;
+  }
+
+}
+
+class BigCategory {
+
+  final String name;
+  final List<Category> categories;
+
+  BigCategory({this.name, this.categories});
+
+  @override
+  String toString() {
+    String temp = "Big Category Name: $name\n";
+    for (int i = 0; i < categories.length; i++) {
+      temp += "$i: " + categories[i].toString();
+    }
+    return temp;
   }
 }
 
-// Demo category
-Category category = Category(
-  id: "001",
-  title: "MP3 Player",
-  image: "assets/images/MP3Player_01.png",
-);
+class Category {
+  final String name;
+  final List<SubCategory> subCategories;
+
+  Category({this.name, this.subCategories});
+
+  @override
+  String toString() {
+    String temp = "Category Name: $name\n";
+    for (int i = 0; i < subCategories.length; i++) {
+      temp += "$i: " + subCategories[i].toString();
+    }
+    return temp;
+  }
+
+}
+
+class SubCategory {
+  final String name;
+  final String numberOfProduct;
+
+  SubCategory({this.name, this.numberOfProduct});
+
+  @override
+  String toString() {
+    return "Name: $name, numberOfProduct: $numberOfProduct\n";
+  }
+}
