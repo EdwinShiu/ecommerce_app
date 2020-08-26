@@ -1,6 +1,7 @@
 class BigCategoryList {
 
   List<BigCategory> _categories;
+  int bigCategoryIndex, categoryIndex;
 
   BigCategoryList(this._categories);
 
@@ -29,6 +30,15 @@ class BigCategoryList {
       );
     }));
     return BigCategoryList(temp);
+  }
+
+  List<BigCategory> get bigCategory => _categories;
+
+  List<SubCategory> get subCategoryList {
+    if (bigCategoryIndex == null || categoryIndex == null) {
+      return null;
+    }
+    return _categories[bigCategoryIndex].categories[categoryIndex].subCategories;
   }
 
   String toString() {

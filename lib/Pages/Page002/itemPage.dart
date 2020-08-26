@@ -1,14 +1,14 @@
+import 'package:ecommerce_app/Pages/OtherPages/error.dart';
 import 'package:ecommerce_app/data/items.dart';
 import 'package:ecommerce_app/data/routing.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ecommerce_app/data/category.dart';
 import 'package:provider/provider.dart';
 import '../../constant.dart';
 
 
-class SubCatPage extends StatefulWidget {
-  static const routeName = '/itemPage';
-  
+class SubCatPage extends StatefulWidget {  
   @override
   SubCatPageState createState() => SubCatPageState();
 }
@@ -27,6 +27,12 @@ class SubCatPageState extends State<SubCatPage> {
 
   @override
   Widget build(BuildContext context) {
+    final RouteGenerator route = Provider.of<RouteGenerator>(context);
+    final List<SubCategory> subCategoryList = Provider.of<List<SubCategory>>(context);
+    print(subCategoryList.toString());
+    if (subCategoryList == null) {
+      return ErrorPage();
+    }
     return Container(
       child: Column(
         children: [
@@ -111,10 +117,15 @@ class SubCatPageState extends State<SubCatPage> {
           ),
           Expanded(
             flex: 3,
-            child: ListView(),
+            child: RaisedButton(
+              onPressed: () {
+                print("pressed");
+                route.toItemPage();
+              } 
+            ),
+            //ListView(),
           ),
         ],
-
       ),
     );
   }

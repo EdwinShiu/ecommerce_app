@@ -14,6 +14,7 @@ class CategoryDatabase {
   }  
 
   Stream<BigCategoryList> get categorySnapshot {
+    print("firebase used");
     return categoryCollection.snapshots().map(_categorySnapshot);
   }
 }

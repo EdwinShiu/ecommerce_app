@@ -1,5 +1,7 @@
 import 'package:ecommerce_app/authentication/auth.dart';
+import 'package:ecommerce_app/data/category.dart';
 import 'package:ecommerce_app/data/routing.dart';
+import 'package:ecommerce_app/data/service/CategoryDatabase.dart';
 import 'package:flutter/material.dart';
 import './constant.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +37,10 @@ class MainNavigationPage extends StatelessWidget {
         //print("streamBuilder got rebuild");
         return StreamProvider<User>.value (
           value: AuthService().user,
-          child: HomePage(),
+          child: StreamProvider<BigCategoryList>(
+            create: (_) => CategoryDatabase().categorySnapshot,
+            child: HomePage(),
+          ),
         );
       //},
     //);
