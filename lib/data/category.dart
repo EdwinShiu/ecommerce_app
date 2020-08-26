@@ -9,20 +9,20 @@ class BigCategoryList {
     //print("categoriesListInJson " + categoriesListInJson.toString() + " " + categoriesListInJson.runtimeType.toString());
     List<BigCategory> temp = List<BigCategory>.from(categoriesListInJson.map((bigCategory) {
       if (bigCategory["categoryList"] == null) {
-        return BigCategory(name: null, categories: [Category(name: null, subCategories: [SubCategory(name: null, numberOfProduct: null)])]);
+        return BigCategory(name: null, categories: [Category(name: null, subCategories: [SubCategory(name: null, number: null)])]);
       }
       return BigCategory(
         name: bigCategory["name"].toString(),
         categories: List<Category>.from(bigCategory["categoryList"].map((category) {
           if (category["categoryList"] == null) {
-            return Category(name: null, subCategories: [SubCategory(name: null, numberOfProduct: null)]);
+            return Category(name: null, subCategories: [SubCategory(name: null, number: null)]);
           }
           return Category(
             name: category["name"].toString(),
             subCategories: List<SubCategory>.from(category["categoryList"].map((subCategory) {
               return SubCategory(
                 name: subCategory["name"].toString(),
-                numberOfProduct: subCategory["numberOfProducts"].toString(),
+                number: subCategory["numberOfProducts"].toString(),
               );
             })),
           );
@@ -87,12 +87,16 @@ class Category {
 
 class SubCategory {
   final String name;
-  final String numberOfProduct;
+  final String number;
 
-  SubCategory({this.name, this.numberOfProduct});
+  SubCategory({this.name, this.number});
+
+  int get numberOfProduct {
+    return int.parse(number);
+  }
 
   @override
   String toString() {
-    return "Name: $name, numberOfProduct: $numberOfProduct\n";
+    return "Name: $name, numberOfProduct: $number\n";
   }
 }
