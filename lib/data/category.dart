@@ -34,6 +34,13 @@ class BigCategoryList {
 
   List<BigCategory> get bigCategory => _categories;
 
+  String get bigCategoryName {
+    if (bigCategoryIndex == null) {
+      return null;
+    }
+    return _categories[bigCategoryIndex].categories[categoryIndex].name;
+  }
+
   List<SubCategory> get subCategoryList {
     if (bigCategoryIndex == null || categoryIndex == null) {
       return null;

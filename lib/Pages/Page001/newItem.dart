@@ -12,7 +12,7 @@ class NewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Products prod = Provider.of<Products>(context);
-    print("products " + prod.toString());
+    //print("products " + prod.toString());
     return ListView.builder(
       itemCount: products.length,
       itemBuilder: (context, index) {
