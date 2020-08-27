@@ -17,7 +17,7 @@ class SubCatPageState extends State<SubCatPage> {
   @override
   Widget build(BuildContext context) {
     final List<SubCategory> subCategoryList = Provider.of<List<SubCategory>>(context);
-    print(subCategoryList.toString());
+    //print(subCategoryList.toString());
     if (subCategoryList == null) {
       return ErrorPage();
     }

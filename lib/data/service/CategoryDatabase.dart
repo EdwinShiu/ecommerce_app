@@ -3,7 +3,7 @@ import 'package:ecommerce_app/data/category.dart';
 
 class CategoryDatabase {
 
-  final DocumentReference categoryCollection = Firestore.instance.collection("Categories").document("Category");
+  final DocumentReference categoryDocument = Firestore.instance.collection("Categories").document("Category");
 
   BigCategoryList _categorySnapshot(DocumentSnapshot snapshot) {
     if (snapshot.data["category"] == null) {
@@ -15,6 +15,6 @@ class CategoryDatabase {
 
   Stream<BigCategoryList> get categorySnapshot {
     print("firebase used");
-    return categoryCollection.snapshots().map(_categorySnapshot);
+    return categoryDocument.snapshots().map(_categorySnapshot);
   }
 }

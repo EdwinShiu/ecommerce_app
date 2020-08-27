@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 import '../../constant.dart';
 import '../../data/product.dart';
 
@@ -10,6 +11,8 @@ class NewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Products prod = Provider.of<Products>(context);
+    print("products " + prod.toString());
     return ListView.builder(
       itemCount: products.length,
       itemBuilder: (context, index) {

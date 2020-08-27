@@ -24,7 +24,7 @@ class FrontPageState extends State<FrontPage> {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
+    return Column(
       children: <Widget>[
         Container(
           margin: EdgeInsets.only(top: 25.0),

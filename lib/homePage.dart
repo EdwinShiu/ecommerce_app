@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/data/product.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/parts/bottomNavigationBar.dart';
 import 'package:ecommerce_app/parts/drawer.dart';

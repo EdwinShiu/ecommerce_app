@@ -24,7 +24,6 @@ class SecondPageState extends State<SecondPage> {
     final BigCategoryList bigCategory = Provider.of<BigCategoryList>(context);
     //print("happy " + bigCategory.bigCategory.length.toString());
     final RouteGenerator route = Provider.of<RouteGenerator>(context);
-    int bigCategoryIndex, categoryIndex;
     if (bigCategory == null) {
       return LoadingScreen();
     }
