@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../constant.dart';
+import 'dart:math';
 
 class SubCategoryPage extends StatelessWidget {
 
@@ -33,6 +34,49 @@ class SubCategoryPage extends StatelessWidget {
     return result;
   }
 
+  List<Widget> descriptionList(List<String> descriptionList, String name) {
+    List<Widget> textList = [
+      Text(
+        name,
+        style: GoogleFonts.ptSans(
+          fontSize: 24.0,
+          fontWeight: FontWeight.w500,
+          color: sonyBlack,
+        ),
+      ),
+    ];
+    if (descriptionList.length > 0) {
+      for(int index = 0; index < min(2, descriptionList.length); index++) {
+        textList.add(
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                  " • ",
+                  style: GoogleFonts.ptSans(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xFF7F797D),
+                  ),
+                ),
+              Flexible(
+                child: Text(
+                  descriptionList[index],
+                  style: GoogleFonts.ptSans(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xFF7F797D),
+                  ),
+                )
+              )
+            ]
+          ),
+        );
+      }
+    }
+    return textList;
+  }
+
   @override
   Widget build(BuildContext context) {
     final String bigCategoryName = Provider.of<BigCategoryList>(context).bigCategoryName;
@@ -56,14 +100,91 @@ class SubCategoryPage extends StatelessWidget {
             ),
           ),
         ),
+        (itemList.length == 0) ? 
         Expanded(
-          flex: 3,
-          child: RaisedButton(
-            onPressed: () {
-              route.toItemPage();
-            } 
+          child: Center(
+            child: Text(
+              "No Product",
+              style: GoogleFonts.ptSans(
+                fontSize: 20.0,
+                fontWeight: FontWeight.w500,
+                color: sonyBlack,
+              ),
+            ),
+          )
+        ) :
+        Expanded(
+          child: ListView.builder(
+            itemCount: itemList.length,
+            itemBuilder: (context, index) {
+              var item = itemList[index][0];
+              return Container(
+                decoration: BoxDecoration(        
+                  border: Border.all(
+                    width: 1.0,
+                    color: Color.fromRGBO(230, 230, 230, 1),
+                  ),
+                ),
+                margin: EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),   
+                height: 180.0,
+                child: Stack(
+                  children: <Widget>[
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            color: itemBackgroundColor,
+                            child: Image.asset(
+                              item.image,
+                              fit: BoxFit.fitHeight,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 2,
+                          child: Stack(
+                            children: <Widget> [
+                              Container(
+                                color: Colors.white,
+                                padding: EdgeInsets.all(5.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                                  children: descriptionList(item.description, item.title),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    Positioned(
+                      bottom: 5,
+                      right: 5,
+                      child: Text(
+                        "HK\$" + item.price,
+                        style: GoogleFonts.ptSans(
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.w500,
+                          color: sonyBlack,
+                        ),
+                      ),
+                    ),
+                    Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        highlightColor: Color.fromRGBO(170, 170, 195, 0.3),
+                        onTap: () {
+                          route.toItemPage();
+                        },              
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
-          //ListView(),
         ),
       ]
     );

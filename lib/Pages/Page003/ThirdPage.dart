@@ -124,18 +124,6 @@ class ThirdPageState extends State<ThirdPage> {
                                         ),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.fromLTRB(7, 3, 7, 10),
-                                      child: Row(
-                                        children: <Widget>[
-                                          Icon(Icons.star),
-                                          Icon(Icons.star),
-                                          Icon(Icons.star),
-                                          Icon(Icons.star),
-                                          Icon(Icons.star),
-                                        ],
-                                      ),
-                                    ),
                                     Expanded(
                                       child: Align(
                                         alignment: Alignment.bottomRight,

@@ -1,5 +1,4 @@
-import 'package:ecommerce_app/Pages/OtherPages/error.dart';
-import 'package:ecommerce_app/Pages/Page002/item.dart';
+import 'package:ecommerce_app/Pages/OtherPages/item.dart';
 import 'package:ecommerce_app/constant.dart';
 import 'package:ecommerce_app/data/category.dart';
 import 'package:ecommerce_app/data/items.dart';
