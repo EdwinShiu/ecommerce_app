@@ -1,5 +1,6 @@
 class Products {
   final List<CategoryProduct> products;
+  List<Item> selectedItem;
 
   Products(this.products);
 

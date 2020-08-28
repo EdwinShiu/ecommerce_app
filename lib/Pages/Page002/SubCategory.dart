@@ -10,7 +10,7 @@ import 'dart:math';
 class SubCategoryPage extends StatelessWidget {
 
   List<List<Item>> _itemListOfSubCategory(String subCategoryName, List<CategoryProduct> productList, String bigCategoryName) {
-    print(subCategoryName + " " + bigCategoryName);
+    //print(subCategoryName + " " + bigCategoryName);
     int i = 0;
     bool found = false;
     List<List<Item>> result = [];
@@ -84,7 +84,7 @@ class SubCategoryPage extends StatelessWidget {
     final SubCategory subCategory = Provider.of<SubCategory>(context);
     final Products products = Provider.of<Products>(context);
     List<List<Item>> itemList = _itemListOfSubCategory(subCategory.name, products.products, bigCategoryName);
-    print(itemList.length);
+    //print(itemList.length);
     //print(subCategory.toString());
     return Column(
       children: [
@@ -176,6 +176,7 @@ class SubCategoryPage extends StatelessWidget {
                       child: InkWell(
                         highlightColor: Color.fromRGBO(170, 170, 195, 0.3),
                         onTap: () {
+                          products.selectedItem = itemList[index];
                           route.toItemPage();
                         },              
                       ),
