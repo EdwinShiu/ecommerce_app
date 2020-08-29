@@ -38,11 +38,11 @@ class HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final RouteGenerator route = Provider.of<RouteGenerator>(context);
     print("HomePage rebuild");
-    //var uidd = Provider.of<User>(context)?.uid;
+    var uid = Provider.of<User>(context)?.uid;
     //print(uidd.toString());
     return Container(
       child: StreamBuilder<UserData>(
-        stream: DataBaseService(uid: Provider.of<User>(context)?.uid).userSnapshot,
+        stream: DataBaseService(uid: uid).userSnapshot,
         builder: (context, snapshot) {
           //print(Provider.of<User>(context)?.uid.toString());
           //print("stream " + DataBaseService(uid: uidd).userSnapshot.toString());
@@ -52,7 +52,7 @@ class HomePageState extends State<HomePage> {
           print("Inner streamBuilder rebuild");
           //print("userData in streamBuilder " + snapshot.data.toString());
           return Provider<UserData>.value (
-            value: snapshot.data,
+            value: (uid != null) ? snapshot.data : null,
             child: SafeArea(
               child: Scaffold(
                 resizeToAvoidBottomInset: false,
