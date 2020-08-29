@@ -43,7 +43,13 @@ class MainNavigationPage extends StatelessWidget {
             create: (_) => CategoryDatabase().categorySnapshot,
             child: StreamProvider<Products>(
               create: (_) => ProductDatabase().productSnapshot,
-              child: HomePage(),
+              child: NotificationListener<OverscrollIndicatorNotification>(
+                onNotification: (OverscrollIndicatorNotification overscroll) {
+                  overscroll.disallowGlow();
+                  return false;
+                },
+                child: HomePage(),
+              ),
             ),
           ),
         );

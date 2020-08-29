@@ -163,7 +163,7 @@ class SubCategoryPage extends StatelessWidget {
                       bottom: 5,
                       right: 5,
                       child: Text(
-                        "HK\$" + item.price,
+                        (itemList[index].length == 1) ? "HK\$ " + item.price : "From HK\$ " + item.price,
                         style: GoogleFonts.ptSans(
                           fontSize: 22.0,
                           fontWeight: FontWeight.w500,

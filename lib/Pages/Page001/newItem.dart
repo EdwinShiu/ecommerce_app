@@ -62,7 +62,7 @@ class NewItem extends StatelessWidget {
                 bottom: 5,
                 right: 5,
                 child: Text(
-                  "HK\$" + product.price.toString(),
+                  "HK\$ " + product.price.toString(),
                   style: GoogleFonts.ptSans(
                     fontSize: 22.0,
                     fontWeight: FontWeight.w500,
