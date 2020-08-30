@@ -1,6 +1,5 @@
 class Products {
   final List<CategoryProduct> products;
-  List<Item> selectedItem;
 
   Products(this.products);
 
@@ -30,6 +29,7 @@ class Products {
     }));
     return Products(temp);
   }
+
 
   @override
   String toString() {

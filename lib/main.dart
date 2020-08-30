@@ -2,6 +2,7 @@ import 'package:ecommerce_app/authentication/auth.dart';
 import 'package:ecommerce_app/data/category.dart';
 import 'package:ecommerce_app/data/product.dart';
 import 'package:ecommerce_app/data/routing.dart';
+import 'package:ecommerce_app/data/selectedProducts.dart';
 import 'package:ecommerce_app/data/service/categoryDatabase.dart';
 import 'package:ecommerce_app/data/service/productDatabase.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +44,9 @@ class MainNavigationPage extends StatelessWidget {
             create: (_) => CategoryDatabase().categorySnapshot,
             child: StreamProvider<Products>(
               create: (_) => ProductDatabase().productSnapshot,
-              child: NotificationListener<OverscrollIndicatorNotification>(
+              child: ChangeNotifierProvider<ProductsPageNotifier>.value(
+                value: ProductsPageNotifier(),
+                child: NotificationListener<OverscrollIndicatorNotification>(
                 onNotification: (OverscrollIndicatorNotification overscroll) {
                   overscroll.disallowGlow();
                   return false;
@@ -51,6 +54,7 @@ class MainNavigationPage extends StatelessWidget {
                 child: HomePage(),
               ),
             ),
+          ),
           ),
         );
       //},

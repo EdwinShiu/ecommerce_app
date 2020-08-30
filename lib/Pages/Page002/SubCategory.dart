@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/data/category.dart';
 import 'package:ecommerce_app/data/product.dart';
 import 'package:ecommerce_app/data/routing.dart';
+import 'package:ecommerce_app/data/selectedProducts.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -81,6 +82,7 @@ class SubCategoryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final String bigCategoryName = Provider.of<BigCategoryList>(context).bigCategoryName;
     final RouteGenerator route = Provider.of<RouteGenerator>(context);
+    final ProductsPageNotifier selectedProduct = Provider.of<ProductsPageNotifier>(context);
     final SubCategory subCategory = Provider.of<SubCategory>(context);
     final Products products = Provider.of<Products>(context);
     List<List<Item>> itemList = _itemListOfSubCategory(subCategory.name, products.products, bigCategoryName);
@@ -176,7 +178,8 @@ class SubCategoryPage extends StatelessWidget {
                       child: InkWell(
                         highlightColor: Color.fromRGBO(170, 170, 195, 0.3),
                         onTap: () {
-                          products.selectedItem = itemList[index];
+                          selectedProduct.setSelectedItemList = itemList[index];
+                          selectedProduct.setSelectedItem = itemList[index][0];
                           route.toItemPage();
                         },              
                       ),

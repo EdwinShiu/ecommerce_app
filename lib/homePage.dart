@@ -11,6 +11,7 @@ import './data/service/database.dart';
 import 'package:provider/provider.dart';
 import 'data/routing.dart';
 import 'data/user.dart';
+import './constant.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -55,6 +56,7 @@ class HomePageState extends State<HomePage> {
             value: (uid != null) ? snapshot.data : null,
             child: SafeArea(
               child: Scaffold(
+                key: drawerKey,
                 resizeToAvoidBottomInset: false,
                 appBar: drawerAppbar(context),
                 endDrawer: mainDrawer(),
