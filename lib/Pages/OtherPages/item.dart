@@ -2,7 +2,6 @@ import 'package:ecommerce_app/constant.dart';
 import 'package:ecommerce_app/data/product.dart';
 import 'package:ecommerce_app/data/selectedProducts.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 
@@ -20,7 +19,7 @@ class ItemPageState extends State<ItemPage> {
       return Center(
         child: Text(
           "Error",
-          style: GoogleFonts.ptSans(
+          style: TextStyle(
             fontSize: 24.0,
             fontWeight: FontWeight.w500,
             color: sonyBlack,
@@ -47,7 +46,7 @@ class ItemPageState extends State<ItemPage> {
                             padding: EdgeInsets.only(left: 10, top: 5),
                             child: Text(
                               categoryString(itemShowing),
-                              style: GoogleFonts.ptSans(
+                              style: TextStyle(
                                 fontSize: 16.0,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
@@ -58,7 +57,7 @@ class ItemPageState extends State<ItemPage> {
                             padding: EdgeInsets.only(left: 30),
                             child: Text(
                               itemShowing.title,
-                              style: GoogleFonts.ptSans(
+                              style: TextStyle(
                                 fontSize: 50.0,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
@@ -73,7 +72,7 @@ class ItemPageState extends State<ItemPage> {
                                 padding: EdgeInsets.only(left: 30),
                                 child: Text(
                                   itemShowing.subtitle,
-                                  style: GoogleFonts.ptSans(
+                                  style: TextStyle(
                                     fontSize: 24.0,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.white,
@@ -95,7 +94,7 @@ class ItemPageState extends State<ItemPage> {
                             padding: EdgeInsets.only(left: 40),
                             child: Text(
                               "Price",
-                              style: GoogleFonts.ptSans(
+                              style: TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
@@ -106,7 +105,7 @@ class ItemPageState extends State<ItemPage> {
                             padding: EdgeInsets.only(left: 30, bottom: 10),
                             child: Text(
                               "HK\$ " + itemShowing.price,
-                              style: GoogleFonts.ptSans(
+                              style: TextStyle(
                                 fontSize: 28.0,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
@@ -114,24 +113,39 @@ class ItemPageState extends State<ItemPage> {
                             ),
                           ),
                           Container(
+                            height: 80,
+                            width: double.infinity,
+                            padding: EdgeInsets.symmetric(horizontal: 20.0),
                             color: Colors.white,
-                            child: Container(
-                            height: 80.0,
-                            child: (selectedItemList.selectedItemList.length == 1) ? Container() : DropdownButton<Item>(
-                              value: itemShowing,
-                              icon: Icon(Icons.arrow_drop_down),
-                              iconSize: 20,
-                              items: selectedItemList.selectedItemList.map((Item item) {
-                                return DropdownMenuItem(
-                                  value: item,
-                                  child: Text(item.subtitle),
-                                );
-                              }).toList(),
-                              onChanged: (Item newItem) {
-                                selectedItemList.setSelectedItem = newItem;
-                              },
-                            )
-                          ),
+                            child: Row(
+                              children: [
+                                (selectedItemList.selectedItemList.length == 1) ? Container() : DropdownButton<Item>(
+                                  isExpanded: false,
+                                  value: itemShowing,
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.w500,
+                                    color: sonyBlack,
+                                  ),
+                                  underline: Container(
+                                    height: 2,
+                                    color: sonyBlack,
+                                  ),
+                                  icon: Icon(Icons.arrow_drop_down),
+                                  iconSize: 24,
+                                  items: selectedItemList.selectedItemList.map((Item item) {
+                                    return DropdownMenuItem(
+                                      value: item,
+                                      child: Text(item.subtitle),
+                                    );
+                                  }).toList(),
+                                  onChanged: (Item newItem) {
+                                    selectedItemList.setSelectedItem = newItem;
+                                  },
+                                ),
+                                Expanded(child: Material()),
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -177,7 +191,7 @@ class ItemPageState extends State<ItemPage> {
                             padding: EdgeInsets.only(left: 20),
                             child: Text(
                               "Stock: " + itemShowing.stock.toString(),
-                              style: GoogleFonts.ptSans(
+                              style: TextStyle(
                                 fontSize: 16.0,
                                 fontWeight: FontWeight.w500,
                                 color: sonyBlack,
@@ -201,7 +215,7 @@ class ItemPageState extends State<ItemPage> {
                                       child: Text(
                                         "Add to Cart",
                                         textAlign: TextAlign.center,
-                                        style: GoogleFonts.ptSans(
+                                        style: TextStyle(
                                           fontSize: 24.0,
                                           fontWeight: FontWeight.w500,
                                           color: Colors.white,
@@ -253,7 +267,7 @@ class ItemPageState extends State<ItemPage> {
             children: [
               Text(
                 " • ",
-                style: GoogleFonts.ptSans(
+                style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.w500,
                   color: sonyBlack,
@@ -262,7 +276,7 @@ class ItemPageState extends State<ItemPage> {
               Flexible(
                 child: Text(
                   element,
-                  style: GoogleFonts.ptSans(
+                  style: TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.w500,
                     color: sonyBlack,

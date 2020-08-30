@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 final textFormFieldDecoration = InputDecoration(
                                   border: OutlineInputBorder(),
-                                  hintStyle: GoogleFonts.ptSans(
+                                  hintStyle: TextStyle(
                                     fontSize: 20.0,
                                     fontWeight: FontWeight.w500,
                                     color: Color(0xFF7F797D),
                                   ),
-                                  errorStyle: GoogleFonts.ptSans(
+                                  errorStyle: TextStyle(
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.w500,
                                   ),

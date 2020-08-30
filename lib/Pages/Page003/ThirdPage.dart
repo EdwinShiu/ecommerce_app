@@ -1,6 +1,5 @@
 import 'package:ecommerce_app/data/user.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../constant.dart';
 import '../../data/items.dart';
@@ -31,7 +30,7 @@ class ThirdPageState extends State<ThirdPage> {
           alignment: Alignment.bottomLeft,
           child: Text(
             'Favorite',
-            style: GoogleFonts.ptSans(
+            style: TextStyle(
               fontSize: 50.0,
               fontWeight: FontWeight.w500,
               color: sonyBlack,
@@ -119,7 +118,7 @@ class ThirdPageState extends State<ThirdPage> {
                                       padding: EdgeInsets.fromLTRB(7, 3, 7, 10),
                                       child: Text(
                                         'Testing Testing Testing Testing Testing',
-                                        style: GoogleFonts.ptSans(
+                                        style: TextStyle(
                                           fontSize: 26.0,
                                           fontWeight: FontWeight.w500,
                                           color: sonyBlack,
@@ -133,7 +132,7 @@ class ThirdPageState extends State<ThirdPage> {
                                           padding: EdgeInsets.fromLTRB(7, 3, 7, 3),
                                           child: Text(
                                             'HK\$ XX,XXX',
-                                            style: GoogleFonts.ptSans(
+                                            style: TextStyle(
                                               fontSize: 24.0,
                                               fontWeight: FontWeight.w500,
                                               color: sonyBlack,

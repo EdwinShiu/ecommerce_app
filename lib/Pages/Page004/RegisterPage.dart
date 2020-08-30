@@ -2,7 +2,6 @@ import 'package:ecommerce_app/authentication/auth.dart';
 import 'package:ecommerce_app/parts/loadingScreen.dart';
 import 'package:flutter/material.dart';
 import '../../constant.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../Parts/textFormField.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -43,7 +42,7 @@ class RegisterPageState extends State<RegisterPage> {
                     height: 100,
                     child: Text(
                       'Register',
-                        style: GoogleFonts.ptSans(
+                        style: TextStyle(
                         fontSize: 50.0,
                         fontWeight: FontWeight.w500,
                         color: sonyBlack,
@@ -71,7 +70,7 @@ class RegisterPageState extends State<RegisterPage> {
                     color: sonyBlack,
                     child: Text(
                       'Register',
-                      style: GoogleFonts.ptSans(
+                      style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
@@ -105,7 +104,7 @@ class RegisterPageState extends State<RegisterPage> {
                     color: sonyBlack,
                     child: Text(
                       'Already have an account',
-                      style: GoogleFonts.ptSans(
+                      style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,

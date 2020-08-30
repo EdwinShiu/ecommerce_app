@@ -1,7 +1,6 @@
 import 'package:ecommerce_app/constant.dart';
 import 'package:ecommerce_app/parts/loadingScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../authentication/auth.dart';
 import '../../Parts/textFormField.dart';
 
@@ -44,7 +43,7 @@ class LoginPageState extends State<LoginPage> {
                     height: 100,
                     child: Text(
                       'Login',
-                        style: GoogleFonts.ptSans(
+                        style: TextStyle(
                         fontSize: 50.0,
                         fontWeight: FontWeight.w500,
                         color: sonyBlack,
@@ -72,7 +71,7 @@ class LoginPageState extends State<LoginPage> {
                     color: sonyBlack,
                     child: Text(
                       'Login',
-                      style: GoogleFonts.ptSans(
+                      style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
@@ -104,7 +103,7 @@ class LoginPageState extends State<LoginPage> {
                     color: sonyBlack,
                     child: Text(
                       'Register a new account',
-                      style: GoogleFonts.ptSans(
+                      style: TextStyle(
                         fontSize: 20.0,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
@@ -115,31 +114,6 @@ class LoginPageState extends State<LoginPage> {
                       FocusScope.of(context).unfocus();
                     },
                   ),
-                  /*
-                  SizedBox(height: 20),
-                  RaisedButton(
-                    color: sonyBlack,
-                    child: Text(
-                      'Sign in anonymously',
-                      style: GoogleFonts.ptSans(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
-                      ),
-                    ),
-                    onPressed: () async {
-                      FocusScope.of(context).unfocus();
-                      dynamic result = await _auth.signInAnon();
-                      if (result == null) {
-                        print("Error Signing In");
-                      }
-                      else {
-                        print('Signed In');
-                        print(result.uid);
-                      }
-                    },
-                  ),
-                  */
                   SizedBox(height: 20),
                   Text(
                     error,

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import '../../constant.dart';
 import '../../data/product.dart';
 
@@ -11,7 +9,6 @@ class NewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Products prod = Provider.of<Products>(context);
     //print("products " + prod.toString());
     return ListView.builder(
       itemCount: products.length,
@@ -63,7 +60,7 @@ class NewItem extends StatelessWidget {
                 right: 5,
                 child: Text(
                   "HK\$ " + product.price.toString(),
-                  style: GoogleFonts.ptSans(
+                  style: TextStyle(
                     fontSize: 22.0,
                     fontWeight: FontWeight.w500,
                     color: sonyBlack,
@@ -97,7 +94,7 @@ class NewItem extends StatelessWidget {
     List<Widget> textList = [
       Text(
         product.title,
-        style: GoogleFonts.ptSans(
+        style: TextStyle(
           fontSize: 24.0,
           fontWeight: FontWeight.w500,
           color: sonyBlack,
@@ -112,7 +109,7 @@ class NewItem extends StatelessWidget {
             children: [
               Text(
                   " • ",
-                  style: GoogleFonts.ptSans(
+                  style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF7F797D),
@@ -121,7 +118,7 @@ class NewItem extends StatelessWidget {
               Flexible(
                 child: Text(
                   descriptionList[index],
-                  style: GoogleFonts.ptSans(
+                  style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF7F797D),

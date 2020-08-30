@@ -7,7 +7,6 @@ import 'package:ecommerce_app/parts/loadingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sticky_headers/sticky_headers.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../constant.dart';
 import 'itemPage.dart';
 
@@ -34,7 +33,7 @@ class SecondPageState extends State<SecondPage> {
             alignment: Alignment.bottomLeft,
             child: Text(
               'Category',
-              style: GoogleFonts.ptSans(
+              style: TextStyle(
                 fontSize: 50.0,
                 fontWeight: FontWeight.w500,
                 color: sonyBlack,
@@ -58,7 +57,7 @@ class SecondPageState extends State<SecondPage> {
                       alignment: Alignment.bottomLeft,
                       child: Text(
                         bigCategory.bigCategory[listIndex].name,
-                        style: GoogleFonts.ptSans(
+                        style: TextStyle(
                           fontSize: 26.0,
                           fontWeight: FontWeight.w500,
                           color: Colors.white,
@@ -93,7 +92,7 @@ class SecondPageState extends State<SecondPage> {
                                     Flexible(
                                       child: Text(
                                         bigCategory.bigCategory[listIndex].categories[gridIndex].name,
-                                        style: GoogleFonts.ptSans(
+                                        style: TextStyle(
                                           fontSize: 24.0,
                                           fontWeight: FontWeight.w500,
                                           color: sonyBlack,

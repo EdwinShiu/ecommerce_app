@@ -1,6 +1,5 @@
 import 'package:ecommerce_app/Pages/OtherPages/error.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:ecommerce_app/data/category.dart';
 import 'package:provider/provider.dart';
 import '../../constant.dart';
@@ -32,7 +31,7 @@ class SubCatPageState extends State<SubCatPage> {
               alignment: Alignment.bottomLeft,
               child: Text(
                 'Television',
-                style: GoogleFonts.ptSans(
+                style: TextStyle(
                   fontSize: 50.0,
                   fontWeight: FontWeight.w500,
                   color: sonyBlack,
@@ -70,7 +69,7 @@ class SubCatPageState extends State<SubCatPage> {
                             alignment: Alignment.bottomLeft,
                             child: Text(
                               subCategoryList[index].name,
-                              style: GoogleFonts.ptSans(
+                              style: TextStyle(
                                 fontSize: 22.0,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,

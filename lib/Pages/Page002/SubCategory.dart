@@ -2,8 +2,8 @@ import 'package:ecommerce_app/data/category.dart';
 import 'package:ecommerce_app/data/product.dart';
 import 'package:ecommerce_app/data/routing.dart';
 import 'package:ecommerce_app/data/selectedProducts.dart';
+import 'package:ecommerce_app/parts/loadingScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../constant.dart';
 import 'dart:math';
@@ -39,7 +39,7 @@ class SubCategoryPage extends StatelessWidget {
     List<Widget> textList = [
       Text(
         name,
-        style: GoogleFonts.ptSans(
+        style: TextStyle(
           fontSize: 24.0,
           fontWeight: FontWeight.w500,
           color: sonyBlack,
@@ -54,7 +54,7 @@ class SubCategoryPage extends StatelessWidget {
             children: [
               Text(
                   " • ",
-                  style: GoogleFonts.ptSans(
+                  style: TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF7F797D),
@@ -63,7 +63,7 @@ class SubCategoryPage extends StatelessWidget {
               Flexible(
                 child: Text(
                   descriptionList[index],
-                  style: GoogleFonts.ptSans(
+                  style: TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF7F797D),
@@ -85,6 +85,9 @@ class SubCategoryPage extends StatelessWidget {
     final ProductsPageNotifier selectedProduct = Provider.of<ProductsPageNotifier>(context);
     final SubCategory subCategory = Provider.of<SubCategory>(context);
     final Products products = Provider.of<Products>(context);
+    if (products == null) {
+      return LoadingScreen();
+    }
     List<List<Item>> itemList = _itemListOfSubCategory(subCategory.name, products.products, bigCategoryName);
     //print(itemList.length);
     //print(subCategory.toString());
@@ -95,7 +98,7 @@ class SubCategoryPage extends StatelessWidget {
           alignment: Alignment.bottomLeft,
           child: Text(
             subCategory.name,
-            style: GoogleFonts.ptSans(
+            style: TextStyle(
               fontSize: 30.0,
               fontWeight: FontWeight.w500,
               color: sonyBlack,
@@ -107,7 +110,7 @@ class SubCategoryPage extends StatelessWidget {
           child: Center(
             child: Text(
               "No Product",
-              style: GoogleFonts.ptSans(
+              style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.w500,
                 color: sonyBlack,
@@ -166,7 +169,7 @@ class SubCategoryPage extends StatelessWidget {
                       right: 5,
                       child: Text(
                         (itemList[index].length == 1) ? "HK\$ " + item.price : "From HK\$ " + item.price,
-                        style: GoogleFonts.ptSans(
+                        style: TextStyle(
                           fontSize: 22.0,
                           fontWeight: FontWeight.w500,
                           color: sonyBlack,

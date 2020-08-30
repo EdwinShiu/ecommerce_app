@@ -5,7 +5,9 @@ import 'package:ecommerce_app/data/routing.dart';
 import 'package:ecommerce_app/data/selectedProducts.dart';
 import 'package:ecommerce_app/data/service/categoryDatabase.dart';
 import 'package:ecommerce_app/data/service/productDatabase.dart';
+import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import './constant.dart';
 import 'package:provider/provider.dart';
 import './authentication/auth.dart';
@@ -19,10 +21,16 @@ void main() {
 class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     return ChangeNotifierProvider<RouteGenerator>.value(
       value: RouteGenerator(),
       child: MaterialApp(
         title: appTitle, 
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          textTheme: GoogleFonts.ptSansTextTheme(),
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
         debugShowCheckedModeBanner: false,
         home: MainNavigationPage(),
       ),
@@ -34,6 +42,7 @@ class MainNavigationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print("main got rebuild");
+    print(SizeConfig.defaultSize);
     //return StreamBuilder<User>(
       //stream: AuthService().user,
       //builder: (context, snapshot) {

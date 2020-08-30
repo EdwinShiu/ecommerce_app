@@ -3,7 +3,6 @@ import 'package:ecommerce_app/constant.dart';
 import 'package:ecommerce_app/data/user.dart';
 import 'package:ecommerce_app/parts/loadingScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 class UserPage extends StatefulWidget {
@@ -32,7 +31,7 @@ class UserPageState extends State<UserPage> {
               alignment: Alignment.bottomLeft,
               child: Text(
                 'My Sony',
-                style: GoogleFonts.ptSans(
+                style: TextStyle(
                   fontSize: 50.0,
                   fontWeight: FontWeight.w500,
                   color: sonyBlack,
@@ -60,7 +59,7 @@ class UserPageState extends State<UserPage> {
                         ),
                         child: Text(
                           "Sonnion: " + ((userData != null) ? userData.userInformation.sonnion.toString() : "--"),
-                          style: GoogleFonts.ptSans(
+                          style: TextStyle(
                             fontSize: 30.0,
                             fontWeight: FontWeight.w500,
                             color: sonyBlack,
@@ -80,7 +79,7 @@ class UserPageState extends State<UserPage> {
                           padding: EdgeInsets.all(10),
                           child: Text(
                             "Account Information",
-                            style: GoogleFonts.ptSans(
+                            style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
@@ -104,7 +103,7 @@ class UserPageState extends State<UserPage> {
                           padding: EdgeInsets.all(10),
                           child: Text(
                             "Product Warranty",
-                            style: GoogleFonts.ptSans(
+                            style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
@@ -128,7 +127,7 @@ class UserPageState extends State<UserPage> {
                           padding: EdgeInsets.all(10),
                           child: Text(
                             "Order Record",
-                            style: GoogleFonts.ptSans(
+                            style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
@@ -152,7 +151,7 @@ class UserPageState extends State<UserPage> {
                           padding: EdgeInsets.all(10),
                           child: Text(
                             "Log Out",
-                            style: GoogleFonts.ptSans(
+                            style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,

@@ -1,7 +1,6 @@
 import 'package:ecommerce_app/data/service/fetchProduct.dart';
 import 'package:ecommerce_app/parts/loadingScreen.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../../constant.dart';
 import './newItem.dart';
@@ -75,7 +74,7 @@ class FrontPageState extends State<FrontPage> {
           padding: EdgeInsets.only(left: 8.0),
           child: Text(
             'New',
-            style: GoogleFonts.ptSans(
+            style: TextStyle(
               fontSize: 32.0,
               fontWeight: FontWeight.w500,
               color: sonyBlack,
