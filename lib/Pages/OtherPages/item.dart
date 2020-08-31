@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/constant.dart';
 import 'package:ecommerce_app/data/product.dart';
 import 'package:ecommerce_app/data/selectedProducts.dart';
+import 'package:ecommerce_app/data/shoppingCart.dart';
 import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,8 @@ class ItemPageState extends State<ItemPage> {
   @override
   Widget build(BuildContext context) {
     final double defaultSize = SizeConfig.defaultSize;
+    final CartList cartList = Provider.of<CartList>(context);
+    //print(cartList.toString());
     final ProductsPageNotifier selectedItemList = Provider.of<ProductsPageNotifier>(context);
     final Item itemShowing = selectedItemList.selectedItem;
     if (itemShowing == null) {
@@ -115,7 +118,7 @@ class ItemPageState extends State<ItemPage> {
                             ),
                           ),
                           Container(
-                            height: defaultSize * 7,
+                            height: defaultSize * 8,
                             width: double.infinity,
                             padding: EdgeInsets.symmetric(horizontal: defaultSize * 1.7),
                             color: Colors.white,
@@ -210,7 +213,7 @@ class ItemPageState extends State<ItemPage> {
                                   color: sonyRed,
                                   child: InkWell(
                                     onTap: () {
-                                      print("Add to Cart");
+                                      cartList.addItem(itemShowing);
                                     },
                                     child: Padding(
                                       padding: EdgeInsets.symmetric(vertical: defaultSize, horizontal: defaultSize * 1.3),

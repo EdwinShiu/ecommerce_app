@@ -5,6 +5,7 @@ import 'package:ecommerce_app/data/routing.dart';
 import 'package:ecommerce_app/data/selectedProducts.dart';
 import 'package:ecommerce_app/data/service/categoryDatabase.dart';
 import 'package:ecommerce_app/data/service/productDatabase.dart';
+import 'package:ecommerce_app/data/shoppingCart.dart';
 import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -54,6 +55,8 @@ class MainNavigationPage extends StatelessWidget {
               create: (_) => ProductDatabase().productSnapshot,
               child: ChangeNotifierProvider<ProductsPageNotifier>.value(
                 value: ProductsPageNotifier(),
+                child: ChangeNotifierProvider<CartList>.value(
+                value: CartList(),
                 child: NotificationListener<OverscrollIndicatorNotification>(
                 onNotification: (OverscrollIndicatorNotification overscroll) {
                   overscroll.disallowGlow();
@@ -62,6 +65,7 @@ class MainNavigationPage extends StatelessWidget {
                 child: HomePage(),
               ),
             ),
+              ),
           ),
           ),
         );

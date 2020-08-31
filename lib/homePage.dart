@@ -58,7 +58,7 @@ class HomePageState extends State<HomePage> {
                 key: drawerKey,
                 resizeToAvoidBottomInset: false,
                 appBar: drawerAppbar(context),
-                endDrawer: mainDrawer(),
+                endDrawer: mainDrawer(context),
                 bottomNavigationBar: mainBottomNavigationBar(context, _mainNavigationPageController, route.bottomNavBarIndex),
                 body: GestureDetector(
                   behavior: HitTestBehavior.opaque,
