@@ -21,7 +21,6 @@ void main() {
 class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SizeConfig().init(context);
     return ChangeNotifierProvider<RouteGenerator>.value(
       value: RouteGenerator(),
       child: MaterialApp(
@@ -41,8 +40,8 @@ class MainApp extends StatelessWidget {
 class MainNavigationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SizeConfig().init(context);
     print("main got rebuild");
-    print(SizeConfig.defaultSize);
     //return StreamBuilder<User>(
       //stream: AuthService().user,
       //builder: (context, snapshot) {

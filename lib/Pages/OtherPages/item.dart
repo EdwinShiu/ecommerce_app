@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/constant.dart';
 import 'package:ecommerce_app/data/product.dart';
 import 'package:ecommerce_app/data/selectedProducts.dart';
+import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,6 +14,7 @@ class ItemPageState extends State<ItemPage> {
 
   @override
   Widget build(BuildContext context) {
+    final double defaultSize = SizeConfig.defaultSize;
     final ProductsPageNotifier selectedItemList = Provider.of<ProductsPageNotifier>(context);
     final Item itemShowing = selectedItemList.selectedItem;
     if (itemShowing == null) {
@@ -20,7 +22,7 @@ class ItemPageState extends State<ItemPage> {
         child: Text(
           "Error",
           style: TextStyle(
-            fontSize: 24.0,
+            fontSize: defaultSize * 2,
             fontWeight: FontWeight.w500,
             color: sonyBlack,
           ),
@@ -43,22 +45,22 @@ class ItemPageState extends State<ItemPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: 10, top: 5),
+                            padding: EdgeInsets.only(left: defaultSize * 0.9, top: defaultSize * 0.4),
                             child: Text(
                               categoryString(itemShowing),
                               style: TextStyle(
-                                fontSize: 16.0,
+                                fontSize: defaultSize * 1.3,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: 30),
+                            padding: EdgeInsets.only(left: defaultSize * 2.6),
                             child: Text(
                               itemShowing.title,
                               style: TextStyle(
-                                fontSize: 50.0,
+                                fontSize: defaultSize * 4.3,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),
@@ -69,11 +71,11 @@ class ItemPageState extends State<ItemPage> {
                               Expanded(
                                 flex: 4,
                                 child: Padding(
-                                padding: EdgeInsets.only(left: 30),
+                                padding: EdgeInsets.only(left: defaultSize * 2.6),
                                 child: Text(
                                   itemShowing.subtitle,
                                   style: TextStyle(
-                                    fontSize: 24.0,
+                                    fontSize: defaultSize * 2,
                                     fontWeight: FontWeight.w500,
                                     color: Colors.white,
                                   ),
@@ -87,35 +89,35 @@ class ItemPageState extends State<ItemPage> {
                             ],
                           ),
                           SizedBox(
-                            height: 50,
+                            height: defaultSize * 4.3,
                             width: double.infinity,
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: 40),
+                            padding: EdgeInsets.only(left: defaultSize * 3.4),
                             child: Text(
                               "Price",
                               style: TextStyle(
-                                fontSize: 18.0,
+                                fontSize: defaultSize * 1.5,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsets.only(left: 30, bottom: 10),
+                            padding: EdgeInsets.only(left: defaultSize * 2.6, bottom: defaultSize * 0.9),
                             child: Text(
                               "HK\$ " + itemShowing.price,
                               style: TextStyle(
-                                fontSize: 28.0,
+                                fontSize: defaultSize * 2.4,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),
                             ),
                           ),
                           Container(
-                            height: 80,
+                            height: defaultSize * 7,
                             width: double.infinity,
-                            padding: EdgeInsets.symmetric(horizontal: 20.0),
+                            padding: EdgeInsets.symmetric(horizontal: defaultSize * 1.7),
                             color: Colors.white,
                             child: Row(
                               children: [
@@ -123,7 +125,7 @@ class ItemPageState extends State<ItemPage> {
                                   isExpanded: false,
                                   value: itemShowing,
                                   style: TextStyle(
-                                    fontSize: 20.0,
+                                    fontSize: defaultSize * 1.7,
                                     fontWeight: FontWeight.w500,
                                     color: sonyBlack,
                                   ),
@@ -132,7 +134,7 @@ class ItemPageState extends State<ItemPage> {
                                     color: sonyBlack,
                                   ),
                                   icon: Icon(Icons.arrow_drop_down),
-                                  iconSize: 24,
+                                  iconSize: defaultSize * 2,
                                   items: selectedItemList.selectedItemList.map((Item item) {
                                     return DropdownMenuItem(
                                       value: item,
@@ -150,11 +152,11 @@ class ItemPageState extends State<ItemPage> {
                         ],
                       ),
                       Positioned(
-                        right: 10.0,
-                        bottom: 20.0,
+                        right: defaultSize * 0.9,
+                        bottom: defaultSize * 1.7,
                         child: Container(
-                          width: 250.0,
-                          height: 250.0,
+                          width: defaultSize * 21.7,
+                          height: defaultSize * 21.7,
                           child: Image.asset(
                             itemShowing.image,
                             fit: BoxFit.cover,
@@ -182,17 +184,17 @@ class ItemPageState extends State<ItemPage> {
                         ),
                       ],
                     ),
-                    padding: EdgeInsets.symmetric(vertical: 10.0),
+                    padding: EdgeInsets.symmetric(vertical: defaultSize * 0.9),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                         children: [
                           Padding(
-                            padding: EdgeInsets.only(left: 20),
+                            padding: EdgeInsets.only(left: defaultSize * 1.7),
                             child: Text(
                               "Stock: " + itemShowing.stock.toString(),
                               style: TextStyle(
-                                fontSize: 16.0,
+                                fontSize: defaultSize * 1.3,
                                 fontWeight: FontWeight.w500,
                                 color: sonyBlack,
                               ),
@@ -202,7 +204,7 @@ class ItemPageState extends State<ItemPage> {
                           children: [
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 20.0),
+                                padding: EdgeInsets.symmetric(horizontal: defaultSize * 1.7),
                                 child: Material(
                                   elevation: 10,
                                   color: sonyRed,
@@ -211,12 +213,12 @@ class ItemPageState extends State<ItemPage> {
                                       print("Add to Cart");
                                     },
                                     child: Padding(
-                                      padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 15.0),
+                                      padding: EdgeInsets.symmetric(vertical: defaultSize, horizontal: defaultSize * 1.3),
                                       child: Text(
                                         "Add to Cart",
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                          fontSize: 24.0,
+                                          fontSize: defaultSize * 2,
                                           fontWeight: FontWeight.w500,
                                           color: Colors.white,
                                         ),
@@ -227,19 +229,19 @@ class ItemPageState extends State<ItemPage> {
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.only(right: 20.0),
+                              padding: EdgeInsets.only(right: defaultSize * 1.7),
                               child: Icon(
                                 Icons.favorite,
                                 color: Colors.red,
-                                size: 35.0
+                                size: defaultSize * 3,
                               ),
                             ),
                             Container(
-                              padding: EdgeInsets.only(right: 20.0),
+                              padding: EdgeInsets.only(right: defaultSize * 1.7),
                               child: Icon(
                                 Icons.share,
                                 color: Color.fromRGBO(150, 150, 150, 1),
-                                size: 35.0
+                                size: defaultSize * 3,
                               ),
                             ),
                           ],
@@ -257,18 +259,19 @@ class ItemPageState extends State<ItemPage> {
   }
 
   List<Widget> descriptionList(Item item) {
+    final defaultSize = SizeConfig.defaultSize;
     List<Widget> temp = [];
     for (final element in item.description) {
       temp.add(
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
+          padding: EdgeInsets.symmetric(horizontal: defaultSize * 1.7, vertical: defaultSize * 0.4),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 " • ",
                 style: TextStyle(
-                  fontSize: 20.0,
+                  fontSize: defaultSize * 1.7,
                   fontWeight: FontWeight.w500,
                   color: sonyBlack,
                 ),
@@ -277,7 +280,7 @@ class ItemPageState extends State<ItemPage> {
                 child: Text(
                   element,
                   style: TextStyle(
-                    fontSize: 20.0,
+                    fontSize: defaultSize * 1.7,
                     fontWeight: FontWeight.w500,
                     color: sonyBlack,
                   ),

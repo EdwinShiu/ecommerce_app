@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/constant.dart';
 import 'package:ecommerce_app/parts/loadingScreen.dart';
+import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import '../../authentication/auth.dart';
 import '../../Parts/textFormField.dart';
@@ -17,6 +18,7 @@ class LoginPageState extends State<LoginPage> {
 
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  final double defaultSize = SizeConfig.defaultSize;
   bool loading = false;
 
 
@@ -29,7 +31,7 @@ class LoginPageState extends State<LoginPage> {
     return Stack(
       children: [
         Container(
-          padding: EdgeInsets.all(50),
+          padding: EdgeInsets.all(defaultSize * 4.3),
           child: Form(
             key: _formKey,
             child: GestureDetector(
@@ -40,11 +42,11 @@ class LoginPageState extends State<LoginPage> {
               child: Column(
                 children: <Widget>[
                   Container(
-                    height: 100,
+                    height: defaultSize * 8.7,
                     child: Text(
                       'Login',
                         style: TextStyle(
-                        fontSize: 50.0,
+                        fontSize: defaultSize * 4.3,
                         fontWeight: FontWeight.w500,
                         color: sonyBlack,
                       ),
@@ -57,7 +59,7 @@ class LoginPageState extends State<LoginPage> {
                       setState(() => username = value);
                     },
                   ),
-                  SizedBox(height: 40),
+                  SizedBox(height: defaultSize * 3.4),
                   TextFormField(
                     validator: (value) => value.isEmpty ? 'Enter a password' : null,
                     decoration: textFormFieldDecoration.copyWith(hintText: 'Password'),
@@ -66,13 +68,13 @@ class LoginPageState extends State<LoginPage> {
                       setState(() => password = value);
                     },
                   ),
-                  SizedBox(height: 60),
+                  SizedBox(height: defaultSize * 5.2),
                   RaisedButton(
                     color: sonyBlack,
                     child: Text(
                       'Login',
                       style: TextStyle(
-                        fontSize: 20.0,
+                        fontSize: defaultSize * 1.7,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                       ),
@@ -98,13 +100,13 @@ class LoginPageState extends State<LoginPage> {
                       }
                     },
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: defaultSize * 1.7),
                   RaisedButton(
                     color: sonyBlack,
                     child: Text(
                       'Register a new account',
                       style: TextStyle(
-                        fontSize: 20.0,
+                        fontSize: defaultSize * 1.7,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                       ),
@@ -114,12 +116,12 @@ class LoginPageState extends State<LoginPage> {
                       FocusScope.of(context).unfocus();
                     },
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: defaultSize * 1.7),
                   Text(
                     error,
                     style: TextStyle(
                       color: Colors.red,
-                      fontSize: 18,
+                      fontSize: defaultSize * 1.56,
                     ),
                   ),
                 ],

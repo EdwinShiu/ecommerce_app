@@ -2,6 +2,7 @@ import 'package:ecommerce_app/authentication/auth.dart';
 import 'package:ecommerce_app/constant.dart';
 import 'package:ecommerce_app/data/user.dart';
 import 'package:ecommerce_app/parts/loadingScreen.dart';
+import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,19 +21,19 @@ class UserPageState extends State<UserPage> {
 
     final userData = Provider.of<UserData>(context, listen: false);
     //print("userData " + userData.toString());
-
+    final double defaultSize = SizeConfig.defaultSize;
     return Stack(
       children: [
         Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             Container(
-              padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
+              padding: EdgeInsets.symmetric(vertical: defaultSize * 0.7, horizontal: defaultSize * 0.9),
               alignment: Alignment.bottomLeft,
               child: Text(
                 'My Sony',
                 style: TextStyle(
-                  fontSize: 50.0,
+                  fontSize: defaultSize * 4.3,
                   fontWeight: FontWeight.w500,
                   color: sonyBlack,
                 ),
@@ -40,7 +41,7 @@ class UserPageState extends State<UserPage> {
             ),
             Expanded(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 100),
+              padding: EdgeInsets.symmetric(horizontal: defaultSize * 8.6),
               child: Column(
                 children: [
                   Stack(
@@ -50,7 +51,7 @@ class UserPageState extends State<UserPage> {
                         alignment: Alignment.center,
                         child: Icon(
                           Icons.account_circle,
-                          size: 250,
+                          size: defaultSize * 21.7,
                         ),
                       ),
                       Container(
@@ -60,7 +61,7 @@ class UserPageState extends State<UserPage> {
                         child: Text(
                           "Sonnion: " + ((userData != null) ? userData.userInformation.sonnion.toString() : "--"),
                           style: TextStyle(
-                            fontSize: 30.0,
+                            fontSize: defaultSize * 2.6,
                             fontWeight: FontWeight.w500,
                             color: sonyBlack,
                           ),
@@ -68,7 +69,7 @@ class UserPageState extends State<UserPage> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: defaultSize * 1.7),
                   Ink(
                     width: double.maxFinite,
                     color: sonyBlack,
@@ -76,11 +77,11 @@ class UserPageState extends State<UserPage> {
                       child: Align(
                         alignment: Alignment.center,
                         child: Padding(
-                          padding: EdgeInsets.all(10),
+                          padding: EdgeInsets.all(defaultSize * 0.9),
                           child: Text(
                             "Account Information",
                             style: TextStyle(
-                              fontSize: 20.0,
+                              fontSize: defaultSize * 1.7,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
                             ),
@@ -92,7 +93,7 @@ class UserPageState extends State<UserPage> {
                       },
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: defaultSize * 1.7),
                   Ink(
                     width: double.maxFinite,
                     color: sonyBlack,
@@ -104,7 +105,7 @@ class UserPageState extends State<UserPage> {
                           child: Text(
                             "Product Warranty",
                             style: TextStyle(
-                              fontSize: 20.0,
+                              fontSize: defaultSize * 1.7,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
                             ),
@@ -116,7 +117,7 @@ class UserPageState extends State<UserPage> {
                       },
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: defaultSize * 1.7),
                   Ink(
                     width: double.maxFinite,
                     color: sonyBlack,
@@ -124,11 +125,11 @@ class UserPageState extends State<UserPage> {
                       child: Align(
                         alignment: Alignment.center,
                         child: Padding(
-                          padding: EdgeInsets.all(10),
+                          padding: EdgeInsets.all(defaultSize * 0.9),
                           child: Text(
                             "Order Record",
                             style: TextStyle(
-                              fontSize: 20.0,
+                              fontSize: defaultSize * 1.7,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
                             ),
@@ -140,7 +141,7 @@ class UserPageState extends State<UserPage> {
                       },
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: defaultSize * 1.7),
                   Ink(
                     width: double.maxFinite,
                     color: sonyBlack,
@@ -152,7 +153,7 @@ class UserPageState extends State<UserPage> {
                           child: Text(
                             "Log Out",
                             style: TextStyle(
-                              fontSize: 20.0,
+                              fontSize: defaultSize * 1.7,
                               fontWeight: FontWeight.w500,
                               color: Colors.white,
                             ),

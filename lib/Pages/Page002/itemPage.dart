@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/Pages/OtherPages/error.dart';
+import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_app/data/category.dart';
 import 'package:provider/provider.dart';
@@ -16,6 +17,7 @@ class SubCatPageState extends State<SubCatPage> {
   @override
   Widget build(BuildContext context) {
     final List<SubCategory> subCategoryList = Provider.of<List<SubCategory>>(context);
+    final double defaultSize = SizeConfig.defaultSize;
     //print(subCategoryList.toString());
     if (subCategoryList == null) {
       return ErrorPage();
@@ -27,28 +29,28 @@ class SubCatPageState extends State<SubCatPage> {
           children: [
             Container(
               //color: Colors.yellow,
-              padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
+              padding: EdgeInsets.symmetric(vertical: defaultSize * 0.7, horizontal: defaultSize * 0.8),
               alignment: Alignment.bottomLeft,
               child: Text(
                 'Television',
                 style: TextStyle(
-                  fontSize: 50.0,
+                  fontSize: defaultSize * 4.3,
                   fontWeight: FontWeight.w500,
                   color: sonyBlack,
                 ),
               ),
             ),
             Container(
-              height: 150,
+              height: defaultSize * 13,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                cacheExtent: 100.0,
+                cacheExtent: defaultSize * 9,
                 itemCount: subCategoryList.length,
                 itemBuilder: (context, index) {
                   return Container(
-                    width: 200,
+                    width: defaultSize * 17.4,
                     color: (index == selected)? Color.fromRGBO(210, 215, 225, 1) : Color.fromRGBO(240, 245, 255, 1),
-                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    margin: EdgeInsets.symmetric(horizontal: defaultSize * 0.4),
                     child: Stack(
                       alignment: Alignment.center,
                       children: <Widget>[
@@ -65,12 +67,12 @@ class SubCatPageState extends State<SubCatPage> {
                             decoration: BoxDecoration(
                               color: Color.fromRGBO(0, 0, 0, 0.7),
                             ),
-                            padding: EdgeInsets.all(5),
+                            padding: EdgeInsets.all(defaultSize * 0.4),
                             alignment: Alignment.bottomLeft,
                             child: Text(
                               subCategoryList[index].name,
                               style: TextStyle(
-                                fontSize: 22.0,
+                                fontSize: defaultSize * 2,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,
                               ),

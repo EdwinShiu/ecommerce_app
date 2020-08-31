@@ -3,6 +3,7 @@ import 'package:ecommerce_app/parts/loadingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import '../../constant.dart';
+import '../../sizeConfig.dart';
 import './newItem.dart';
 
 class FrontPage extends StatefulWidget {
@@ -23,13 +24,14 @@ class FrontPageState extends State<FrontPage> {
 
   @override
   Widget build(BuildContext context) {
+    double defaultSize = SizeConfig.defaultSize;
     return Column(
       children: <Widget>[
         Container(
-          margin: EdgeInsets.only(top: 25.0),
+          margin: EdgeInsets.only(top: defaultSize * 2),
           child: CarouselSlider(
             options: CarouselOptions(
-              height: 250.0,
+              height: defaultSize * 22,
               viewportFraction: 1,
               initialPage: 0,
               enableInfiniteScroll: true,
@@ -58,9 +60,9 @@ class FrontPageState extends State<FrontPage> {
             children: bannerList.map((url) {
               int index = bannerList.indexOf(url);
               return Container(
-                width: 8.0,
-                height: 8.0,
-                margin: EdgeInsets.only(top: 6.0, left: 2.0, right: 2.0),
+                width: defaultSize * 0.7,
+                height: defaultSize * 0.7,
+                margin: EdgeInsets.only(top: defaultSize * 0.5, left: defaultSize * 0.2, right: defaultSize * 0.2),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: _current == index ? Color.fromRGBO(0, 0, 0, 0.9) : Color.fromRGBO(0, 0, 0, 0.4),
@@ -71,11 +73,11 @@ class FrontPageState extends State<FrontPage> {
         ),
         Container(
           alignment: Alignment.bottomLeft,
-          padding: EdgeInsets.only(left: 8.0),
+          padding: EdgeInsets.only(left: defaultSize * 0.7),
           child: Text(
             'New',
             style: TextStyle(
-              fontSize: 32.0,
+              fontSize: defaultSize * 2.8,
               fontWeight: FontWeight.w500,
               color: sonyBlack,
             ),

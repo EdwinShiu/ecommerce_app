@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/authentication/auth.dart';
 import 'package:ecommerce_app/parts/loadingScreen.dart';
+import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import '../../constant.dart';
 import '../../Parts/textFormField.dart';
@@ -17,6 +18,7 @@ class RegisterPageState extends State<RegisterPage> {
 
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  final double defaultSize = SizeConfig.defaultSize;
   bool loading = false;
 
   String username = '';
@@ -28,7 +30,7 @@ class RegisterPageState extends State<RegisterPage> {
     return Stack(
       children: [
         Container(
-          padding: EdgeInsets.all(50),
+          padding: EdgeInsets.all(defaultSize * 4.3),
           child: Form(
             key: _formKey,
             child: GestureDetector(
@@ -39,11 +41,11 @@ class RegisterPageState extends State<RegisterPage> {
               child: Column(
                 children: <Widget>[
                   Container(
-                    height: 100,
+                    height: defaultSize * 8.7,
                     child: Text(
                       'Register',
                         style: TextStyle(
-                        fontSize: 50.0,
+                        fontSize: defaultSize * 4.3,
                         fontWeight: FontWeight.w500,
                         color: sonyBlack,
                       ),
@@ -56,7 +58,7 @@ class RegisterPageState extends State<RegisterPage> {
                       setState(() => username = value);
                     },
                   ),
-                  SizedBox(height: 40),
+                  SizedBox(height: defaultSize * 3.5),
                   TextFormField(
                     validator: (value) => value.length < 8 ? 'The password must not be less than 8 character' : null, 
                     decoration: textFormFieldDecoration.copyWith(hintText: 'Password'),
@@ -65,13 +67,13 @@ class RegisterPageState extends State<RegisterPage> {
                       setState(() => password = value);
                     },
                   ),
-                  SizedBox(height: 60),
+                  SizedBox(height: defaultSize * 5.2),
                   RaisedButton(
                     color: sonyBlack,
                     child: Text(
                       'Register',
                       style: TextStyle(
-                        fontSize: 20.0,
+                        fontSize: defaultSize * 1.7,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                       ),
@@ -99,13 +101,13 @@ class RegisterPageState extends State<RegisterPage> {
                       }
                     },
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: defaultSize * 1.7),
                   RaisedButton(
                     color: sonyBlack,
                     child: Text(
                       'Already have an account',
                       style: TextStyle(
-                        fontSize: 20.0,
+                        fontSize: defaultSize * 1.7,
                         fontWeight: FontWeight.w500,
                         color: Colors.white,
                       ),
@@ -115,12 +117,12 @@ class RegisterPageState extends State<RegisterPage> {
                       FocusScope.of(context).unfocus();
                     },
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: defaultSize * 2.6),
                   Text(
                     error,
                     style: TextStyle(
                       color: Colors.red,
-                      fontSize: 18,
+                      fontSize: defaultSize * 1.5,
                     ),
                   ),
                 ],

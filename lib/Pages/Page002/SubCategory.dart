@@ -3,6 +3,7 @@ import 'package:ecommerce_app/data/product.dart';
 import 'package:ecommerce_app/data/routing.dart';
 import 'package:ecommerce_app/data/selectedProducts.dart';
 import 'package:ecommerce_app/parts/loadingScreen.dart';
+import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../constant.dart';
@@ -80,6 +81,7 @@ class SubCategoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final double defaultSize = SizeConfig.defaultSize;
     final String bigCategoryName = Provider.of<BigCategoryList>(context).bigCategoryName;
     final RouteGenerator route = Provider.of<RouteGenerator>(context);
     final ProductsPageNotifier selectedProduct = Provider.of<ProductsPageNotifier>(context);
@@ -94,12 +96,12 @@ class SubCategoryPage extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+          padding: EdgeInsets.symmetric(vertical: defaultSize * 0.4, horizontal: defaultSize * 0.9),
           alignment: Alignment.bottomLeft,
           child: Text(
             subCategory.name,
             style: TextStyle(
-              fontSize: 30.0,
+              fontSize: defaultSize * 2.6,
               fontWeight: FontWeight.w500,
               color: sonyBlack,
             ),
@@ -111,7 +113,7 @@ class SubCategoryPage extends StatelessWidget {
             child: Text(
               "No Product",
               style: TextStyle(
-                fontSize: 20.0,
+                fontSize: defaultSize * 1.7,
                 fontWeight: FontWeight.w500,
                 color: sonyBlack,
               ),
@@ -130,8 +132,8 @@ class SubCategoryPage extends StatelessWidget {
                     color: Color.fromRGBO(230, 230, 230, 1),
                   ),
                 ),
-                margin: EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),   
-                height: 180.0,
+                margin: EdgeInsets.symmetric(vertical: defaultSize * 0.5, horizontal: defaultSize),   
+                height: defaultSize * 15.6,
                 child: Stack(
                   children: <Widget>[
                     Row(
@@ -153,7 +155,7 @@ class SubCategoryPage extends StatelessWidget {
                             children: <Widget> [
                               Container(
                                 color: Colors.white,
-                                padding: EdgeInsets.all(5.0),
+                                padding: EdgeInsets.all(defaultSize * 0.4),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.stretch,
                                   children: descriptionList(item.description, item.title),
@@ -165,12 +167,12 @@ class SubCategoryPage extends StatelessWidget {
                       ],
                     ),
                     Positioned(
-                      bottom: 5,
-                      right: 5,
+                      bottom: defaultSize * 0.4,
+                      right: defaultSize * 0.4,
                       child: Text(
                         (itemList[index].length == 1) ? "HK\$ " + item.price : "From HK\$ " + item.price,
                         style: TextStyle(
-                          fontSize: 22.0,
+                          fontSize: defaultSize * 2,
                           fontWeight: FontWeight.w500,
                           color: sonyBlack,
                         ),

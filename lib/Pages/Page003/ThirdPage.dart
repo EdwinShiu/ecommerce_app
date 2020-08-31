@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/data/user.dart';
+import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../constant.dart';
@@ -23,15 +24,16 @@ class ThirdPageState extends State<ThirdPage> {
     if (userData != null) {
       favoriteItemNumber = userData.favorite.length;
     }
+    final double defaultSize = SizeConfig.defaultSize;
     return Column(
       children: <Widget>[
         Container(
-          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
+          padding: EdgeInsets.symmetric(vertical: defaultSize * 0.7, horizontal: defaultSize * 0.9),
           alignment: Alignment.bottomLeft,
           child: Text(
             'Favorite',
             style: TextStyle(
-              fontSize: 50.0,
+              fontSize: defaultSize * 4.3,
               fontWeight: FontWeight.w500,
               color: sonyBlack,
             ),
@@ -46,7 +48,7 @@ class ThirdPageState extends State<ThirdPage> {
             ),
             itemBuilder: (context, index) {
               return Container(
-                margin: EdgeInsets.all(10),
+                margin: EdgeInsets.all(defaultSize * 0.9),
                 decoration: BoxDecoration(
                   border: Border.all(
                     width: 1.0,
@@ -71,8 +73,8 @@ class ThirdPageState extends State<ThirdPage> {
                             )
                           ),     
                           Positioned(
-                            bottom: 3,
-                            left: 3,
+                            bottom: defaultSize * 0.3,
+                            left: defaultSize * 0.3,
                             child: Material(
                               color: Colors.transparent,
                               child: InkWell(
@@ -80,7 +82,7 @@ class ThirdPageState extends State<ThirdPage> {
                                 highlightColor: Color.fromRGBO(170, 170, 195, 0.3),                               
                                 child: Icon(
                                   Icons.favorite,
-                                  size: 32,
+                                  size: defaultSize * 2.8,
                                   color: Colors.red,
                                 ),
                                 onTap: () {
@@ -119,7 +121,7 @@ class ThirdPageState extends State<ThirdPage> {
                                       child: Text(
                                         'Testing Testing Testing Testing Testing',
                                         style: TextStyle(
-                                          fontSize: 26.0,
+                                          fontSize: defaultSize * 2.2,
                                           fontWeight: FontWeight.w500,
                                           color: sonyBlack,
                                         ),
@@ -133,7 +135,7 @@ class ThirdPageState extends State<ThirdPage> {
                                           child: Text(
                                             'HK\$ XX,XXX',
                                             style: TextStyle(
-                                              fontSize: 24.0,
+                                              fontSize: defaultSize * 2.1,
                                               fontWeight: FontWeight.w500,
                                               color: sonyBlack,
                                             ),

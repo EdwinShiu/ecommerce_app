@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import '../../constant.dart';
 import '../../data/product.dart';
@@ -9,6 +10,7 @@ class NewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double defaultSize = SizeConfig.defaultSize;
     //print("products " + prod.toString());
     return ListView.builder(
       itemCount: products.length,
@@ -21,8 +23,8 @@ class NewItem extends StatelessWidget {
               color: Color.fromRGBO(230, 230, 230, 1),
             ),
           ),
-          margin: EdgeInsets.symmetric(vertical: 6.0, horizontal: 12.0),   
-          height: 180.0,
+          margin: EdgeInsets.symmetric(vertical: defaultSize * 0.5, horizontal: defaultSize),   
+          height: defaultSize * 15.6,
           child: Stack(
             children: <Widget>[
               Row(
@@ -44,7 +46,7 @@ class NewItem extends StatelessWidget {
                       children: <Widget> [
                         Container(
                           color: Colors.white,
-                          padding: EdgeInsets.all(5.0),
+                          padding: EdgeInsets.all(defaultSize * 0.4),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: descriptionList(product.description),
@@ -56,12 +58,12 @@ class NewItem extends StatelessWidget {
                 ],
               ),
               Positioned(
-                bottom: 5,
-                right: 5,
+                bottom: defaultSize * 0.4,
+                right: defaultSize * 0.4,
                 child: Text(
                   "HK\$ " + product.price.toString(),
                   style: TextStyle(
-                    fontSize: 22.0,
+                    fontSize: defaultSize * 2,
                     fontWeight: FontWeight.w500,
                     color: sonyBlack,
                   ),
@@ -75,12 +77,12 @@ class NewItem extends StatelessWidget {
                 ),
               ),
               Positioned(
-                bottom: 5,
-                left: 3,
+                bottom: defaultSize * 0.4,
+                left: defaultSize * 0.3,
                 child: Icon(
                 Icons.favorite,
                   color: Colors.red,
-                  size: 28,
+                  size: defaultSize * 2.4,
                 ),
               ),
             ],
@@ -91,11 +93,12 @@ class NewItem extends StatelessWidget {
   }
 
   List<Widget> descriptionList(List<String> descriptionList) {
+    double defaultSize = SizeConfig.defaultSize;
     List<Widget> textList = [
       Text(
         product.title,
         style: TextStyle(
-          fontSize: 24.0,
+          fontSize: defaultSize * 2.1,
           fontWeight: FontWeight.w500,
           color: sonyBlack,
         ),
@@ -110,7 +113,7 @@ class NewItem extends StatelessWidget {
               Text(
                   " • ",
                   style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: defaultSize * 1.6,
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF7F797D),
                   ),
@@ -119,7 +122,7 @@ class NewItem extends StatelessWidget {
                 child: Text(
                   descriptionList[index],
                   style: TextStyle(
-                    fontSize: 18.0,
+                    fontSize: defaultSize * 1.6,
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF7F797D),
                   ),

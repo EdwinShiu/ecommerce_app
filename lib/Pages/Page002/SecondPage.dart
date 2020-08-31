@@ -4,6 +4,7 @@ import 'package:ecommerce_app/data/category.dart';
 import 'package:ecommerce_app/data/items.dart';
 import 'package:ecommerce_app/data/routing.dart';
 import 'package:ecommerce_app/parts/loadingScreen.dart';
+import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sticky_headers/sticky_headers.dart';
@@ -22,6 +23,7 @@ class SecondPageState extends State<SecondPage> {
     final BigCategoryList bigCategory = Provider.of<BigCategoryList>(context);
     //print("happy " + bigCategory.bigCategory.length.toString());
     final RouteGenerator route = Provider.of<RouteGenerator>(context);
+    final double defaultSize = SizeConfig.defaultSize;
     if (bigCategory == null) {
       return LoadingScreen();
     }
@@ -29,12 +31,12 @@ class SecondPageState extends State<SecondPage> {
       return Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 10.0),
+            padding: EdgeInsets.symmetric(vertical: defaultSize * 0.7, horizontal: defaultSize * 0.9),
             alignment: Alignment.bottomLeft,
             child: Text(
               'Category',
               style: TextStyle(
-                fontSize: 50.0,
+                fontSize: defaultSize * 4.3,
                 fontWeight: FontWeight.w500,
                 color: sonyBlack,
               ),
@@ -42,23 +44,23 @@ class SecondPageState extends State<SecondPage> {
           ),
           Expanded(
             child: Padding(
-              padding: EdgeInsets.only(top: 10, left: 10, right: 10),
+              padding: EdgeInsets.only(top: defaultSize * 0.9, left: defaultSize * 0.9, right: defaultSize * 0.9),
               child: ListView.builder(
                 itemCount: bigCategory.bigCategory.length,
-                cacheExtent: 200,
+                cacheExtent: defaultSize * 17.4,
                 itemBuilder: (context, listIndex) {   
                   //print("$listIndex: " + bigCategory.bigCategory[listIndex].name.toString());     
                   //print(bigCategory.bigCategory[listIndex].categories.length.toString());
                   return StickyHeader(
                     header: Container(
-                      padding: EdgeInsets.only(left: 10),
-                      height: 50.0,
+                      padding: EdgeInsets.only(left: defaultSize * 0.9),
+                      height: defaultSize * 4.3,
                       color: sonyRed,
                       alignment: Alignment.bottomLeft,
                       child: Text(
                         bigCategory.bigCategory[listIndex].name,
                         style: TextStyle(
-                          fontSize: 26.0,
+                          fontSize: defaultSize * 2.2,
                           fontWeight: FontWeight.w500,
                           color: Colors.white,
                         ),
@@ -72,7 +74,7 @@ class SecondPageState extends State<SecondPage> {
                       itemBuilder: (context, gridIndex) {   
                         return Container(
                           color: itemBackgroundColor,
-                          margin: EdgeInsets.all(5.0),
+                          margin: EdgeInsets.all(defaultSize * 0.4),
                           child: Stack(
                             children: <Widget>[
                               Center(
@@ -93,7 +95,7 @@ class SecondPageState extends State<SecondPage> {
                                       child: Text(
                                         bigCategory.bigCategory[listIndex].categories[gridIndex].name,
                                         style: TextStyle(
-                                          fontSize: 24.0,
+                                          fontSize: defaultSize * 2.1,
                                           fontWeight: FontWeight.w500,
                                           color: sonyBlack,
                                         ),

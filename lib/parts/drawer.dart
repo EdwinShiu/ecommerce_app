@@ -1,7 +1,9 @@
+import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import '../constant.dart';
 
 Widget mainDrawer() {
+  final double defaultSize = SizeConfig.defaultSize;
   return Drawer(
     child: ListView(
       physics: NeverScrollableScrollPhysics(),
@@ -16,7 +18,7 @@ Widget mainDrawer() {
               children: <Widget>[
                 Flexible(
                   child: Container(
-                    margin: EdgeInsets.only(right: 8.0),
+                    margin: EdgeInsets.only(right: defaultSize * 0.7),
                     child: Icon(
                       Icons.shopping_cart,
                       color: Colors.white,
@@ -28,7 +30,7 @@ Widget mainDrawer() {
                   child: Text(
                     'Cart',
                     style: TextStyle(
-                      fontSize: 28.0,
+                      fontSize: defaultSize * 2.4,
                       color: Colors.white,
                     ),
                   ),
@@ -38,8 +40,8 @@ Widget mainDrawer() {
           ),
         ),
         Container(
-          margin: EdgeInsets.symmetric(horizontal: 4.0),
-          height: 70.0,
+          margin: EdgeInsets.symmetric(horizontal: defaultSize * 0.3),
+          height: defaultSize * 6,
           child: ListTile(
             title: Text('Tile 1'),
             onTap: () {},
@@ -51,7 +53,7 @@ Widget mainDrawer() {
         ),
         Container(
           margin: EdgeInsets.symmetric(horizontal: 4.0),
-          height: 70.0,
+          height: defaultSize * 6,
           child: ListTile(
             title: Text('Tile 2'),
             onTap: () {},
@@ -63,7 +65,7 @@ Widget mainDrawer() {
         ),
         Container(
           margin: EdgeInsets.symmetric(horizontal: 4.0),
-          height: 70.0,
+          height: defaultSize * 6,
           child: ListTile(
             title: Text('Tile 3'),
             onTap: () {},
