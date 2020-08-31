@@ -20,7 +20,9 @@ class RouteGenerator extends ChangeNotifier {
 
   set bottomNavBarIndex(int val) {
     _bottomNavBarIndex = val;
+    print(_routeList);
     print(_bottomNavBarIndex);
+    _routeName = _routeList[_bottomNavBarIndex].last;
     notifyListeners();
   }
 

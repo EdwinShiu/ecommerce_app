@@ -1,21 +1,26 @@
+import 'package:ecommerce_app/data/product.dart';
+import 'package:ecommerce_app/data/routing.dart';
+import 'package:ecommerce_app/data/selectedProducts.dart';
 import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../constant.dart';
-import '../../data/product.dart';
+import 'dart:math';
 
 class NewItem extends StatelessWidget {
-  final List<Product> products;
+  final List<List<Item>> newItemList;
 
-  NewItem(this.products);
+  NewItem(this.newItemList);
 
   @override
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
-    //print("products " + prod.toString());
+    final RouteGenerator route = Provider.of<RouteGenerator>(context);
+    final ProductsPageNotifier selectedProduct = Provider.of<ProductsPageNotifier>(context);
     return ListView.builder(
-      itemCount: products.length,
+      itemCount: newItemList.length,
       itemBuilder: (context, index) {
-        product = products[index];
+        Item item = newItemList[index][0];
         return Container(
           decoration: BoxDecoration(        
             border: Border.all(
@@ -35,7 +40,7 @@ class NewItem extends StatelessWidget {
                     child: Container(
                       color: itemBackgroundColor,
                       child: Image.asset(
-                        product.image,
+                        item.image,
                         fit: BoxFit.fitHeight,
                       ),
                     ),
@@ -49,7 +54,7 @@ class NewItem extends StatelessWidget {
                           padding: EdgeInsets.all(defaultSize * 0.4),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: descriptionList(product.description),
+                            children: descriptionList(item),
                           ),
                         ),
                       ],
@@ -61,7 +66,7 @@ class NewItem extends StatelessWidget {
                 bottom: defaultSize * 0.4,
                 right: defaultSize * 0.4,
                 child: Text(
-                  "HK\$ " + product.price.toString(),
+                  "HK\$ " + item.price.toString(),
                   style: TextStyle(
                     fontSize: defaultSize * 2,
                     fontWeight: FontWeight.w500,
@@ -73,7 +78,11 @@ class NewItem extends StatelessWidget {
                 color: Colors.transparent,
                 child: InkWell(
                   highlightColor: Color.fromRGBO(170, 170, 195, 0.3),
-                  onTap: () => print("Work In Progress"),              
+                  onTap: () {
+                    selectedProduct.setSelectedItemList = newItemList[index];
+                    selectedProduct.setSelectedItem = newItemList[index][0];
+                    route.toItemPage();
+                  },              
                 ),
               ),
               Positioned(
@@ -92,11 +101,12 @@ class NewItem extends StatelessWidget {
     );
   }
 
-  List<Widget> descriptionList(List<String> descriptionList) {
+  List<Widget> descriptionList(Item item) {
     double defaultSize = SizeConfig.defaultSize;
+    List<String> descriptionList = item.description;
     List<Widget> textList = [
       Text(
-        product.title,
+        item.title,
         style: TextStyle(
           fontSize: defaultSize * 2.1,
           fontWeight: FontWeight.w500,
@@ -105,7 +115,7 @@ class NewItem extends StatelessWidget {
       ),
     ];
     if (descriptionList.length > 0) {
-      for(int index = 0; index < descriptionList.length; index++) {
+      for(int index = 0; index < min(2, descriptionList.length); index++) {
         textList.add(
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -113,7 +123,7 @@ class NewItem extends StatelessWidget {
               Text(
                   " • ",
                   style: TextStyle(
-                    fontSize: defaultSize * 1.6,
+                    fontSize: defaultSize * 1.4,
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF7F797D),
                   ),
@@ -122,7 +132,7 @@ class NewItem extends StatelessWidget {
                 child: Text(
                   descriptionList[index],
                   style: TextStyle(
-                    fontSize: defaultSize * 1.6,
+                    fontSize: defaultSize * 1.4,
                     fontWeight: FontWeight.w500,
                     color: Color(0xFF7F797D),
                   ),

@@ -1,7 +1,11 @@
-import 'package:ecommerce_app/data/service/fetchProduct.dart';
+import 'package:ecommerce_app/Pages/OtherPages/error.dart';
+import 'package:ecommerce_app/Pages/OtherPages/item.dart';
+import 'package:ecommerce_app/data/product.dart';
+import 'package:ecommerce_app/data/routing.dart';
 import 'package:ecommerce_app/parts/loadingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:provider/provider.dart';
 import '../../constant.dart';
 import '../../sizeConfig.dart';
 import './newItem.dart';
@@ -22,76 +26,105 @@ class FrontPageState extends State<FrontPage> {
     'assets/images/A50_banner.jpg'
   ];
 
+  List<List<Item>> returnNewItem(Products products) {
+    List<List<Item>> items = _sortItemList(products);
+    if (items.length <= 5) {
+      return items;
+    }
+    return items.sublist(0, 5); 
+  }
+
+  List<List<Item>> _sortItemList(Products products) {
+    List<List<Item>> temp = [];
+    for (final elements in products.products) {
+      for (final element in elements.itemList) {
+        temp.add(element.item);
+      }
+    }
+    temp.sort((a, b) => int.parse(b[0].releaseDate).compareTo(int.parse(a[0].releaseDate)));
+    return temp;    
+  }
+
   @override
   Widget build(BuildContext context) {
+    final Products products = Provider.of<Products>(context);
+    final RouteGenerator route = Provider.of<RouteGenerator>(context);
+    print(route.routeName);
     double defaultSize = SizeConfig.defaultSize;
-    return Column(
-      children: <Widget>[
-        Container(
-          margin: EdgeInsets.only(top: defaultSize * 2),
-          child: CarouselSlider(
-            options: CarouselOptions(
-              height: defaultSize * 22,
-              viewportFraction: 1,
-              initialPage: 0,
-              enableInfiniteScroll: true,
-              autoPlay: true,
-              autoPlayInterval: Duration(seconds: 15),
-              autoPlayCurve: Curves.fastOutSlowIn,
-              autoPlayAnimationDuration: Duration(seconds: 3),
-              onPageChanged: (index, _) {
-                setState(() {
-                  _current = index;
-                });
-              }
-            ),
-            items: list.map((item) => Container(
-              constraints: BoxConstraints.expand(),
-              child: Image.asset(
-                bannerList[item],
-                fit: BoxFit.fitHeight,
+    List<List<Item>> newItemList;
+    if (route.routeName == "/root") {
+      if (products != null) {
+        newItemList = returnNewItem(products);
+      }
+      return Column(
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(top: defaultSize * 2),
+            child: CarouselSlider(
+              options: CarouselOptions(
+                height: defaultSize * 22,
+                viewportFraction: 1,
+                initialPage: 0,
+                enableInfiniteScroll: true,
+                autoPlay: true,
+                autoPlayInterval: Duration(seconds: 15),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                autoPlayAnimationDuration: Duration(seconds: 3),
+                onPageChanged: (index, _) {
+                  setState(() {
+                    _current = index;
+                  });
+                }
               ),
-            )).toList(),
-          ),
-        ),
-        Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: bannerList.map((url) {
-              int index = bannerList.indexOf(url);
-              return Container(
-                width: defaultSize * 0.7,
-                height: defaultSize * 0.7,
-                margin: EdgeInsets.only(top: defaultSize * 0.5, left: defaultSize * 0.2, right: defaultSize * 0.2),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: _current == index ? Color.fromRGBO(0, 0, 0, 0.9) : Color.fromRGBO(0, 0, 0, 0.4),
+              items: list.map((item) => Container(
+                constraints: BoxConstraints.expand(),
+                child: Image.asset(
+                  bannerList[item],
+                  fit: BoxFit.fitHeight,
                 ),
-              );
-            }).toList(),
-          ),
-        ),
-        Container(
-          alignment: Alignment.bottomLeft,
-          padding: EdgeInsets.only(left: defaultSize * 0.7),
-          child: Text(
-            'New',
-            style: TextStyle(
-              fontSize: defaultSize * 2.8,
-              fontWeight: FontWeight.w500,
-              color: sonyBlack,
+              )).toList(),
             ),
           ),
-        ),
-        Expanded(
-          child: FutureBuilder(
-            future: fetchProduct(),
-            builder: (context, snapshot) {
-              return snapshot.hasData ? NewItem(snapshot.data) : LoadingScreen();
-            }
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: bannerList.map((url) {
+                int index = bannerList.indexOf(url);
+                return Container(
+                  width: defaultSize * 0.7,
+                  height: defaultSize * 0.7,
+                  margin: EdgeInsets.only(top: defaultSize * 0.5, left: defaultSize * 0.2, right: defaultSize * 0.2),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: _current == index ? Color.fromRGBO(0, 0, 0, 0.9) : Color.fromRGBO(0, 0, 0, 0.4),
+                  ),
+                );
+              }).toList(),
+            ),
           ),
-        ),
-      ],
-    );
+          Container(
+            alignment: Alignment.bottomLeft,
+            padding: EdgeInsets.only(left: defaultSize * 0.7),
+            child: Text(
+              'New',
+              style: TextStyle(
+                fontSize: defaultSize * 2.8,
+                fontWeight: FontWeight.w500,
+                color: sonyBlack,
+              ),
+            ),
+          ),
+          Expanded(
+            child: (newItemList != null) ? NewItem(newItemList) : LoadingScreen(),
+          ),
+        ],
+      );
+    }
+    else if (route.routeName == "/itemPage") {
+      return ItemPage();
+    }
+    else {
+      return ErrorPage();
+    }
   }
 }

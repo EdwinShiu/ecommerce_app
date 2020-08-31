@@ -23,6 +23,7 @@ class SecondPageState extends State<SecondPage> {
     final BigCategoryList bigCategory = Provider.of<BigCategoryList>(context);
     //print("happy " + bigCategory.bigCategory.length.toString());
     final RouteGenerator route = Provider.of<RouteGenerator>(context);
+    print(route.routeName);
     final double defaultSize = SizeConfig.defaultSize;
     if (bigCategory == null) {
       return LoadingScreen();

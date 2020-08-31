@@ -12,6 +12,14 @@ class CartList extends ChangeNotifier {
     }
   }
 
+  String total() {
+    int total = 0;
+    for (final element in cartList) {
+      total += int.parse(element.item.price) * element.numberOfItem;
+    }
+    return total.toString();
+  } 
+
   void addOne(int index) {
     if (cartList[index].numberOfItem < 10) {
       cartList[index].numberOfItem++;
@@ -45,7 +53,6 @@ class CartList extends ChangeNotifier {
     if (!found) {
       cartList.add(CartItem(item: item, numberOfItem: 1));
     }
-    print(cartList.toString());
     notifyListeners();
   }
 

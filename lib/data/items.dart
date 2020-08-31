@@ -2,13 +2,6 @@
 
 int favoriteNumber = 3;
 
-const List<Map> newItemImages =  [{'imagePath': 'assets/images/WM1Z_walkman.jpg', 'itemName': 'WM1Z Walkman'},
-                                  {'imagePath': 'assets/images/WM1A_walkman.jpg', 'itemName': 'WM1A Walkman'},
-                                  {'imagePath': 'assets/images/ZX500_walkman.jpg', 'itemName': 'ZX500 Walkman'},
-                                  {'imagePath': 'assets/images/ZX300_walkman.jpg', 'itemName': 'ZX300 Walkman'},
-                                  {'imagePath': 'assets/images/A100_walkman.jpg', 'itemName': 'A100 Walkman'}, 
-                                  ];
-
 const List<List<Map>> categoryImage = [[{'imagePath': 'assets/images/Television_01.png', 'itemName': 'Televisions'},
                                         {'imagePath': 'assets/images/SoundBar_01.png', 'itemName': 'Home Theater & Sound Bars'},
                                         {'imagePath': 'assets/images/BluRay_01.png', 'itemName': 'Blu-Ray Disc & DVD Players'}],
@@ -28,13 +21,3 @@ const List<List<Map>> categoryImage = [[{'imagePath': 'assets/images/Television_
                                         {'imagePath': 'assets/images/Cables_01.png', 'itemName': 'Cables'},],
                                        [{'imagePath': 'assets/images/FashionEntertainments_01.png', 'itemName': 'Fashion Entertainments'},]
                                       ];
-
-
-const List<List<String>> categories = [['Televisions & Home Cinema', 'Televisions', 'Home Theater & Sound Bar', 'Blu-ray Disc & DVD Player'],
-                   ['Audio', 'Headphones', 'MP3 Players', 'High-Resolution Audio', 'Wireless Speakers'],
-                   ['Cameras', 'Interchangable-lens Cameras', 'Lenses', 'Compact Cameras'],
-                   ['Mobile', 'Smartphones', 'Accessories'],
-                   ['Video Cameras', 'Camcorders', 'Action Cameras', 'Professional Camcorders'],
-                   ['Storage & Cables', 'Memory Cards & SSD', 'Cables'],
-                   ['New Categories', 'Fashion Entertainments'],
-                   ]; 

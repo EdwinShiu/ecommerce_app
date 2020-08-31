@@ -68,6 +68,7 @@ class HomePageState extends State<HomePage> {
                   // use provider to replace navigator
                   child: PageView(
                     controller: _mainNavigationPageController,
+                    allowImplicitScrolling: true,
                     onPageChanged: (newPage) {
                       FocusScope.of(context).unfocus();
                       route.bottomNavBarIndex = newPage;

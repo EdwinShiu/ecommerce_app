@@ -41,137 +41,191 @@ Widget mainDrawer(BuildContext context) {
             ),
           ),
         ),
-        Container(
-          padding: EdgeInsets.only(bottom: defaultSize * 0.3),
-          alignment: Alignment.center,
-          child: Text(
-            " >>> Swipe to delete >>>"
+        (cartList.cartList.length == 0) ? Expanded(child: Center(child: Text("Nothing in Cart"))) :
+        Expanded(
+          child: Column(
+            children: [ 
+              Container(
+                padding: EdgeInsets.only(bottom: defaultSize * 0.3),
+                alignment: Alignment.center,
+                child: Text(
+                  " >>> Swipe to delete >>>"
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: cartList.cartList.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: EdgeInsets.only(bottom: defaultSize * 0.6),
+                      child: Dismissible(
+                        key: ValueKey(cartList.cartList[index].item.title),
+                        direction: DismissDirection.startToEnd,
+                        child: SizedBox(
+                          height: 150,
+                          width: double.infinity,
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                cartList.cartList[index].item.image,
+                                fit: BoxFit.fitHeight,
+                              ),
+                              SizedBox(width: defaultSize * 0.43),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      cartList.cartList[index].item.title,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        color: sonyBlack,
+                                        fontSize: 24,
+                                      ),
+                                    ),
+                                    Text(
+                                      cartList.cartList[index].item.subtitle,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        color: sonyBlack,
+                                        fontSize: 16,
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: SizedBox(),
+                                    ),
+                                    Text(
+                                      "HK\$ " + cartList.cartList[index].item.price,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        color: sonyBlack,
+                                        fontSize: 24,
+                                      ),
+                                    ),
+                                    Container(
+                                      height: 30,
+                                      padding: EdgeInsets.only(top: 5),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          ButtonTheme(
+                                            minWidth: 30,
+                                            height: 30,
+                                            buttonColor: Color.fromRGBO(235, 235, 235, 1),
+                                            child: RaisedButton(
+                                              child: Container(
+                                                child: Text("-"),
+                                              ),
+                                              onPressed: () {
+                                                cartList.minusOne(index);
+                                              },
+                                            ),
+                                          ),
+                                          Text(
+                                            cartList.cartList[index].numberOfItem.toString(),
+                                          ),
+                                          ButtonTheme(
+                                            minWidth: 30,
+                                            height: 30,
+                                            buttonColor: Color.fromRGBO(235, 235, 235, 1),
+                                            child: RaisedButton(
+                                              child: Container(
+                                                child: Text("+"),
+                                              ),
+                                              onPressed: () {
+                                                cartList.addOne(index);
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              
+                            ],
+                          ),
+                        ),
+                        background: Container(
+                          color: sonyRed,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.only(left: defaultSize),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.cancel,
+                                      color: Colors.white,
+                                    ),
+                                    Text(
+                                      "Cancel",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        onDismissed: (_) {
+                          cartList.removeAt(index);
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
         ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: cartList.cartList.length,
-            itemBuilder: (context, index) {
-              return Dismissible(
-                key: ValueKey(cartList.cartList[index].item.title),
-                direction: DismissDirection.startToEnd,
-                child: SizedBox(
-                  height: 150,
-                  width: double.infinity,
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        cartList.cartList[index].item.image,
-                        fit: BoxFit.fitHeight,
-                      ),
-                      SizedBox(width: defaultSize * 0.43),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              cartList.cartList[index].item.title,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: sonyBlack,
-                                fontSize: 24,
-                              ),
-                            ),
-                            Text(
-                              cartList.cartList[index].item.subtitle,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: sonyBlack,
-                                fontSize: 16,
-                              ),
-                            ),
-                            Expanded(
-                              child: SizedBox(),
-                            ),
-                            Text(
-                              "HK\$ " + cartList.cartList[index].item.price,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: sonyBlack,
-                                fontSize: 24,
-                              ),
-                            ),
-                            Container(
-                              height: 30,
-                              padding: EdgeInsets.only(top: 5),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  ButtonTheme(
-                                    minWidth: 30,
-                                    height: 30,
-                                    buttonColor: Color.fromRGBO(235, 235, 235, 1),
-                                    child: RaisedButton(
-                                      child: Container(
-                                        child: Text("-"),
-                                      ),
-                                      onPressed: () {
-                                        cartList.minusOne(index);
-                                      },
-                                    ),
-                                  ),
-                                  Text(
-                                    cartList.cartList[index].numberOfItem.toString(),
-                                  ),
-                                  ButtonTheme(
-                                    minWidth: 30,
-                                    height: 30,
-                                    buttonColor: Color.fromRGBO(235, 235, 235, 1),
-                                    child: RaisedButton(
-                                      child: Container(
-                                        child: Text("+"),
-                                      ),
-                                      onPressed: () {
-                                        cartList.addOne(index);
-                                      },
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      
-                    ],
+        Container(
+          height: defaultSize * 5,
+          alignment: Alignment.center,
+          child: Text(
+            "Total: \$ " + cartList.total(),
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: defaultSize * 2.5,
+            ),
+          ),
+        ),
+        Padding(
+          padding: EdgeInsets.only(right: defaultSize * 0.43, left: defaultSize * 0.43, bottom: defaultSize * 0.6),
+          child: Ink(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: sonyRed,
+              boxShadow: [
+                BoxShadow(
+                  spreadRadius: -defaultSize,
+                  blurRadius: defaultSize * 1.5,
+                  offset: Offset(0, 5),
+                ),
+              ]
+            ),
+            child: InkWell(
+              onTap: () {
+                print("checkout");
+              },
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: defaultSize, horizontal: defaultSize * 1.3),
+                child: Text(
+                  "Checkout",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: defaultSize * 2,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.white,
                   ),
                 ),
-                background: Container(
-                  color: sonyRed,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: defaultSize),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.cancel,
-                              color: Colors.white,
-                            ),
-                            Text(
-                              "Cancel",
-                              style: TextStyle(
-                                color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                onDismissed: (_) {
-                  cartList.removeAt(index);
-                },
-              );
-            },
+              ),
+            ),
           ),
         ),
       ],
