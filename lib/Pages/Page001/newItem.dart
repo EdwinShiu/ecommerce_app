@@ -79,8 +79,11 @@ class NewItem extends StatelessWidget {
                 child: InkWell(
                   highlightColor: Color.fromRGBO(170, 170, 195, 0.3),
                   onTap: () {
-                    selectedProduct.setSelectedItemList = newItemList[index];
-                    selectedProduct.setSelectedItem = newItemList[index][0];
+                    //print("hihi");
+                    selectedProduct.setNewItemListSelectedItemList = newItemList[index];
+                    //print(selectedProduct.newItemItemList);
+                    selectedProduct.setNewItemListSelectedItem = newItemList[index][0];
+                    //print(selectedProduct.newItemListselectedItem);
                     route.toItemPage();
                   },              
                 ),

@@ -183,8 +183,8 @@ class SubCategoryPage extends StatelessWidget {
                       child: InkWell(
                         highlightColor: Color.fromRGBO(170, 170, 195, 0.3),
                         onTap: () {
-                          selectedProduct.setSelectedItemList = itemList[index];
-                          selectedProduct.setSelectedItem = itemList[index][0];
+                          selectedProduct.setItemListSelectedItemList = itemList[index];
+                          selectedProduct.setItemListSelectedItem = itemList[index][0];
                           route.toItemPage();
                         },              
                       ),

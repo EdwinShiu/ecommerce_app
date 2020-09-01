@@ -8,6 +8,8 @@ import 'package:provider/provider.dart';
 
 
 class ItemPage extends StatefulWidget {
+  ItemPage({Key key}) : super(key: key);
+
   ItemPageState createState() => ItemPageState();
 }
 
@@ -15,11 +17,13 @@ class ItemPageState extends State<ItemPage> {
 
   @override
   Widget build(BuildContext context) {
+    //print(widget.key.toString());
     final double defaultSize = SizeConfig.defaultSize;
     final CartList cartList = Provider.of<CartList>(context);
     //print(cartList.toString());
     final ProductsPageNotifier selectedItemList = Provider.of<ProductsPageNotifier>(context);
-    final Item itemShowing = selectedItemList.selectedItem;
+    //print(selectedItemList.itemListItemList);
+    final Item itemShowing = selectedItemList.itemListselectedItem;
     if (itemShowing == null) {
       return Center(
         child: Text(
@@ -124,7 +128,7 @@ class ItemPageState extends State<ItemPage> {
                             color: Colors.white,
                             child: Row(
                               children: [
-                                (selectedItemList.selectedItemList.length == 1) ? Container() : DropdownButton<Item>(
+                                (selectedItemList.itemListItemList.length == 1) ? Container() : DropdownButton<Item>(
                                   isExpanded: false,
                                   value: itemShowing,
                                   style: TextStyle(
@@ -138,14 +142,14 @@ class ItemPageState extends State<ItemPage> {
                                   ),
                                   icon: Icon(Icons.arrow_drop_down),
                                   iconSize: defaultSize * 2,
-                                  items: selectedItemList.selectedItemList.map((Item item) {
+                                  items: selectedItemList.itemListItemList.map((Item item) {
                                     return DropdownMenuItem(
                                       value: item,
                                       child: Text(item.subtitle),
                                     );
                                   }).toList(),
                                   onChanged: (Item newItem) {
-                                    selectedItemList.setSelectedItem = newItem;
+                                    selectedItemList.setItemListSelectedItem = newItem;
                                   },
                                 ),
                                 Expanded(child: Material()),

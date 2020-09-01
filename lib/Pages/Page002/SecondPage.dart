@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/Pages/OtherPages/item.dart';
+import 'package:ecommerce_app/Pages/Page002/item.dart';
 import 'package:ecommerce_app/constant.dart';
 import 'package:ecommerce_app/data/category.dart';
 import 'package:ecommerce_app/data/items.dart';
@@ -23,12 +23,12 @@ class SecondPageState extends State<SecondPage> {
     final BigCategoryList bigCategory = Provider.of<BigCategoryList>(context);
     //print("happy " + bigCategory.bigCategory.length.toString());
     final RouteGenerator route = Provider.of<RouteGenerator>(context);
-    print(route.routeName);
+    print(route.routeName1);
     final double defaultSize = SizeConfig.defaultSize;
     if (bigCategory == null) {
       return LoadingScreen();
     }
-    if (route.routeName == "/root") {
+    if (route.routeName1 == "/root") {
       return Column(
         children: <Widget>[
           Container(
@@ -131,14 +131,16 @@ class SecondPageState extends State<SecondPage> {
         ],
       );
     }
-    else if (route.routeName == "/subCat") {
+    else if (route.routeName1 == "/subCat") {
       return Provider<List<SubCategory>>.value (
         value: bigCategory.subCategoryList,
         child: SubCatPage(),
       );
     }
     else {
-      return ItemPage();
+      return ItemPage(
+        key: UniqueKey(),
+      );
     }
   }
 }

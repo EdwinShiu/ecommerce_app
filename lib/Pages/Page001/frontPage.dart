@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/Pages/OtherPages/error.dart';
-import 'package:ecommerce_app/Pages/OtherPages/item.dart';
+import 'package:ecommerce_app/Pages/Page001/newItemPage.dart';
 import 'package:ecommerce_app/data/product.dart';
 import 'package:ecommerce_app/data/routing.dart';
 import 'package:ecommerce_app/parts/loadingScreen.dart';
@@ -49,10 +49,10 @@ class FrontPageState extends State<FrontPage> {
   Widget build(BuildContext context) {
     final Products products = Provider.of<Products>(context);
     final RouteGenerator route = Provider.of<RouteGenerator>(context);
-    print(route.routeName);
+    print(route.routeName0);
     double defaultSize = SizeConfig.defaultSize;
     List<List<Item>> newItemList;
-    if (route.routeName == "/root") {
+    if (route.routeName0 == "/root") {
       if (products != null) {
         newItemList = returnNewItem(products);
       }
@@ -120,8 +120,10 @@ class FrontPageState extends State<FrontPage> {
         ],
       );
     }
-    else if (route.routeName == "/itemPage") {
-      return ItemPage();
+    else if (route.routeName0 == "/itemPage") {
+      return NewItemPage(
+        key: UniqueKey(),
+      );
     }
     else {
       return ErrorPage();

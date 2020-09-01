@@ -2,18 +2,38 @@ import 'package:ecommerce_app/data/product.dart';
 import 'package:flutter/material.dart';
 
 class ProductsPageNotifier extends ChangeNotifier {
-  List<Item> _selectedItemList;
-  Item _selectedItem;
+  final ItemListForShowing _newItemList = ItemListForShowing();
+  final ItemListForShowing _itemList = ItemListForShowing();
 
-  set setSelectedItemList(List<Item> itemList) {
-    _selectedItemList = itemList;
+
+  set setItemListSelectedItemList(List<Item> itemList) {
+    _itemList.selectedItemList = itemList;
   }
 
-  List<Item> get selectedItemList => _selectedItemList;
+  set setNewItemListSelectedItemList(List<Item> itemList) {
+    _newItemList.selectedItemList = itemList;
+  }
 
-  set setSelectedItem(Item item) {
-    _selectedItem = item;
+  List<Item> get itemListItemList => _itemList.selectedItemList;
+
+  List<Item> get newItemItemList => _newItemList.selectedItemList;
+
+  set setItemListSelectedItem(Item item) {
+    _itemList.selectedItem = item;
     notifyListeners();
   }
-  Item get selectedItem => _selectedItem;
+
+  set setNewItemListSelectedItem(Item item) {
+    _newItemList.selectedItem = item;
+    notifyListeners();
+  }
+
+  Item get itemListselectedItem => _itemList.selectedItem;
+
+  Item get newItemListselectedItem => _newItemList.selectedItem;
+}
+
+class ItemListForShowing {
+  List<Item> selectedItemList;
+  Item selectedItem;
 }

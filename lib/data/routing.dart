@@ -11,6 +11,14 @@ class RouteGenerator extends ChangeNotifier {
 
   String get routeName => _routeName;
 
+  String get routeName0 => _routeList[0].last;
+
+  String get routeName1 => _routeList[1].last;
+
+  String get routeName2 => _routeList[2].last;
+
+  String get routeName3 => _routeList[3].last;
+
   int get bottomNavBarIndex =>_bottomNavBarIndex;
 
   set routeName(String val) {
