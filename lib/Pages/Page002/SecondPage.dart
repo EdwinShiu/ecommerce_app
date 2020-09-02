@@ -20,10 +20,17 @@ class SecondPageState extends State<SecondPage> {
 
   @override
   Widget build(BuildContext context) {
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 500),
+      child: _animateWidget(context),
+    );
+  }
+
+  Widget _animateWidget(BuildContext context) {
     final BigCategoryList bigCategory = Provider.of<BigCategoryList>(context);
     //print("happy " + bigCategory.bigCategory.length.toString());
     final RouteGenerator route = Provider.of<RouteGenerator>(context);
-    print(route.routeName1);
+    //print(route.routeName1);
     final double defaultSize = SizeConfig.defaultSize;
     if (bigCategory == null) {
       return LoadingScreen();

@@ -15,7 +15,7 @@ class FrontPage extends StatefulWidget {
   FrontPageState createState() => FrontPageState();
 }
 
-class FrontPageState extends State<FrontPage> {
+class FrontPageState extends State<FrontPage> with TickerProviderStateMixin{
   int _current = 0;
   List<int> list = [0, 1, 2, 3, 4];
   final List<String> bannerList = [
@@ -24,7 +24,7 @@ class FrontPageState extends State<FrontPage> {
     'assets/images/ZX500_banner.jpg',
     'assets/images/A100_banner.jpg',
     'assets/images/A50_banner.jpg'
-  ];
+  ];  
 
   List<List<Item>> returnNewItem(Products products) {
     List<List<Item>> items = _sortItemList(products);
@@ -47,11 +47,18 @@ class FrontPageState extends State<FrontPage> {
 
   @override
   Widget build(BuildContext context) {
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 500),
+      child: _animatedWidget(context),
+    );
+  }
+
+  Widget _animatedWidget(BuildContext context) {
     final Products products = Provider.of<Products>(context);
     final RouteGenerator route = Provider.of<RouteGenerator>(context);
-    print(route.routeName0);
     double defaultSize = SizeConfig.defaultSize;
     List<List<Item>> newItemList;
+    print(route.routeName0);
     if (route.routeName0 == "/root") {
       if (products != null) {
         newItemList = returnNewItem(products);
