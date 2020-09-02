@@ -15,7 +15,7 @@ class FrontPage extends StatefulWidget {
   FrontPageState createState() => FrontPageState();
 }
 
-class FrontPageState extends State<FrontPage> with TickerProviderStateMixin{
+class FrontPageState extends State<FrontPage> {
   int _current = 0;
   List<int> list = [0, 1, 2, 3, 4];
   final List<String> bannerList = [
@@ -26,22 +26,22 @@ class FrontPageState extends State<FrontPage> with TickerProviderStateMixin{
     'assets/images/A50_banner.jpg'
   ];  
 
-  List<List<Item>> returnNewItem(Products products) {
-    List<List<Item>> items = _sortItemList(products);
+  List<ItemList> returnNewItem(Products products) {
+    List<ItemList> items = _sortItemList(products);
     if (items.length <= 5) {
       return items;
     }
     return items.sublist(0, 5); 
   }
 
-  List<List<Item>> _sortItemList(Products products) {
-    List<List<Item>> temp = [];
+  List<ItemList> _sortItemList(Products products) {
+    List<ItemList> temp = [];
     for (final elements in products.products) {
       for (final element in elements.itemList) {
-        temp.add(element.item);
+        temp.add(element);
       }
     }
-    temp.sort((a, b) => int.parse(b[0].releaseDate).compareTo(int.parse(a[0].releaseDate)));
+    temp.sort((a, b) => int.parse(b.item[0].releaseDate).compareTo(int.parse(a.item[0].releaseDate)));
     return temp;    
   }
 
@@ -57,7 +57,7 @@ class FrontPageState extends State<FrontPage> with TickerProviderStateMixin{
     final Products products = Provider.of<Products>(context);
     final RouteGenerator route = Provider.of<RouteGenerator>(context);
     double defaultSize = SizeConfig.defaultSize;
-    List<List<Item>> newItemList;
+    List<ItemList> newItemList;
     print(route.routeName0);
     if (route.routeName0 == "/root") {
       if (products != null) {
@@ -128,9 +128,7 @@ class FrontPageState extends State<FrontPage> with TickerProviderStateMixin{
       );
     }
     else if (route.routeName0 == "/itemPage") {
-      return NewItemPage(
-        key: UniqueKey(),
-      );
+      return NewItemPage();
     }
     else {
       return ErrorPage();

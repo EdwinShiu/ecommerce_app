@@ -5,22 +5,16 @@ import 'package:provider/provider.dart';
 import '../../constant.dart';
 import '../../data/items.dart';
 
-class ThirdPage extends StatefulWidget {
-  @override
-  ThirdPageState createState() => ThirdPageState();
-}
-
-class ThirdPageState extends State<ThirdPage> {
-  
-
+class ThirdPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print('ThirdPage rebuild');
     //var uid = Provider.of<User>(context);
     //print(uid?.uid);
     var userData = Provider.of<UserData>(context);
+    final favouriteList = Provider.of<FavouriteNotifier>(context);
     //print("userData " + userData.toString());
-    int favoriteItemNumber = favoriteNumber;
+    int favoriteItemNumber = favouriteList.getLength();
     if (userData != null) {
       favoriteItemNumber = userData.favorite.length;
     }
@@ -86,12 +80,7 @@ class ThirdPageState extends State<ThirdPage> {
                                   color: Colors.red,
                                 ),
                                 onTap: () {
-                                  setState(() {
-                                    // TODO: Data management
-                                    if (favoriteNumber > 0) {
-                                      favoriteNumber--;
-                                    }
-                                  });
+                                  print("unfavourite");
                                 },
                               ),
                             ),

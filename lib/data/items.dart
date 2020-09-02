@@ -1,6 +1,26 @@
 // Temporary Storage of App Data
+import 'package:flutter/cupertino.dart';
 
-int favoriteNumber = 3;
+import './product.dart';
+
+class FavouriteNotifier extends ChangeNotifier{
+  List<ItemList> _favouriteList = [];
+
+  void addFavouriteItem(ItemList itemList) {
+    if (_favouriteList.indexOf(itemList) != -1) {
+      _favouriteList.add(itemList);
+    }
+  }
+
+  int getLength() {
+    return _favouriteList.length;
+  }
+
+
+}
+
+
+
 
 const List<List<Map>> categoryImage = [[{'imagePath': 'assets/images/Television_01.png', 'itemName': 'Televisions'},
                                         {'imagePath': 'assets/images/SoundBar_01.png', 'itemName': 'Home Theater & Sound Bars'},

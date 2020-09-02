@@ -8,8 +8,6 @@ import 'package:provider/provider.dart';
 
 
 class ItemPage extends StatefulWidget {
-  ItemPage({Key key}) : super(key: key);
-
   ItemPageState createState() => ItemPageState();
 }
 
@@ -128,7 +126,7 @@ class ItemPageState extends State<ItemPage> {
                             color: Colors.white,
                             child: Row(
                               children: [
-                                (selectedItemList.itemListItemList.length == 1) ? Container() : DropdownButton<Item>(
+                                (selectedItemList.itemListItemList.item.length == 1) ? Container() : DropdownButton<Item>(
                                   isExpanded: false,
                                   value: itemShowing,
                                   style: TextStyle(
@@ -142,7 +140,7 @@ class ItemPageState extends State<ItemPage> {
                                   ),
                                   icon: Icon(Icons.arrow_drop_down),
                                   iconSize: defaultSize * 2,
-                                  items: selectedItemList.itemListItemList.map((Item item) {
+                                  items: selectedItemList.itemListItemList.item.map((Item item) {
                                     return DropdownMenuItem(
                                       value: item,
                                       child: Text(item.subtitle),

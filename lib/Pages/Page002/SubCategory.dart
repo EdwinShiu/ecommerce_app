@@ -11,11 +11,11 @@ import 'dart:math';
 
 class SubCategoryPage extends StatelessWidget {
 
-  List<List<Item>> _itemListOfSubCategory(String subCategoryName, List<CategoryProduct> productList, String bigCategoryName) {
+  List<ItemList> _itemListOfSubCategory(String subCategoryName, List<CategoryProduct> productList, String bigCategoryName) {
     //print(subCategoryName + " " + bigCategoryName);
     int i = 0;
     bool found = false;
-    List<List<Item>> result = [];
+    List<ItemList> result = [];
     while (i < productList.length && !found) {
       if (productList[i].category == bigCategoryName) {
         for (final itemList in productList[i].itemList) {
@@ -23,7 +23,7 @@ class SubCategoryPage extends StatelessWidget {
           bool inSubCategory = false;
           while (j < itemList.item[0].subCategory.length && !inSubCategory) {
             if (subCategoryName == itemList.item[0].subCategory[j]) {
-              result.add(itemList.item);
+              result.add(itemList);
               inSubCategory = true;
             }
             j++; 
@@ -90,7 +90,7 @@ class SubCategoryPage extends StatelessWidget {
     if (products == null) {
       return LoadingScreen();
     }
-    List<List<Item>> itemList = _itemListOfSubCategory(subCategory.name, products.products, bigCategoryName);
+    List<ItemList> itemList = _itemListOfSubCategory(subCategory.name, products.products, bigCategoryName);
     //print(itemList.length);
     //print(subCategory.toString());
     return Column(
@@ -124,7 +124,7 @@ class SubCategoryPage extends StatelessWidget {
           child: ListView.builder(
             itemCount: itemList.length,
             itemBuilder: (context, index) {
-              var item = itemList[index][0];
+              var item = itemList[index].item[0];
               return Container(
                 decoration: BoxDecoration(        
                   border: Border.all(
@@ -170,7 +170,7 @@ class SubCategoryPage extends StatelessWidget {
                       bottom: defaultSize * 0.4,
                       right: defaultSize * 0.4,
                       child: Text(
-                        (itemList[index].length == 1) ? "HK\$ " + item.price : "From HK\$ " + item.price,
+                        (itemList[index].item.length == 1) ? "HK\$ " + item.price : "From HK\$ " + item.price,
                         style: TextStyle(
                           fontSize: defaultSize * 2,
                           fontWeight: FontWeight.w500,
@@ -184,7 +184,7 @@ class SubCategoryPage extends StatelessWidget {
                         highlightColor: Color.fromRGBO(170, 170, 195, 0.3),
                         onTap: () {
                           selectedProduct.setItemListSelectedItemList = itemList[index];
-                          selectedProduct.setItemListSelectedItem = itemList[index][0];
+                          selectedProduct.setItemListSelectedItem = itemList[index].item[0];
                           route.toItemPage();
                         },              
                       ),

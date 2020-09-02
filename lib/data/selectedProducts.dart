@@ -6,17 +6,17 @@ class ProductsPageNotifier extends ChangeNotifier {
   final ItemListForShowing _itemList = ItemListForShowing();
 
 
-  set setItemListSelectedItemList(List<Item> itemList) {
+  set setItemListSelectedItemList(ItemList itemList) {
     _itemList.selectedItemList = itemList;
   }
 
-  set setNewItemListSelectedItemList(List<Item> itemList) {
+  set setNewItemListSelectedItemList(ItemList itemList) {
     _newItemList.selectedItemList = itemList;
   }
 
-  List<Item> get itemListItemList => _itemList.selectedItemList;
+  ItemList get itemListItemList => _itemList.selectedItemList;
 
-  List<Item> get newItemItemList => _newItemList.selectedItemList;
+  ItemList get newItemItemList => _newItemList.selectedItemList;
 
   set setItemListSelectedItem(Item item) {
     _itemList.selectedItem = item;
@@ -34,6 +34,6 @@ class ProductsPageNotifier extends ChangeNotifier {
 }
 
 class ItemListForShowing {
-  List<Item> selectedItemList;
+  ItemList selectedItemList;
   Item selectedItem;
 }

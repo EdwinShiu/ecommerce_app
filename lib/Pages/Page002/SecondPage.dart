@@ -11,13 +11,7 @@ import 'package:sticky_headers/sticky_headers.dart';
 import '../../constant.dart';
 import 'itemPage.dart';
 
-class SecondPage extends StatefulWidget {
-  @override
-  SecondPageState createState() => SecondPageState();
-}
-
-class SecondPageState extends State<SecondPage> {
-
+class SecondPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSwitcher(
@@ -117,10 +111,8 @@ class SecondPageState extends State<SecondPage> {
                                 child: InkWell(
                                   highlightColor: Color.fromRGBO(170, 170, 195, 0.3),
                                   onTap: () {
-                                    //setState(() {
-                                      bigCategory.bigCategoryIndex = listIndex;
-                                      bigCategory.categoryIndex = gridIndex;
-                                    //});
+                                    bigCategory.bigCategoryIndex = listIndex;
+                                    bigCategory.categoryIndex = gridIndex;
                                     route.toSubCategoryPage();
                                   }
                                 ),
@@ -145,9 +137,7 @@ class SecondPageState extends State<SecondPage> {
       );
     }
     else {
-      return ItemPage(
-        key: UniqueKey(),
-      );
+      return ItemPage();
     }
   }
 }

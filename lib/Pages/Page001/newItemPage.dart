@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/constant.dart';
+import 'package:ecommerce_app/data/items.dart';
 import 'package:ecommerce_app/data/product.dart';
 import 'package:ecommerce_app/data/selectedProducts.dart';
 import 'package:ecommerce_app/data/shoppingCart.dart';
@@ -8,12 +9,30 @@ import 'package:provider/provider.dart';
 
 
 class NewItemPage extends StatefulWidget {
-  NewItemPage({Key key}) : super(key: key);
-
   NewItemPageState createState() => NewItemPageState();
 }
 
-class NewItemPageState extends State<NewItemPage> {
+class NewItemPageState extends State<NewItemPage> with SingleTickerProviderStateMixin{
+
+  AnimationController _controller;
+  Animation _colorAnimation;
+  bool isFavourite = false;
+
+  @override
+  void initState() { 
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 200),
+      vsync: this,
+    );
+    _colorAnimation = ColorTween(begin: Colors.grey[400], end: Colors.red).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +43,8 @@ class NewItemPageState extends State<NewItemPage> {
     final ProductsPageNotifier selectedItemList = Provider.of<ProductsPageNotifier>(context);
     //print(selectedItemList.newItemItemList);
     final Item itemShowing = selectedItemList.newItemListselectedItem;
+    final FavouriteNotifier favouriteList = Provider.of<FavouriteNotifier>(context);
+    //print(favouriteList);
     if (itemShowing == null) {
       return Center(
         child: Text(
@@ -128,7 +149,7 @@ class NewItemPageState extends State<NewItemPage> {
                             color: Colors.white,
                             child: Row(
                               children: [
-                                (selectedItemList.newItemItemList.length == 1) ? Container() : DropdownButton<Item>(
+                                (selectedItemList.newItemItemList.item.length == 1) ? Container() : DropdownButton<Item>(
                                   isExpanded: false,
                                   value: itemShowing,
                                   style: TextStyle(
@@ -142,7 +163,7 @@ class NewItemPageState extends State<NewItemPage> {
                                   ),
                                   icon: Icon(Icons.arrow_drop_down),
                                   iconSize: defaultSize * 2,
-                                  items: selectedItemList.newItemItemList.map((Item item) {
+                                  items: selectedItemList.newItemItemList.item.map((Item item) {
                                     return DropdownMenuItem(
                                       value: item,
                                       child: Text(item.subtitle),
@@ -237,10 +258,28 @@ class NewItemPageState extends State<NewItemPage> {
                             ),
                             Container(
                               padding: EdgeInsets.only(right: defaultSize * 1.7),
-                              child: Icon(
-                                Icons.favorite,
-                                color: Colors.red,
-                                size: defaultSize * 3,
+                              child: AnimatedBuilder(
+                                animation: _controller,
+                                builder: (context, _) {
+                                  return IconButton(
+                                    icon: Icon(
+                                      Icons.favorite,
+                                      color: _colorAnimation.value,
+                                      size: defaultSize * 3,
+                                    ),
+                                    onPressed: () {
+                                      if (!isFavourite) {
+                                        _controller.forward();
+                                        isFavourite = true;
+                                      }
+                                      else {
+                                        _controller.reverse(from: 1.0);
+                                        isFavourite = false;
+                                      }
+                                      print("pressed");
+                                    },
+                                  );
+                                }
                               ),
                             ),
                             Container(

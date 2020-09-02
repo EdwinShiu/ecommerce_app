@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/authentication/auth.dart';
 import 'package:ecommerce_app/data/category.dart';
+import 'package:ecommerce_app/data/items.dart';
 import 'package:ecommerce_app/data/product.dart';
 import 'package:ecommerce_app/data/routing.dart';
 import 'package:ecommerce_app/data/selectedProducts.dart';
@@ -56,17 +57,20 @@ class MainNavigationPage extends StatelessWidget {
               child: ChangeNotifierProvider<ProductsPageNotifier>.value(
                 value: ProductsPageNotifier(),
                 child: ChangeNotifierProvider<CartList>.value(
-                value: CartList(),
-                child: NotificationListener<OverscrollIndicatorNotification>(
-                onNotification: (OverscrollIndicatorNotification overscroll) {
-                  overscroll.disallowGlow();
-                  return false;
-                },
-                child: HomePage(),
+                  value: CartList(),
+                  child: ChangeNotifierProvider<FavouriteNotifier>.value(
+                    value: FavouriteNotifier(),
+                    child: NotificationListener<OverscrollIndicatorNotification>(
+                      onNotification: (OverscrollIndicatorNotification overscroll) {
+                        overscroll.disallowGlow();
+                        return false;
+                      },
+                      child: HomePage(),
+                    ),
+                  ),
+                ),
               ),
             ),
-              ),
-          ),
           ),
         );
       //},

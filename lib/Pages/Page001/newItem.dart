@@ -8,7 +8,7 @@ import '../../constant.dart';
 import 'dart:math';
 
 class NewItem extends StatelessWidget {
-  final List<List<Item>> newItemList;
+  final List<ItemList> newItemList;
 
   NewItem(this.newItemList);
 
@@ -20,7 +20,7 @@ class NewItem extends StatelessWidget {
     return ListView.builder(
       itemCount: newItemList.length,
       itemBuilder: (context, index) {
-        Item item = newItemList[index][0];
+        Item item = newItemList[index].item[0];
         return Container(
           decoration: BoxDecoration(        
             border: Border.all(
@@ -82,7 +82,7 @@ class NewItem extends StatelessWidget {
                     //print("hihi");
                     selectedProduct.setNewItemListSelectedItemList = newItemList[index];
                     //print(selectedProduct.newItemItemList);
-                    selectedProduct.setNewItemListSelectedItem = newItemList[index][0];
+                    selectedProduct.setNewItemListSelectedItem = newItemList[index].item[0];
                     //print(selectedProduct.newItemListselectedItem);
                     route.toItemPage();
                   },              
