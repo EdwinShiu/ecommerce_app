@@ -9,10 +9,11 @@ import 'package:provider/provider.dart';
 
 
 class NewItemPage extends StatefulWidget {
-  final bool isFav;
+
+  final bool isFav; 
 
   NewItemPage(this.isFav);
-
+  
   NewItemPageState createState() => NewItemPageState();
 }
 
@@ -20,7 +21,6 @@ class NewItemPageState extends State<NewItemPage> with SingleTickerProviderState
 
   AnimationController _controller;
   Animation _colorAnimation;
-  bool isFavourite = false;
 
   @override
   void initState() { 
@@ -29,7 +29,10 @@ class NewItemPageState extends State<NewItemPage> with SingleTickerProviderState
       duration: const Duration(milliseconds: 200),
       vsync: this,
     );
-    _colorAnimation = (widget.isFav) ? ColorTween(begin: Colors.red, end: Colors.grey[400]).animate(_controller) : ColorTween(begin: Colors.grey[400], end: Colors.red).animate(_controller);
+    if (widget.isFav) {
+      _controller.animateTo(1, duration: Duration());
+    }
+    _colorAnimation = ColorTween(begin: Colors.grey[400], end: Colors.red).animate(_controller);
   }
 
   @override
@@ -48,8 +51,12 @@ class NewItemPageState extends State<NewItemPage> with SingleTickerProviderState
     //print(selectedItemList.newItemItemList);
     final Item itemShowing = selectedItemList.newItemListselectedItem;
     final FavouriteNotifier favouriteList = Provider.of<FavouriteNotifier>(context);
-    //print(widget.isFav.toString() + " " + isFavourite.toString());
-    //print(favouriteList);
+    if (favouriteList.isInFav(selectedItemList.newItemItemList)) {
+      _controller.animateTo(1, duration: Duration(milliseconds: 300));
+    }
+    else {
+      _controller.animateTo(0, duration: Duration(milliseconds: 300));
+    }
     if (itemShowing == null) {
       return Center(
         child: Text(
@@ -273,6 +280,7 @@ class NewItemPageState extends State<NewItemPage> with SingleTickerProviderState
                                       size: defaultSize * 3,
                                     ),
                                     onPressed: () {
+                                      /*
                                       if (_controller.status == AnimationStatus.dismissed) {
                                         _controller.forward();
                                         print("forward");
@@ -293,7 +301,9 @@ class NewItemPageState extends State<NewItemPage> with SingleTickerProviderState
                                            favouriteList.addFavouriteItem(selectedItemList.newItemItemList);
                                         }
                                       }
-                                      print("pressed");
+                                      */
+                                      favouriteList.toggleFavouriteItem(selectedItemList.newItemItemList);
+                                      //_controller.forward();
                                     },
                                   );
                                 }

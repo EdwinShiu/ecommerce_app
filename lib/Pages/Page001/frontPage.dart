@@ -62,7 +62,7 @@ class FrontPageState extends State<FrontPage> {
     final ProductsPageNotifier selectedProduct = Provider.of<ProductsPageNotifier>(context);
     double defaultSize = SizeConfig.defaultSize;
     List<ItemList> newItemList;
-    print(route.routeName0);
+    //print(route.routeName0);
     if (route.routeName0 == "/root") {
       if (products != null) {
         newItemList = returnNewItem(products);

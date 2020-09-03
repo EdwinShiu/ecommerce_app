@@ -20,6 +20,18 @@ class FavouriteNotifier extends ChangeNotifier{
     //print(_favouriteList);
   }
 
+  void toggleFavouriteItem(ItemList itemList) {
+    if (_favouriteList.indexOf(itemList) == -1) {
+      _favouriteList.add(itemList);
+      print("add");
+    }
+    else {
+      _favouriteList.remove(itemList);
+      print("removed");
+    }
+    notifyListeners();
+  }
+
   int getLength() {
     return _favouriteList.length;
   }

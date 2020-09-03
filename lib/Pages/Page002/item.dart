@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/constant.dart';
+import 'package:ecommerce_app/data/items.dart';
 import 'package:ecommerce_app/data/product.dart';
 import 'package:ecommerce_app/data/selectedProducts.dart';
 import 'package:ecommerce_app/data/shoppingCart.dart';
@@ -8,10 +9,37 @@ import 'package:provider/provider.dart';
 
 
 class ItemPage extends StatefulWidget {
+
+  final bool isFav; 
+
+  ItemPage(this.isFav);
+  
   ItemPageState createState() => ItemPageState();
 }
 
-class ItemPageState extends State<ItemPage> {
+class ItemPageState extends State<ItemPage> with SingleTickerProviderStateMixin {
+
+  AnimationController _controller;
+  Animation _colorAnimation;
+
+  @override
+  void initState() { 
+    super.initState();
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 200),
+      vsync: this,
+    );
+    if (widget.isFav) {
+      _controller.animateTo(1, duration: Duration());
+    }
+    _colorAnimation = ColorTween(begin: Colors.grey[400], end: Colors.red).animate(_controller);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +50,13 @@ class ItemPageState extends State<ItemPage> {
     final ProductsPageNotifier selectedItemList = Provider.of<ProductsPageNotifier>(context);
     //print(selectedItemList.itemListItemList);
     final Item itemShowing = selectedItemList.itemListselectedItem;
+    final FavouriteNotifier favouriteList = Provider.of<FavouriteNotifier>(context);
+    if (favouriteList.isInFav(selectedItemList.itemListItemList)) {
+      _controller.animateTo(1, duration: Duration(milliseconds: 300));
+    }
+    else {
+      _controller.animateTo(0, duration: Duration(milliseconds: 300));
+    }
     if (itemShowing == null) {
       return Center(
         child: Text(
@@ -235,10 +270,20 @@ class ItemPageState extends State<ItemPage> {
                             ),
                             Container(
                               padding: EdgeInsets.only(right: defaultSize * 1.7),
-                              child: Icon(
-                                Icons.favorite,
-                                color: Colors.red,
-                                size: defaultSize * 3,
+                              child: AnimatedBuilder(
+                                animation: _controller,
+                                builder: (context, _) {
+                                  return IconButton(
+                                    icon: Icon(
+                                      Icons.favorite,
+                                      color: _colorAnimation.value,
+                                      size: defaultSize * 3,
+                                    ),
+                                    onPressed: () {
+                                      favouriteList.toggleFavouriteItem(selectedItemList.itemListItemList);
+                                    },
+                                  );
+                                }
                               ),
                             ),
                             Container(

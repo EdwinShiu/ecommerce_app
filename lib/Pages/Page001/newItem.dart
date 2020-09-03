@@ -89,15 +89,6 @@ class NewItem extends StatelessWidget {
                   },              
                 ),
               ),
-              Positioned(
-                bottom: defaultSize * 0.4,
-                left: defaultSize * 0.3,
-                child: Icon(
-                Icons.favorite,
-                  color: Colors.red,
-                  size: defaultSize * 2.4,
-                ),
-              ),
             ],
           ),
         );

@@ -3,6 +3,7 @@ import 'package:ecommerce_app/constant.dart';
 import 'package:ecommerce_app/data/category.dart';
 import 'package:ecommerce_app/data/items.dart';
 import 'package:ecommerce_app/data/routing.dart';
+import 'package:ecommerce_app/data/selectedProducts.dart';
 import 'package:ecommerce_app/parts/loadingScreen.dart';
 import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +26,8 @@ class SecondPage extends StatelessWidget {
     //print("happy " + bigCategory.bigCategory.length.toString());
     final RouteGenerator route = Provider.of<RouteGenerator>(context);
     //print(route.routeName1);
+    final ProductsPageNotifier selectedItemList = Provider.of<ProductsPageNotifier>(context);
+    final FavouriteNotifier favouriteList = Provider.of<FavouriteNotifier>(context);
     final double defaultSize = SizeConfig.defaultSize;
     if (bigCategory == null) {
       return LoadingScreen();
@@ -137,7 +140,7 @@ class SecondPage extends StatelessWidget {
       );
     }
     else {
-      return ItemPage();
+      return ItemPage(favouriteList.isInFav(selectedItemList?.itemListItemList));
     }
   }
 }
