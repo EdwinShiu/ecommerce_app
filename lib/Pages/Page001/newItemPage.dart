@@ -9,6 +9,10 @@ import 'package:provider/provider.dart';
 
 
 class NewItemPage extends StatefulWidget {
+  final bool isFav;
+
+  NewItemPage(this.isFav);
+
   NewItemPageState createState() => NewItemPageState();
 }
 
@@ -25,7 +29,7 @@ class NewItemPageState extends State<NewItemPage> with SingleTickerProviderState
       duration: const Duration(milliseconds: 200),
       vsync: this,
     );
-    _colorAnimation = ColorTween(begin: Colors.grey[400], end: Colors.red).animate(_controller);
+    _colorAnimation = (widget.isFav) ? ColorTween(begin: Colors.red, end: Colors.grey[400]).animate(_controller) : ColorTween(begin: Colors.grey[400], end: Colors.red).animate(_controller);
   }
 
   @override
@@ -44,6 +48,7 @@ class NewItemPageState extends State<NewItemPage> with SingleTickerProviderState
     //print(selectedItemList.newItemItemList);
     final Item itemShowing = selectedItemList.newItemListselectedItem;
     final FavouriteNotifier favouriteList = Provider.of<FavouriteNotifier>(context);
+    //print(widget.isFav.toString() + " " + isFavourite.toString());
     //print(favouriteList);
     if (itemShowing == null) {
       return Center(
@@ -268,13 +273,25 @@ class NewItemPageState extends State<NewItemPage> with SingleTickerProviderState
                                       size: defaultSize * 3,
                                     ),
                                     onPressed: () {
-                                      if (!isFavourite) {
+                                      if (_controller.status == AnimationStatus.dismissed) {
                                         _controller.forward();
-                                        isFavourite = true;
+                                        print("forward");
+                                        if (widget.isFav) {
+                                          favouriteList.removeFavouriteItem(selectedItemList.newItemItemList);
+                                        }
+                                        else {
+                                           favouriteList.addFavouriteItem(selectedItemList.newItemItemList);
+                                        }
                                       }
                                       else {
-                                        _controller.reverse(from: 1.0);
-                                        isFavourite = false;
+                                        _controller.reverse();
+                                        print("backward");
+                                        if (widget.isFav) {
+                                          favouriteList.removeFavouriteItem(selectedItemList.newItemItemList);
+                                        }
+                                        else {
+                                           favouriteList.addFavouriteItem(selectedItemList.newItemItemList);
+                                        }
                                       }
                                       print("pressed");
                                     },

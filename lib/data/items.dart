@@ -7,15 +7,29 @@ class FavouriteNotifier extends ChangeNotifier{
   List<ItemList> _favouriteList = [];
 
   void addFavouriteItem(ItemList itemList) {
-    if (_favouriteList.indexOf(itemList) != -1) {
+    if (_favouriteList.indexOf(itemList) == -1) {
       _favouriteList.add(itemList);
     }
+    notifyListeners();
+    //print(_favouriteList);
+  }
+
+  void removeFavouriteItem(ItemList itemList) {
+    _favouriteList.remove(itemList);
+    notifyListeners();
+    //print(_favouriteList);
   }
 
   int getLength() {
     return _favouriteList.length;
   }
 
+  bool isInFav(ItemList itemlist) {
+    if (_favouriteList.indexOf(itemlist) != -1) {
+      return true;
+    }
+    return false;
+  }
 
 }
 

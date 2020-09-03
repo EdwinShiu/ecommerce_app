@@ -1,7 +1,9 @@
 import 'package:ecommerce_app/Pages/OtherPages/error.dart';
 import 'package:ecommerce_app/Pages/Page001/newItemPage.dart';
+import 'package:ecommerce_app/data/items.dart';
 import 'package:ecommerce_app/data/product.dart';
 import 'package:ecommerce_app/data/routing.dart';
+import 'package:ecommerce_app/data/selectedProducts.dart';
 import 'package:ecommerce_app/parts/loadingScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -56,6 +58,8 @@ class FrontPageState extends State<FrontPage> {
   Widget _animatedWidget(BuildContext context) {
     final Products products = Provider.of<Products>(context);
     final RouteGenerator route = Provider.of<RouteGenerator>(context);
+    final FavouriteNotifier favouriteList = Provider.of<FavouriteNotifier>(context);
+    final ProductsPageNotifier selectedProduct = Provider.of<ProductsPageNotifier>(context);
     double defaultSize = SizeConfig.defaultSize;
     List<ItemList> newItemList;
     print(route.routeName0);
@@ -128,7 +132,7 @@ class FrontPageState extends State<FrontPage> {
       );
     }
     else if (route.routeName0 == "/itemPage") {
-      return NewItemPage();
+      return NewItemPage(favouriteList.isInFav(selectedProduct.newItemItemList));
     }
     else {
       return ErrorPage();

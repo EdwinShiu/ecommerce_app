@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/data/items.dart';
 import 'package:ecommerce_app/data/product.dart';
 import 'package:ecommerce_app/data/routing.dart';
 import 'package:ecommerce_app/data/selectedProducts.dart';
