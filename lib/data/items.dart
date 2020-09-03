@@ -6,6 +6,8 @@ import './product.dart';
 class FavouriteNotifier extends ChangeNotifier{
   List<ItemList> _favouriteList = [];
 
+  List<ItemList> get getFavouriteList => _favouriteList;
+
   void addFavouriteItem(ItemList itemList) {
     if (_favouriteList.indexOf(itemList) == -1) {
       _favouriteList.add(itemList);
