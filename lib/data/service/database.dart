@@ -21,6 +21,7 @@ class DataBaseService {
   void updateFavorite(List<String> favStringList) {
     Firestore.instance.runTransaction((transaction) async {
       DocumentSnapshot freshSnap = await transaction.get(userCollection.document(uid));
+      //print((favStringList + freshSnap["favorite"].cast<String>().toList()).toSet().toList().toString());
       await transaction.update(freshSnap.reference, {
         "userInformation": freshSnap["userInformation"],
         "warranty": freshSnap["warranty"],

@@ -51,7 +51,7 @@ class HomePageState extends State<HomePage> {
         stream: DataBaseService(uid: uid).userSnapshot,
         builder: (context, snapshot) {
           //print(favouriteList.getFavouriteList.toString());
-          (uid != null) ? favouriteList.setFavouriteList = _favStringtoItemList(snapshot.data?.favorite, products) : favouriteList.getFavouriteList;
+          favouriteList.setFavouriteList = (uid != null) ? _favStringtoItemList(snapshot.data?.favorite, products) : favouriteList.getFavouriteList;
           //print(Provider.of<User>(context)?.uid.toString());
           //print("stream " + DataBaseService(uid: uidd).userSnapshot.toString());
           //print("snapshot "+ snapshot.error.toString());
