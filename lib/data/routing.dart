@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 
 class RouteGenerator extends ChangeNotifier {
   // change it to Stack
-  List<List<String>> _routeList = [["/root"],
-                                   ["/root"],
-                                   ["/root"],
-                                   ["/root"]];
+  List<List<String>> _routeList = [["/root"], ["/root"], ["/root"], ["/root"]];
   int _bottomNavBarIndex = 0;
   String _routeName = "/root";
 
@@ -20,6 +17,10 @@ class RouteGenerator extends ChangeNotifier {
   String get routeName3 => _routeList[3].last;
 
   int get bottomNavBarIndex =>_bottomNavBarIndex;
+
+  void resetRouteList() {
+    _routeList = [["/root"], ["/root"], ["/root"], ["/root"]];
+  }
 
   set routeName(String val) {
     _routeName = val;

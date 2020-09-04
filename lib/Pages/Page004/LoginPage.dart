@@ -1,7 +1,9 @@
 import 'package:ecommerce_app/constant.dart';
+import 'package:ecommerce_app/data/routing.dart';
 import 'package:ecommerce_app/parts/loadingScreen.dart';
 import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../../authentication/auth.dart';
 import '../../Parts/textFormField.dart';
 
@@ -26,8 +28,10 @@ class LoginPageState extends State<LoginPage> {
   String password = '';
   String error = '';
 
+
   @override
   Widget build(BuildContext context) {
+    final RouteGenerator route = Provider.of<RouteGenerator>(context);
     return Stack(
       children: [
         Container(
@@ -96,6 +100,9 @@ class LoginPageState extends State<LoginPage> {
                               error = 'Could not sign in.';
                             });
                           }
+                        }
+                        else {
+                          route.resetRouteList();
                         }
                       }
                     },

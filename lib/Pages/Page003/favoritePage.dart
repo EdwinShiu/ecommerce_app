@@ -2,6 +2,7 @@ import 'package:ecommerce_app/constant.dart';
 import 'package:ecommerce_app/data/items.dart';
 import 'package:ecommerce_app/data/product.dart';
 import 'package:ecommerce_app/data/selectedProducts.dart';
+import 'package:ecommerce_app/data/service/database.dart';
 import 'package:ecommerce_app/data/shoppingCart.dart';
 import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
@@ -50,8 +51,9 @@ class FavItemPageState extends State<FavItemPage> with SingleTickerProviderState
     final ProductsPageNotifier selectedItemList = Provider.of<ProductsPageNotifier>(context);
     //print(selectedItemList.itemListItemList);
     final Item itemShowing = selectedItemList.favListselectedItem;
-    print(itemShowing.toString());
+    //print(itemShowing.toString());
     final FavouriteNotifier favouriteList = Provider.of<FavouriteNotifier>(context);
+    final DataBaseService databaseWithId = Provider.of<DataBaseService>(context);
     if (favouriteList.isInFav(selectedItemList.favItemItemList)) {
       _controller.animateTo(1, duration: Duration(milliseconds: 300));
     }
@@ -281,7 +283,7 @@ class FavItemPageState extends State<FavItemPage> with SingleTickerProviderState
                                       size: defaultSize * 3,
                                     ),
                                     onPressed: () {
-                                      favouriteList.toggleFavouriteItem(selectedItemList.favItemItemList);
+                                      favouriteList.toggleFavouriteItem(selectedItemList.favItemItemList, databaseWithId);
                                     },
                                   );
                                 }

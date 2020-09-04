@@ -1,4 +1,5 @@
 // Temporary Storage of App Data
+import 'package:ecommerce_app/data/service/database.dart';
 import 'package:flutter/cupertino.dart';
 
 import './product.dart';
@@ -8,6 +9,12 @@ class FavouriteNotifier extends ChangeNotifier{
 
   List<ItemList> get getFavouriteList => _favouriteList;
 
+  set setFavouriteList(List<ItemList> favListInString) {
+    _favouriteList = favListInString;
+    //notifyListeners();
+  }
+
+/*
   void addFavouriteItem(ItemList itemList) {
     if (_favouriteList.indexOf(itemList) == -1) {
       _favouriteList.add(itemList);
@@ -21,8 +28,21 @@ class FavouriteNotifier extends ChangeNotifier{
     notifyListeners();
     //print(_favouriteList);
   }
+*/
 
-  void toggleFavouriteItem(ItemList itemList) {
+  List<String> _favoriteListInString() {
+    if (_favouriteList == null) {
+      return [];
+    }
+     if (_favouriteList.length == 0) {
+      return [];
+    }
+    return _favouriteList.map((itemList) {
+      return itemList.item[0].title;
+    }).toList();
+  }
+
+  void toggleFavouriteItem(ItemList itemList, DataBaseService data) {
     if (_favouriteList.indexOf(itemList) == -1) {
       _favouriteList.add(itemList);
       print("add");
@@ -30,6 +50,13 @@ class FavouriteNotifier extends ChangeNotifier{
     else {
       _favouriteList.remove(itemList);
       print("removed");
+    }
+    //print("data uid " + data.uid.toString());
+    if (data != null && data.uid != null) {
+      data.updateFavorite(_favoriteListInString());
+    }
+    else {
+      print("no user");
     }
     notifyListeners();
   }

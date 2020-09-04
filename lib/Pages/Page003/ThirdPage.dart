@@ -3,7 +3,6 @@ import 'package:ecommerce_app/Pages/Page003/favoritePage.dart';
 import 'package:ecommerce_app/data/product.dart';
 import 'package:ecommerce_app/data/routing.dart';
 import 'package:ecommerce_app/data/selectedProducts.dart';
-import 'package:ecommerce_app/data/user.dart';
 import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -16,7 +15,6 @@ class ThirdPage extends StatelessWidget {
     print('ThirdPage rebuild');
     //var uid = Provider.of<User>(context);
     //print(uid?.uid);
-    var userData = Provider.of<UserData>(context);
     final favouriteList = Provider.of<FavouriteNotifier>(context);
     final RouteGenerator route = Provider.of<RouteGenerator>(context);
     final ProductsPageNotifier selectedProduct = Provider.of<ProductsPageNotifier>(context);
@@ -24,9 +22,6 @@ class ThirdPage extends StatelessWidget {
     //print(route.routeName2);
     if (route.routeName2 == "/root") {
       int favoriteItemNumber = favouriteList.getLength();
-      if (userData != null) {
-        favoriteItemNumber = userData.favorite.length;
-      }
       final double defaultSize = SizeConfig.defaultSize;
       return Column(
         children: <Widget>[

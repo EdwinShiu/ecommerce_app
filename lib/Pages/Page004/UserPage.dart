@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/authentication/auth.dart';
 import 'package:ecommerce_app/constant.dart';
+import 'package:ecommerce_app/data/routing.dart';
 import 'package:ecommerce_app/data/user.dart';
 import 'package:ecommerce_app/parts/loadingScreen.dart';
 import 'package:ecommerce_app/sizeConfig.dart';
@@ -18,7 +19,7 @@ class UserPageState extends State<UserPage> {
 
   @override
   Widget build(BuildContext context) {
-
+    final RouteGenerator route = Provider.of<RouteGenerator>(context);
     final userData = Provider.of<UserData>(context, listen: false);
     //print("userData " + userData.toString());
     final double defaultSize = SizeConfig.defaultSize;
@@ -166,6 +167,7 @@ class UserPageState extends State<UserPage> {
                           loading = true;
                         });
                         await _auth.signOut();
+                        route.resetRouteList();
                       },
                     ),
                   ),

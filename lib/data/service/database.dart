@@ -18,13 +18,25 @@ class DataBaseService {
     });
   }
 
+  void updateFavorite(List<String> favStringList) {
+    Firestore.instance.runTransaction((transaction) async {
+      DocumentSnapshot freshSnap = await transaction.get(userCollection.document(uid));
+      await transaction.update(freshSnap.reference, {
+        "userInformation": freshSnap["userInformation"],
+        "warranty": freshSnap["warranty"],
+        "favorite": favStringList,
+      });
+    });
+  }
+
   // Full User Data Set
   UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
     //print("hi");
+    //print(snapshot.data);
     if (snapshot.data == null) {
       return null;
     }
-    //print(snapshot.data["favorite"]);
+    //print(snapshot.data["favorite"].toString());
     //print(_userInformationFromSnapshot(snapshot));
     //print(_userWarrantyFromSnapshot(snapshot));
     //if (snapshot.data["favorite"].length == 0) {
@@ -36,8 +48,9 @@ class DataBaseService {
     //  );
     // }
     //else {
+      //print(snapshot.data["favorite"].cast<String>().toList().runtimeType.toString());
     return UserData(
-      favorite: snapshot.data["favorite"].cast<String>(),
+      favorite: snapshot.data["favorite"].cast<String>().toList(),
       userInformation: _userInformationFromSnapshot(snapshot),
       warranty: _userWarrantyFromSnapshot(snapshot)
     );

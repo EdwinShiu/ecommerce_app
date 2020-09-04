@@ -2,6 +2,7 @@ import 'package:ecommerce_app/constant.dart';
 import 'package:ecommerce_app/data/items.dart';
 import 'package:ecommerce_app/data/product.dart';
 import 'package:ecommerce_app/data/selectedProducts.dart';
+import 'package:ecommerce_app/data/service/database.dart';
 import 'package:ecommerce_app/data/shoppingCart.dart';
 import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +46,7 @@ class NewItemPageState extends State<NewItemPage> with SingleTickerProviderState
   Widget build(BuildContext context) {
     //print(widget.key.toString());
     final double defaultSize = SizeConfig.defaultSize;
+    final DataBaseService databaseWithId = Provider.of<DataBaseService>(context);
     final CartList cartList = Provider.of<CartList>(context);
     //print(cartList.toString());
     final ProductsPageNotifier selectedItemList = Provider.of<ProductsPageNotifier>(context);
@@ -280,30 +282,7 @@ class NewItemPageState extends State<NewItemPage> with SingleTickerProviderState
                                       size: defaultSize * 3,
                                     ),
                                     onPressed: () {
-                                      /*
-                                      if (_controller.status == AnimationStatus.dismissed) {
-                                        _controller.forward();
-                                        print("forward");
-                                        if (widget.isFav) {
-                                          favouriteList.removeFavouriteItem(selectedItemList.newItemItemList);
-                                        }
-                                        else {
-                                           favouriteList.addFavouriteItem(selectedItemList.newItemItemList);
-                                        }
-                                      }
-                                      else {
-                                        _controller.reverse();
-                                        print("backward");
-                                        if (widget.isFav) {
-                                          favouriteList.removeFavouriteItem(selectedItemList.newItemItemList);
-                                        }
-                                        else {
-                                           favouriteList.addFavouriteItem(selectedItemList.newItemItemList);
-                                        }
-                                      }
-                                      */
-                                      favouriteList.toggleFavouriteItem(selectedItemList.newItemItemList);
-                                      //_controller.forward();
+                                      favouriteList.toggleFavouriteItem(selectedItemList.newItemItemList, databaseWithId);
                                     },
                                   );
                                 }
