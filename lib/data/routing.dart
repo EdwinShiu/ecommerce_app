@@ -48,6 +48,26 @@ class RouteGenerator extends ChangeNotifier {
     routeName = _routeList[_bottomNavBarIndex].last;
   }
 
+  void toSonnionPage() {
+    _routeList[_bottomNavBarIndex].add("/sonnion");
+    routeName = _routeList[_bottomNavBarIndex].last;
+  }
+
+  void toAccountInfoPage() {
+    _routeList[_bottomNavBarIndex].add("/accountInfo");
+    routeName = _routeList[_bottomNavBarIndex].last;
+  }
+
+  void toProductWarrantyPage() {
+    _routeList[_bottomNavBarIndex].add("/warranty");
+    routeName = _routeList[_bottomNavBarIndex].last;
+  }
+
+  void toOrderRecordPage() {
+    _routeList[_bottomNavBarIndex].add("/orderRec");
+    routeName = _routeList[_bottomNavBarIndex].last;
+  }
+
   void toSubCategoryPage() {
     _routeList[_bottomNavBarIndex].add("/subCat");
     routeName = _routeList[_bottomNavBarIndex].last;

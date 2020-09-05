@@ -45,56 +45,56 @@ class HomePageState extends State<HomePage> {
     var uid = Provider.of<User>(context)?.uid;
     //print(uidd.toString());
     return Provider<DataBaseService>.value(
-    value: DataBaseService(uid: uid),
-    child: Container(
-      child: StreamBuilder<UserData>(
-        stream: DataBaseService(uid: uid).userSnapshot,
-        builder: (context, snapshot) {
-          //print(favouriteList.getFavouriteList.toString());
-          favouriteList.setFavouriteList = (uid != null) ? _favStringtoItemList(snapshot.data?.favorite, products) : favouriteList.getFavouriteList;
-          //print(Provider.of<User>(context)?.uid.toString());
-          //print("stream " + DataBaseService(uid: uidd).userSnapshot.toString());
-          //print("snapshot "+ snapshot.error.toString());
-          // try to use provider to put ssnapshot data to the pages
-          print("Inner streamBuilder ${snapshot.connectionState}");
-          print("Inner streamBuilder rebuild");
-          //print("userData in streamBuilder " + snapshot.data.toString());
-          return Provider<UserData>.value (
-            value: (uid != null) ? snapshot.data : null,
-            child: SafeArea(
-              child: Scaffold(
-                key: drawerKey,
-                resizeToAvoidBottomInset: false,
-                appBar: drawerAppbar(context),
-                endDrawer: mainDrawer(context),
-                bottomNavigationBar: mainBottomNavigationBar(context, _mainNavigationPageController, route.bottomNavBarIndex),
-                body: GestureDetector(
-                  behavior: HitTestBehavior.opaque,
-                  onTap: () {
-                    FocusScope.of(context).unfocus();
-                  },
-                  // use provider to replace navigator
-                  child: PageView(
-                    controller: _mainNavigationPageController,
-                    allowImplicitScrolling: true,
-                    onPageChanged: (newPage) {
+      value: DataBaseService(uid: uid),
+      child: Container(
+        child: StreamBuilder<UserData>(
+          stream: DataBaseService(uid: uid).userSnapshot,
+          builder: (context, snapshot) {
+            //print(favouriteList.getFavouriteList.toString());
+            favouriteList.setFavouriteList = (uid != null) ? _favStringtoItemList(snapshot.data?.favorite, products) : favouriteList.getFavouriteList;
+            //print(Provider.of<User>(context)?.uid.toString());
+            //print("stream " + DataBaseService(uid: uidd).userSnapshot.toString());
+            //print("snapshot "+ snapshot.error.toString());
+            // try to use provider to put ssnapshot data to the pages
+            print("Inner streamBuilder ${snapshot.connectionState}");
+            print("Inner streamBuilder rebuild");
+            //print("userData in streamBuilder " + snapshot.data.toString());
+            return Provider<UserData>.value (
+              value: (uid != null) ? snapshot.data : null,
+              child: SafeArea(
+                child: Scaffold(
+                  key: drawerKey,
+                  resizeToAvoidBottomInset: false,
+                  appBar: drawerAppbar(context),
+                  endDrawer: mainDrawer(context),
+                  bottomNavigationBar: mainBottomNavigationBar(context, _mainNavigationPageController, route.bottomNavBarIndex),
+                  body: GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () {
                       FocusScope.of(context).unfocus();
-                      route.bottomNavBarIndex = newPage;
                     },
-                    children: <Widget>[
-                      FrontPage(),
-                      SecondPage(),
-                      ThirdPage(),
-                      FourthPage(),
-                    ],
-                  )
+                    // use provider to replace navigator
+                    child: PageView(
+                      controller: _mainNavigationPageController,
+                      allowImplicitScrolling: true,
+                      onPageChanged: (newPage) {
+                        FocusScope.of(context).unfocus();
+                        route.bottomNavBarIndex = newPage;
+                      },
+                      children: <Widget>[
+                        FrontPage(),
+                        SecondPage(),
+                        ThirdPage(),
+                        FourthPage(),
+                      ],
+                    )
+                  ),
                 ),
               ),
-            ),
-          );
-        }
+            );
+          }
+        ),
       ),
-    ),
     );
   }
 

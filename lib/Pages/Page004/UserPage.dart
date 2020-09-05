@@ -1,3 +1,8 @@
+import 'package:ecommerce_app/Pages/OtherPages/error.dart';
+import 'package:ecommerce_app/Pages/Page004/accountInfo.dart';
+import 'package:ecommerce_app/Pages/Page004/orderRecord.dart';
+import 'package:ecommerce_app/Pages/Page004/productWarranty.dart';
+import 'package:ecommerce_app/Pages/Page004/sonnion.dart';
 import 'package:ecommerce_app/authentication/auth.dart';
 import 'package:ecommerce_app/constant.dart';
 import 'package:ecommerce_app/data/routing.dart';
@@ -56,17 +61,20 @@ class UserPageState extends State<UserPage> {
                             size: defaultSize * 21.7,
                           ),
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                          ),
-                          child: Text(
-                            "Sonnion: " + ((userData != null) ? userData.userInformation.sonnion.toString() : "--"),
-                            style: TextStyle(
-                              fontSize: defaultSize * 2.6,
-                              fontWeight: FontWeight.w500,
-                              color: sonyBlack,
+                        Material(
+                          color: Colors.white,
+                          child: InkWell(
+                            child: Text(
+                              "Sonnion: " + ((userData != null) ? userData.userInformation.sonnion.toString() : "--"),
+                              style: TextStyle(
+                                fontSize: defaultSize * 2.6,
+                                fontWeight: FontWeight.w500,
+                                color: sonyBlack,
+                              ),
                             ),
+                            onTap: () {
+                              route.toSonnionPage();
+                            },
                           ),
                         ),
                       ],
@@ -91,7 +99,7 @@ class UserPageState extends State<UserPage> {
                           ),
                         ),
                         onTap: () {
-                          print("Account Information");
+                          route.toAccountInfoPage();
                         },
                       ),
                     ),
@@ -115,7 +123,7 @@ class UserPageState extends State<UserPage> {
                           ),
                         ),
                         onTap: () {
-                          print("Warranty");
+                          route.toProductWarrantyPage();
                         },
                       ),
                     ),
@@ -139,7 +147,7 @@ class UserPageState extends State<UserPage> {
                           ),
                         ),
                         onTap: () {
-                          print("Order");
+                          route.toOrderRecordPage();
                         },
                       ),
                     ),
@@ -183,16 +191,19 @@ class UserPageState extends State<UserPage> {
       );
     }
     else if (route.routeName3 == "/sonnion") {
-
+      return Sonnion();
     }
     else if (route.routeName3 == "/accountInfo") {
-
+      return AccountInfo();
     }
     else if (route.routeName3 == "/warranty") {
-
+      return WarrantyPage();
     }
     else if (route.routeName3 == "/orderRec") {
-
+      return OrderRecord();
+    }
+    else {
+      return ErrorPage();
     }
   }
 }
