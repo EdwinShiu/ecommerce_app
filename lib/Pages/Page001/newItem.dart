@@ -67,7 +67,7 @@ class NewItem extends StatelessWidget {
                 bottom: defaultSize * 0.4,
                 right: defaultSize * 0.4,
                 child: Text(
-                  "HK\$ " + item.price.toString(),
+                  (newItemList[index].item.length == 1) ? "HK\$ " + item.price.toString() : "From HK\$ " + item.price.toString(),
                   style: TextStyle(
                     fontSize: defaultSize * 2,
                     fontWeight: FontWeight.w500,

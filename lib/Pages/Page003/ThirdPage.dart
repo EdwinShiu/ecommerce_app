@@ -3,6 +3,7 @@ import 'package:ecommerce_app/Pages/Page003/favoritePage.dart';
 import 'package:ecommerce_app/data/product.dart';
 import 'package:ecommerce_app/data/routing.dart';
 import 'package:ecommerce_app/data/selectedProducts.dart';
+import 'package:ecommerce_app/data/service/database.dart';
 import 'package:ecommerce_app/sizeConfig.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,8 @@ class ThirdPage extends StatelessWidget {
     print('ThirdPage rebuild');
     //var uid = Provider.of<User>(context);
     //print(uid?.uid);
-    final favouriteList = Provider.of<FavouriteNotifier>(context);
+    final DataBaseService databaseWithId = Provider.of<DataBaseService>(context);
+    final FavouriteNotifier favouriteList = Provider.of<FavouriteNotifier>(context);
     final RouteGenerator route = Provider.of<RouteGenerator>(context);
     final ProductsPageNotifier selectedProduct = Provider.of<ProductsPageNotifier>(context);
     //print("userData " + userData.toString());
@@ -159,6 +161,7 @@ class ThirdPage extends StatelessWidget {
                               color: Colors.red,
                             ),
                             onTap: () {
+                              favouriteList.toggleFavouriteItem(favouriteList.getFavouriteList[index], databaseWithId);
                               print("unfavourite");
                             },
                           ),
